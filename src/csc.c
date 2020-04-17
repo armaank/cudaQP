@@ -2,47 +2,48 @@
 
 #include "../include/csc.h"
 
-
-
-static void* csc_malloc(c_int n, c_int size)
+static void* csc_malloc(int n, int size)
 {
     return c_malloc(n * size);
 }
 
-static void* csc_calloc(c_int n, c_int size)
+static void* csc_calloc(int n, int size)
 {
     return c_calloc(n, size);
 }
 
-csc* csc_matrix(c_int m, c_int n, c_int nzmax, c_float *x, c_int *i, c_int *p)
+csc* csc_matrix(int m, int n, int nzmax, float *x, int *i, int *p)
 {
     csc *M = (csc *)c_malloc(sizeof(csc));
 
     if (!M) return OSQP_NULL;
 
-    M->m     = m;
-    M->n     = n;
-    M->nz    = -1;
+    M->m = m;
+    M->n = n;
+    M->nz = -1;
     M->nzmax = nzmax;
-    M->x     = x;
-    M->i     = i;
-    M->p     = p;
+    M->x = x;
+    M->i = i;
+    M->p = p;
     return M;
 }
 
-csc* csc_spalloc(c_int m, c_int n, c_int nzmax, c_int values, c_int triplet)
+csc* csc_spalloc(int m, int n, int nzmax, int values, int triplet)
 {
-    csc *A = csc_calloc(1, sizeof(csc)); /* allocate the csc struct */
+    /* allocate the csc struct */
+    csc *A = csc_calloc(1, sizeof(csc));
 
-    if (!A) return NULL; /* out of memory */
+    /* out of memory */
+    if (!A) return NULL;
 
-    A->m = m; /* define dimensions and nzmax */
+    /* define dimensions and nzmax */
+    A->m = m;
     A->n = n;
     A->nzmax = nzmax = c_max(nzmax, 1);
     A->nz = triplet ? 0 : -1; /* allocate triplet or comp.col */
-    A->p = csc_malloc(triplet ? nzmax : n + 1, sizeof(c_int));
-    A->i = csc_malloc(nzmax, sizeof(c_int));
-    A->x = values ? csc_malloc(nzmax, sizeof(c_float)) : NULL;
+    A->p = csc_malloc(triplet ? nzmax : n + 1, sizeof(int));
+    A->i = csc_malloc(nzmax, sizeof(int));
+    A->x = values ? csc_malloc(nzmax, sizeof(float)) : NULL;
 
     if (!A->p || !A->i || (values && !A->x))
     {
@@ -64,11 +65,13 @@ void csc_spfree(csc *A)
     }
 }
 
-c_int csc_cumsum(c_int *p, c_int *c, c_int n)
+int csc_cumsum(int *p, int *c, int n)
 {
-    c_int ii, nz = 0;
+    int ii, nz = 0;
 
-    if (!p || !c) return -1;  /* check inputs */
+    /* check inputs */
+    if (!p || !c)
+        return -1;
 
     for (ii = 0; ii < n; ii++)
     {
@@ -77,29 +80,37 @@ c_int csc_cumsum(c_int *p, c_int *c, c_int n)
         c[ii] = p[ii];
     }
     p[n] = nz;
-    return nz; /* return sum (c [0..n-1]) */
+
+    /* return sum (c [0..n-1]) */
+    return nz;
 }
 
-c_int* csc_pinv(c_int const *p, c_int n)
+int* csc_pinv(int const *p, int n)
 {
-    c_int kk, *pinv;
+    int kk, *pinv;
 
-    if (!p) return NULL; /*_NULL denotes identity */
+    /*NULL denotes identity */
+    if (!p) return NULL;
 
-    pinv = csc_malloc(n, sizeof(c_int)); /* allocate result */
+    /* allocate result */
+    pinv = csc_malloc(n, sizeof(int));
 
-    if (!pinv) return NULL; /* out of memory */
+    /* out of memory */
+    if (!pinv) return NULL;
 
     for (kk = 0; kk < n; kk++)
-        pinv[p[kk]] = kk; /* invert the permutation */
-    return pinv; /* return result */
+        pinv[p[kk]] = kk; // invert the permutation
+
+    /* return result */
+    return pinv;
 }
 
 csc* copy_csc_mat(const csc *A)
 {
     csc *B = csc_spalloc(A->m, A->n, A->p[A->n], 1, 0);
 
-    if (!B) return NULL;
+    if (!B)
+        return NULL;
 
     prea_int_vec_copy(A->p, B->p, A->n + 1);
     prea_int_vec_copy(A->i, B->i, A->p[A->n]);

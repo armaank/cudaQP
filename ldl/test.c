@@ -9,12 +9,16 @@
 float vec_diff_norm(float* x, float* y, int len);
 int ldl_factor_solve(int An, int* Ap, int* Ai, float* Ax, float* b);
 static char* basic();
+static char* kkt();
+static char* rank();
 
 int tests_run = 0;
 
 static char* run_tests()
 {
     ut_run_test(basic);
+    ut_run_test(kkt);
+    ut_run_test(rank);
 
     return 0;
 }
@@ -28,7 +32,7 @@ int main(void) {
     }
     else
     {
-        printf("test passed\n");
+        printf("tests passed\n");
     }
 
     printf("tests run: %d\n", tests_run);
@@ -195,5 +199,42 @@ static char* basic()
     return 0;
 }
 
+static char* kkt()
+{
+    // Unordered A
+    int Ap[]  = {0, 1, 2, 5, 6, 7, 8, 12};
+    int Ai[]  = {0, 1, 2, 1, 0, 3, 4, 5, 5, 6, 4, 3};
+    float Ax[] = {-0.25,  -0.25,   1.0,   0.513578,   0.529142,  -0.25,  -0.25,   1.10274,   0.15538,   1.25883,   0.13458,   0.621134};
 
+    int An = 7;
 
+    // RHS and solution to Ax = b
+    float b[]    = {-0.595598, -0.0193715, -0.576156, -0.168746, 0.61543, 0.419073, 1.31087};
+    float xsol[] = {1.13141, -1.1367, -0.591044, 1.68867, -2.24209, 0.32254, 0.407998};
+
+    //x replaces b during solve
+    int status = ldl_factor_solve(An,Ap,Ai,Ax,b);
+
+    ut_assert("Factorisation failed", status >= 0);
+    ut_assert("Solve accuracy failed", vec_diff_norm(b,xsol,An) < ERR);
+
+    return 0;
+}
+
+static char* rank()
+{
+    //A matrix data
+    int Ap[]  = {0, 1, 3};
+    int Ai[]  = {0, 0, 1};
+    float Ax[] = {1.0, 1.0, 1.0};
+    int An = 2;
+
+    // RHS for Ax = b (should fail to solve)
+    float b[]    = {1,1};
+
+    //x replaces b during solve
+    int status = ldl_factor_solve(An,Ap,Ai,Ax,b);
+
+    ut_assert("rank deficiency undetected", status < 0);
+    return 0;
+}

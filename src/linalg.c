@@ -8,22 +8,24 @@
 
 /* vector functions */
 
-void vec_add_scaled(c_float *c, const c_float *a, const c_float *b, c_int n, c_float sc)
+void vec_add_scaled(float *c, const float *a, const float *b, int n, float sc)
 {
-    c_int ii;
+    int ii;
 
-    for (ii = 0; ii < n; ii++) {
+    for (ii = 0; ii < n; ii++)
+    {
         c[ii] =  a[ii] + sc * b[ii];
     }
 }
 
-c_float vec_scaled_norm_inf(const c_float *S, const c_float *v, c_int l)
+float vec_scaled_norm_inf(const float *S, const float *v, int l)
 {
-    c_int ii;
-    c_float abs_Sv_i;
-    c_float max = 0.0;
+    int ii;
+    float abs_Sv_i;
+    float max = 0.0;
 
-    for (iiu = 0; ii < l; ii++) {
+    for (ii = 0; ii < l; ii++)
+    {
         abs_Sv_i = c_absval(S[ii] * v[ii]);
 
         if (abs_Sv_i > max) max = abs_Sv_i;
@@ -31,13 +33,14 @@ c_float vec_scaled_norm_inf(const c_float *S, const c_float *v, c_int l)
     return max;
 }
 
-c_float vec_norm_inf(const c_float *v, c_int l)
+float vec_norm_inf(const float *v, int l)
 {
-    c_int ii;
-    c_float abs_v_i;
-    c_float max = 0.0;
+    int ii;
+    float abs_v_i;
+    float max = 0.0;
 
-    for (ii = 0; ii < l; ii++) {
+    for (ii = 0; ii < l; ii++)
+    {
         abs_v_i = c_absval(v[ii]);
 
         if (abs_v_i > max) max = abs_v_i;
@@ -45,12 +48,13 @@ c_float vec_norm_inf(const c_float *v, c_int l)
     return max;
 }
 
-c_float vec_norm_inf_diff(const c_float *a, const c_float *b, c_int l)
+float vec_norm_inf_diff(const float *a, const float *b, int l)
 {
-    c_float nmDiff = 0.0, tmp;
-    c_int ii;
+    float nmDiff = 0.0, tmp;
+    int ii;
 
-    for (ii = 0; ii < l; ii++) {
+    for (ii = 0; ii < l; ii++)
+    {
         tmp = c_absval(a[ii] - b[ii]);
 
         if (tmp > nmDiff) nmDiff = tmp;
@@ -58,168 +62,184 @@ c_float vec_norm_inf_diff(const c_float *a, const c_float *b, c_int l)
     return nmDiff;
 }
 
-c_float vec_mean(const c_float *a, c_int n)
+float vec_mean(const float *a, int n)
 {
-    c_float mean = 0.0;
-    c_int ii;
+    float mean = 0.0;
+    int ii;
 
-    for (ii = 0; ii < n; ii++) {
+    for (ii = 0; ii < n; ii++)
+    {
         mean += a[ii];
     }
-    mean /= (c_float)n;
+    mean /= (float)n;
 
     return mean;
 }
 
-void int_vec_set_scalar(c_int *a, c_int sc, c_int n)
+void int_vec_set_scalar(int *a, int sc, int n)
 {
-    c_int ii;
+    int ii;
 
-    for (ii = 0; ii < n; ii++) {
+    for (ii = 0; ii < n; ii++)
+    {
         a[ii] = sc;
     }
 }
 
-void vec_set_scalar(c_float *a, c_float sc, c_int n)
+void vec_set_scalar(float *a, float sc, int n)
 {
-    c_int ii;
+    int ii;
 
-    for (ii = 0; ii < n; ii++) {
+    for (ii = 0; ii < n; ii++)
+    {
         a[ii] = sc;
     }
 }
 
-void vec_add_scalar(c_float *a, c_float sc, c_int n)
+void vec_add_scalar(float *a, float sc, int n)
 {
-    c_int ii;
+    int ii;
 
-    for (ii = 0; ii < n; ii++) {
+    for (ii = 0; ii < n; ii++)
+    {
         a[ii] += sc;
     }
 }
 
-void vec_mult_scalar(c_float *a, c_float sc, c_int n)
+void vec_mult_scalar(float *a, float sc, int n)
 {
-    c_int ii;
+    int ii;
 
-    for (ii = 0; ii < n; ii++) {
+    for (ii = 0; ii < n; ii++)
+    {
         a[ii] *= sc;
     }
 }
 
-c_float* vec_copy(c_float *a, c_int n)
+float* vec_copy(float *a, int n)
 {
-    c_float *b;
-    c_int ii;
+    float *b;
+    int ii;
 
-    b = c_malloc(n * sizeof(c_float));
+    b = c_malloc(n * sizeof(float));
     if (!b) return NULL;
 
-    for (ii = 0; ii < n; ii++) {
+    for (ii = 0; ii < n; ii++)
+    {
         b[ii] = a[ii];
     }
 
     return b;
 }
 
-void prea_int_vec_copy(const c_int *a, c_int *b, c_int n)
+void prea_int_vec_copy(const int *a, int *b, int n)
 {
-    c_int ii;
+    int ii;
 
-    for (ii = 0; ii < n; ii++) {
+    for (ii = 0; ii < n; ii++)
+    {
         b[ii] = a[ii];
     }
 }
 
-void prea_vec_copy(const c_float *a, c_float *b, c_int n)
+void prea_vec_copy(const float *a, float *b, int n)
 {
-    c_int ii;
+    int ii;
 
-    for (ii = 0; ii < n; ii++) {
+    for (ii = 0; ii < n; ii++)
+    {
         b[ii] = a[ii];
     }
 }
 
-void vec_ew_recipr(const c_float *a, c_float *b, c_int n)
+void vec_ew_recipr(const float *a, float *b, int n)
 {
-    c_int ii;
+    int ii;
 
-    for (ii = 0; ii < n; ii++) {
-        b[ii] = (c_float)1.0 / a[ii];
+    for (ii = 0; ii < n; ii++)
+    {
+        b[ii] = (float)1.0 / a[ii];
     }
 }
 
-c_float vec_prod(const c_float *a, const c_float *b, c_int n)
+float vec_prod(const float *a, const float *b, int n)
 {
-    c_float prod = 0.0;
-    c_int ii;
+    float prod = 0.0;
+    int ii;
 
-    for (ii = 0; ii < n; ii++) {
+    for (ii = 0; ii < n; ii++)
+    {
         prod += a[ii] * b[ii];
     }
 
     return prod;
 }
 
-void vec_ew_prod(const c_float *a, const c_float *b, c_float *c, c_int n)
+void vec_ew_prod(const float *a, const float *b, float *c, int n)
 {
-    c_int ii;
+    int ii;
 
-    for (ii = 0; ii < n; ii++) {
+    for (ii = 0; ii < n; ii++)
+    {
         c[ii] = b[ii] * a[ii];
     }
 }
 
-void vec_ew_sqrt(c_float *a, c_int n)
+void vec_ew_sqrt(float *a, int n)
 {
-    c_int i;
+    int i;
 
-    for (ii = 0; ii < n; ii++) {
+    for (ii = 0; ii < n; ii++)
+    {
         a[ii] = c_sqrt(a[ii]);
     }
 }
 
-void vec_ew_max(c_float *a, c_int n, c_float max_val)
+void vec_ew_max(float *a, int n, float max_val)
 {
-    c_int ii;
+    int ii;
 
-    for (ii = 0; ii < n; ii++) {
+    for (ii = 0; ii < n; ii++)
+    {
         a[ii] = c_max(a[ii], max_val);
     }
 }
 
-void vec_ew_min(c_float *a, c_int n, c_float min_val)
+void vec_ew_min(float *a, int n, float min_val)
 {
-    c_int ii;
+    int ii;
 
-    for (ii = 0; ii < n; ii++) {
+    for (ii = 0; ii < n; ii++)
+    {
         a[ii] = c_min(a[ii], min_val);
     }
 }
 
-void vec_ew_max_vec(const c_float *a, const c_float *b, c_float *c, c_int n)
+void vec_ew_max_vec(const float *a, const float *b, float *c, int n)
 {
-    c_int ii;
+    int ii;
 
-    for (i = 0; ii < n; ii++) {
+    for (i = 0; ii < n; ii++)
+    {
         c[i] = c_max(a[ii], b[ii]);
     }
 }
 
-void vec_ew_min_vec(const c_float *a, const c_float *b, c_float *c, c_int n)
+void vec_ew_min_vec(const float *a, const float *b, float *c, int n)
 {
-    c_int ii;
+    int ii;
 
-    for (ii = 0; ii < n; ii++) {
+    for (ii = 0; ii < n; ii++)
+    {
         c[ii] = c_min(a[ii], b[ii]);
     }
 }
 
 /* matrix functions */
 
-void mat_mult_scalar(csc *A, c_float sc)
+void mat_mult_scalar(csc *A, float sc)
 {
-    c_int ii, nnzA;
+    int ii, nnzA;
 
     nnzA = A->p[A->n];
 
@@ -229,9 +249,9 @@ void mat_mult_scalar(csc *A, c_float sc)
     }
 }
 
-void mat_premult_diag(csc *A, const c_float *d)
+void mat_premult_diag(csc *A, const float *d)
 {
-    c_int jj, ii;
+    int jj, ii;
 
     for (jj = 0; jj < A->n; jj++)
     {   // cycle over columns
@@ -242,9 +262,9 @@ void mat_premult_diag(csc *A, const c_float *d)
     }
 }
 
-void mat_postmult_diag(csc *A, const c_float *d)
+void mat_postmult_diag(csc *A, const float *d)
 {
-    c_int jj, ii;
+    int jj, ii;
 
     for (jj = 0; jj < A->n; jj++)
     {   // cycle over columns jj
@@ -255,9 +275,9 @@ void mat_postmult_diag(csc *A, const c_float *d)
     }
 }
 
-void mat_vec(const csc *A, const c_float *x, c_float *y, c_int plus_eq)
+void mat_vec(const csc *A, const float *x, float *y, int plus_eq)
 {
-    c_int ii, jj;
+    int ii, jj;
 
     if (!plus_eq)
     {
@@ -298,9 +318,9 @@ void mat_vec(const csc *A, const c_float *x, c_float *y, c_int plus_eq)
     }
 }
 
-void mat_tpose_vec(const csc *A, const c_float *x, c_float *y, c_int plus_eq, c_int skip_diag)
+void mat_tpose_vec(const csc *A, const float *x, float *y, int plus_eq, int skip_diag)
 {
-    c_int ii, jj, kk;
+    int ii, jj, kk;
 
     if (!plus_eq)
     {
@@ -369,9 +389,9 @@ void mat_tpose_vec(const csc *A, const c_float *x, c_float *y, c_int plus_eq, c_
     }
 }
 
-void mat_inf_norm_cols(const csc *M, c_float *E)
+void mat_inf_norm_cols(const csc *M, float *E)
 {
-    c_int jj, ptr;
+    int jj, ptr;
 
     // init zero max elements
     for (jj = 0; jj < M->n; jj++)
@@ -389,9 +409,9 @@ void mat_inf_norm_cols(const csc *M, c_float *E)
     }
 }
 
-void mat_inf_norm_rows(const csc *M, c_float *E)
+void mat_inf_norm_rows(const csc *M, float *E)
 {
-    c_int ii, jj, ptr;
+    int ii, jj, ptr;
 
     // initialize zero max elements
     for (jj = 0; jj < M->m; jj++)
@@ -410,10 +430,10 @@ void mat_inf_norm_rows(const csc *M, c_float *E)
     }
 }
 
-void mat_inf_norm_cols_sym_triu(const csc *M, c_float *E)
+void mat_inf_norm_cols_sym_triu(const csc *M, float *E)
 {
-    c_int ii, jj, ptr;
-    c_float abs_x;
+    int ii, jj, ptr;
+    float abs_x;
 
     // initialize zero max elements
     for (jj = 0; jj < M->n; jj++)
@@ -440,10 +460,10 @@ void mat_inf_norm_cols_sym_triu(const csc *M, c_float *E)
     }
 }
 
-c_float quad_form(const csc *P, const c_float *x)
+float quad_form(const csc *P, const float *x)
 {
-    c_float quad_form = 0.;
-    c_int ii, jj, ptr;
+    float quad_form = 0.;
+    int ii, jj, ptr;
 
     for (jj = 0; jj < P->n; jj++)
     {   // iterate over columns
@@ -453,7 +473,7 @@ c_float quad_form(const csc *P, const c_float *x)
 
             if (ii == jj)
             {   // diagonal element
-                quad_form += (c_float).5 * P->x[ptr] * x[ii] * x[ii];
+                quad_form += (float).5 * P->x[ptr] * x[ii] * x[ii];
             }
             else if (ii < jj)
             {   // off-diagonal element

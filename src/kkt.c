@@ -3,41 +3,45 @@
 /* todo: figure out triplet format */
 
 /* form kkt matrix */
-csc* form_KKT(const csc *P, const csc *A, c_int format, c_float param1, c_float *param2, c_int *PtoKKT, c_int *AtoKKT, c_int **Pdiag_idx, c_int *Pdiag_n, c_int *param2toKKT)
+csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param2, int *PtoKKT, int *AtoKKT, int **Pdiag_idx, int *Pdiag_n, int *param2toKKT)
 {
-    c_int  nKKT, nnzKKTmax; // size, number of nonzeros and max number of nonzeros
-    csc   *KKT_trip, *KKT;  // KKT matrix in triplet format and CSC format
-    c_int  ptr, ii, jj;     // counters for elements (ii,jj) and index pointer
-    c_int  zKKT = 0;        // counter for total number of elements in P
-    c_int *KKT_TtoC;        // Pointer to vector mapping from KKT in triplet form to CSC
+    /* size, number of nonzeros and max number of nonzeros */
+    int nKKT, nnzKKTmax;
+    /* ktt matrix in triplet and csc format */
+    csc *KKT_trip, *KKT;
+    /* counts and index pointer */
+    int ptr, ii, jj;
+    /* counter for num of elements in P */
+    int zKKT = 0;
+    /* pointer to vector from KKT in triplet to csc */
+    int *KKT_TtoC;
 
-    // get matrix dimensions
+    /* get matrix dimensions */
     nKKT = P->m + A->m;
 
-    // get maximum number of nonzero elements (only upper triangular part)
+    /* get maximum number of nonzero elements in the UT part of the matrix */
     nnzKKTmax = P->p[P->n] + // number of elements in P
                 P->m +       // number of elements in param1 * I
                 A->p[A->n] + // number of nonzeros in A
                 A->m;        // number of elements in - diag(param2)
 
-    // preallocate KKT matrix in triplet format
+    /* preallocate KKT matrix in triplet format */
     KKT_trip = csc_spalloc(nKKT, nKKT, nnzKKTmax, 1, 1);
 
     if (!KKT_trip)
         return NULL;  // failed to preallocate matrix
 
-    // allocate vector of indices on the diagonal. worst case it has m elements
+    /* allocate vector of indices on the diagonal. worst case it has m elements */
     if (Pdiag_idx != NULL)
     {
-        (*Pdiag_idx) = c_malloc(P->m * sizeof(c_int));
-        *Pdiag_n     = 0; // set 0 diagonal elements to start
+        (*Pdiag_idx) = c_malloc(P->m * sizeof(int));
+        *Pdiag_n = 0; // set 0 diagonal elements to start
     }
 
-    // allocate Triplet matrices
-    // P + param1 I
+    /* allocate Triplet matrices */
     for (jj = 0; jj < P->n; jj++)
     {   // cycle over columns
-        // no elements in column j => add diagonal element param1
+        // no elements in column jj => add diagonal element param1
         if (P->p[jj] == P->p[jj + 1])
         {
             KKT_trip->ii[zKKT] = jj;
@@ -74,8 +78,8 @@ csc* form_KKT(const csc *P, const csc *A, c_int format, c_float param1, c_float 
             zKKT++;
 
             // Add diagonal param1 in case
-            if ((ii < jj) && (ptr + 1 == P->[j+1]))	      // Diagonal element not reached, last element of col j
-            {
+            if ((ii < jj) && (ptr + 1 == P->[j+1]))
+            {   // Diagonal element not reached, last element of col jj
                 // Add diagonal element param1
                 KKT_trip->ii[zKKT] = jj;
                 KKT_trip->p[zKKT] = jj;
@@ -87,30 +91,30 @@ csc* form_KKT(const csc *P, const csc *A, c_int format, c_float param1, c_float 
 
     if (Pdiag_idx != NULL)
     {
-        // Realloc Pdiag_idx so that it contains exactly *Pdiag_n diagonal elements
-        (*Pdiag_idx) = c_realloc((*Pdiag_idx), (*Pdiag_n) * sizeof(c_int));
+        /* realloc Pdiag_idx so that it contains exactly *Pdiag_n diagonal elements */
+        (*Pdiag_idx) = c_realloc((*Pdiag_idx), (*Pdiag_n) * sizeof(int));
     }
 
 
-    // A' at top right
+    /* A' at top right */
     for (jj = 0; jj < A->n; jj++)
-    {   // Cycle over columns of A
+    {   // cycle over columns of A
         for (ptr = A->p[jj]; ptr < A->p[jj + 1]; ptr++)
         {
-            KKT_trip->p[zKKT] = P->m + A->i[ptr];         // Assign column index from
+            KKT_trip->p[zKKT] = P->m + A->i[ptr]; // assign column index from
             // row index of A
-            KKT_trip->ii[zKKT] = jj;                        // Assign row index from
+            KKT_trip->ii[zKKT] = jj; // assign row index from
             // column index of A
-            KKT_trip->x[zKKT] = A->x[ptr];                // Assign A value element
+            KKT_trip->x[zKKT] = A->x[ptr]; // assign A value element
 
             if (AtoKKT != NULL)
-                AtoKKT[ptr] = zKKT;  // Update index from A to
+                AtoKKT[ptr] = zKKT; // Update index from A to
             // KKTtrip
             zKKT++;
         }
     }
 
-    // - diag(param2) at bottom right
+    /* - diag(param2) at bottom right */
     for (jj = 0; jj < A->m; jj++)
     {
         KKT_trip->ii[zKKT] = jj + P->n;
@@ -118,18 +122,18 @@ csc* form_KKT(const csc *P, const csc *A, c_int format, c_float param1, c_float 
         KKT_trip->x[zKKT] = -param2[jj];
 
         if (param2toKKT != NULL)
-            param2toKKT[j] = zKKT;  // Update index from
+            param2toKKT[j] = zKKT;  // update index from
         // param2 to KKTtrip
         zKKT++;
     }
 
-    // Allocate number of nonzeros
+    /* allocate number of nonzeros */
     KKT_trip->nz = zKKT;
 
-    // Convert triplet matrix to csc format
+    /* convert triplet matrix to csc format */
     if (!PtoKKT && !AtoKKT && !param2toKKT)
     {
-        // If no index vectors passed, do not store KKT mapping from Trip to CSC/CSR
+        // if no index vectors passed, do not store KKT mapping from Trip to CSC/CSR
         if (format == 0)
             KKT = triplet_to_csc(KKT_trip, NULL);
         else
@@ -137,24 +141,24 @@ csc* form_KKT(const csc *P, const csc *A, c_int format, c_float param1, c_float 
     }
     else
     {
-        // Allocate vector of indices from triplet to csc
-        KKT_TtoC = c_malloc((zKKT) * sizeof(c_int));
+        // allocate vector of indices from triplet to csc
+        KKT_TtoC = c_malloc((zKKT) * sizeof(int));
 
         if (!KKT_TtoC)
         {
-            // Error in allocating KKT_TtoC vector
+            // error in allocating KKT_TtoC vector
             csc_spfree(KKT_trip);
             c_free(*Pdiag_idx);
             return NULL;
         }
 
-        // Store KKT mapping from Trip to CSC/CSR
+        // store KKT mapping from Trip to CSC/CSR
         if (format == 0)
             KKT = triplet_to_csc(KKT_trip, KKT_TtoC);
         else
             KKT = triplet_to_csr(KKT_trip, KKT_TtoC);
 
-        // Update vectors of indices from P, A, param2 to KKT (now in CSC format)
+        // update vectors of indices from P, A, param2 to KKT (now in CSC format)
         if (PtoKKT != OSQP_NULL)
         {
             for (ii = 0; ii < P->p[P->n]; ii++)
@@ -183,17 +187,15 @@ csc* form_KKT(const csc *P, const csc *A, c_int format, c_float param1, c_float 
         c_free(KKT_TtoC);
     }
 
-    // Clean matrix in triplet format and return result
+    // free matrix in triplet format and return result
     csc_spfree(KKT_trip);
 
     return KKT;
 }
 
-
-void update_KKT_P(csc *KKT, const csc *P, const c_int *PtoKKT, const c_float param1, const c_int *Pdiag_idx, const c_int Pdiag_n)
+void update_KKT_P(csc *KKT, const csc *P, const int *PtoKKT, const float param1, const int *Pdiag_idx, const int Pdiag_n)
 {
-    c_int ii, jj;
-    s
+    int ii, jj;
 
     // update elements of KKT using P
     for (ii = 0; ii < P->p[P->n]; ii++)
@@ -209,9 +211,9 @@ void update_KKT_P(csc *KKT, const csc *P, const c_int *PtoKKT, const c_float par
     }
 }
 
-void update_KKT_A(csc *KKT, const csc *A, const c_int *AtoKKT)
+void update_KKT_A(csc *KKT, const csc *A, const int *AtoKKT)
 {
-    c_int ii;
+    int ii;
 
     // update elements of KKT using A
     for (ii = 0; ii < A->p[A->n]; ii++)
@@ -220,14 +222,12 @@ void update_KKT_A(csc *KKT, const csc *A, const c_int *AtoKKT)
     }
 }
 
-void update_KKT_param2(csc *KKT, const c_float *param2, const c_int *param2toKKT, const c_int m)
+void update_KKT_param2(csc *KKT, const float *param2, const int *param2toKKT, const int m)
 {
-    c_int ii;
+    int ii;
 
     // update elements of KKT using param2
     for (ii = 0; ii < m; ii++) {
         KKT->x[param2toKKT[ii]] = -param2[ii];
     }
 }
-
-

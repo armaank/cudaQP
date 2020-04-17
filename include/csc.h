@@ -1,15 +1,27 @@
 #ifndef CSC_H
 # define CSC_H
 
-# include "types.h"   // CSC matrix type
 # include "linalg.h" // Vector copy operations
 
+/* matrix in compressed-column form */
+typedef struct {
+    int    nzmax; ///< maximum number of entries
+    int    m;     ///< number of rows
+    int    n;     ///< number of columns
+    int   *p;     ///< column pointers (size n+1); col indices (size nzmax) start from 0 when using triplet format (direct KKT matrix formation)
+    int   *i;     ///< row indices, size nzmax starting from 0
+    float *x;     ///< numerical values, size nzmax
+    int    nz;    ///< number of entries in triplet matrix, -1 for csc
+} csc;
+
+# endif /* ifndef TYPES_H */
+
 /* create Compressed-Column-Sparse matrix from existing arrays */
-csc* csc_matrix(c_int m, c_int n, c_int nzmax, c_float *x, c_int *i, c_int *p);
+csc* csc_matrix(int m, int n, int nzmax, c_float *x, int *i, int *p);
 
 
 /* create uninitialized CSC matrix  */
-csc* csc_spalloc(c_int m, c_int n, c_int nzmax, c_int values, c_int triplet);
+csc* csc_spalloc(int m, int n, int nzmax, int values, int triplet);
 
 /* free sparse matrix */
 void csc_spfree(csc *A);
@@ -21,10 +33,10 @@ csc* copy_csc_mat(const csc *A);
 void prea_copy_csc_mat(const csc *A, csc *B);
 
 /* C = compressed-column CSC from matrix T in triplet form */
-csc* triplet_to_csc(const csc *T, c_int *TtoC);
+csc* triplet_to_csc(const csc *T, int *TtoC);
 
 /* C = compressed-row CSR from matrix T in triplet form */
-csc* triplet_to_csr(const csc *T, c_int *TtoC);
+csc* triplet_to_csr(const csc *T, int *TtoC);
 
 /* convert sparse to dense */
 c_float* csc_to_dns(csc *M);
@@ -33,12 +45,12 @@ c_float* csc_to_dns(csc *M);
 csc* csc_to_triu(csc *M);
 
 /* p [0..n] = cumulative sum of c [0..n-1], and then copy p [0..n-1] into c */
-c_int csc_cumsum(c_int *p, c_int *c, c_int n);
+int csc_cumsum(int *p, int *c, int n);
 
 /* compute inverse of permutation matrix stored in the vector p */
-c_int* csc_pinv(c_int const *p, c_int n);
+int* csc_pinv(int const *p, int n);
 
 /* C = A(p,p)= PAP' where A and C are symmetric the upper part stored */
-csc* csc_symperm(const csc *A, const c_int *pinv, c_int *AtoC, c_int values);
+csc* csc_symperm(const csc *A, const int *pinv, int *AtoC, int values);
 
 #endif // ifndef CSC_H
