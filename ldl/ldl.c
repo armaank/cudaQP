@@ -1,4 +1,5 @@
-#include "../include/qdldl.h"
+#include <stdbool.h>
+#include "../include/ldl.h"
 #include "limits.h"
 
 #define LDL_UNKNOWN (-1)
@@ -19,7 +20,7 @@ int LDL_etree(const int n, const int* Ap, const int* Ai, int* work, int* Lnz, in
         // zero out Lnz and work.  Set all etree values to unknown
         work[ii]  = 0;
         Lnz[ii]   = 0;
-        etree[i] = LDL_UNKNOWN;
+        etree[ii] = LDL_UNKNOWN;
 
         //Abort if A doesn't have at least one entry
         //one entry in every column
@@ -33,7 +34,7 @@ int LDL_etree(const int n, const int* Ap, const int* Ai, int* work, int* Lnz, in
     for(jj = 0; jj < n; jj++)
     {
         work[jj] = jj;
-        for(p = Ap[jj]; p < Ap[jj+1]; pp++)
+        for(pp = Ap[jj]; pp < Ap[jj+1]; pp++)
         {
             ii = Ai[pp];
             if(ii > jj)
@@ -165,7 +166,7 @@ int LDL_factor(const int n, const int* Ap, const int* Ai, const float* Ax, int* 
             if(yMarkers[nextIdx] == LDL_UNUSED)
             {   //this y term not already visited
 
-                yMarkers[nextIdx] = QDLDL_USED;     //I touched this one
+                yMarkers[nextIdx] = LDL_USED;     //I touched this one
                 elimBuffer[0]     = nextIdx;  // It goes at the start of the current list
                 nnzE              = 1;         //length of unvisited elimination path from here
 
@@ -216,7 +217,7 @@ int LDL_factor(const int n, const int* Ap, const int* Ai, const float* Ax, int* 
             Lx[tmpIdx] = yVals_cidx *Dinv[cidx];
 
             //D[k] -= yVals[cidx]*yVals[cidx]*Dinv[cidx];
-            D[k] -= yVals_cidx*Lx[tmpIdx];
+            D[kk] -= yVals_cidx*Lx[tmpIdx];
             LNextSpaceInCol[cidx]++;
 
             //reset the yvalues and indices back to zero and QDLDL_UNUSED
