@@ -35,3 +35,17 @@
 #define ADAPTIVE_RHO_MULTIPLE_TERMINATION (4) ///< multiple of check_termination after which we update rho (if PROFILING disabled)
 #define ADAPTIVE_RHO_FIXED (100)              ///< number of iterations after which we update rho if termination_check  and PROFILING are disabled
 #define ADAPTIVE_RHO_TOLERANCE (5)            ///< tolerance for adopting new rho; minimum ratio between new rho and the current one
+
+# define QP_DUAL_INFEASIBLE_INACCURATE (4)
+# define QP_PRIMAL_INFEASIBLE_INACCURATE (3)
+# define QP_SOLVED_INACCURATE (2)
+# define QP_SOLVED (1)
+# define QP_MAX_ITER_REACHED (-2)
+# define QP_PRIMAL_INFEASIBLE (-3)    /* primal infeasible  */
+# define QP_DUAL_INFEASIBLE (-4)      /* dual infeasible */
+# define QP_SIGINT (-5)               /* interrupted by user */
+# ifdef PROFILING
+#  define QP_TIME_LIMIT_REACHED (-6)
+# endif // ifdef PROFILING
+# define QP_NON_CVX (-7)              /* problem non convex */
+# define QP_UNSOLVED (-10)            /* Unsolved. Only setup function has been called */
