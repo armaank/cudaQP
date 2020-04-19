@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../ldl.h"
-#include "ldl_unittest.h"
+#include "../../include/unittest.h"
 #define ERR 1e-4
 
 float vec_diff_norm(float* x, float* y, int len);
