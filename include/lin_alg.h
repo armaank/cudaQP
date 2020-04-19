@@ -3,6 +3,7 @@
 
 
 # include "types.h"
+#include <math.h>
 
 
 /* VECTOR FUNCTIONS ----------------------------------------------------------*/

@@ -1,7 +1,6 @@
 #ifndef GLOB_OPTS_H
 # define GLOB_OPTS_H
 
-
 /*
    Define OSQP compiler flags
  */
@@ -58,7 +57,7 @@
 #  include <stdio.h>
 #  include <string.h>
 
-
+#   define c_print printf
 
 /* Print error macro */
 #  define c_eprint(...) c_print("ERROR in %s: ", __FUNCTION__); c_print(\

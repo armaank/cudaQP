@@ -1,5 +1,7 @@
 #include "../include/util.h"
-
+#include "../include/glob_opts.h"
+# include "../include/types.h"
+# include "../include/constants.h"
 /************************************
 * Printing Constants to set Layout *
 ************************************/
@@ -51,10 +53,6 @@ void print_setup_header(const OSQPWorkspace *work) {
   nnz = data->P->p[data->P->n] + data->A->p[data->A->n];
 
   print_line();
-  c_print("           OSQP v%s  -  Operator Splitting QP Solver\n"
-          "              (c) Bartolomeo Stellato,  Goran Banjac\n"
-          "        University of Oxford  -  Stanford University 2019\n",
-          OSQP_VERSION);
   print_line();
 
   // Print variables and constraints
@@ -66,8 +64,8 @@ void print_setup_header(const OSQPWorkspace *work) {
 
   // Print Settings
   c_print("settings: ");
-  c_print("linear system solver = %s",
-          LINSYS_SOLVER_NAME[settings->linsys_solver]);
+  c_print("linear system solver = ldl");
+          // LINSYS_SOLVER_NAME[settings->linsys_solver]);
 
   if (work->linsys_solver->nthreads != 1) {
     c_print(" (%d threads)", (int)work->linsys_solver->nthreads);

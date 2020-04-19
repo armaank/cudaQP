@@ -102,7 +102,6 @@ typedef struct {
   float  pri_res;   ///< primal residual at polished solution
   float  dua_res;   ///< dual residual at polished solution
 } OSQPPolish;
-# endif // ifndef EMBEDDED
 
 
 /**********************************

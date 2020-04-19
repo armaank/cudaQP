@@ -4,6 +4,7 @@
 /* OSQP error handling */
 
 # include "types.h"
+#include "constants.h"
 
 
 /* OSQP error macro */

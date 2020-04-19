@@ -1,6 +1,6 @@
 #include "../include/glob_opts.h"
 
-#include "../include/ldl.h"
+#include "../ldl/ldl.h"
 #include "../include/ldl_interface.h"
 #include "../include/kkt.h"
 
@@ -22,7 +22,7 @@ void free_linsys_solver_ldl(ldl_solver *s) {
         if (s->AtoKKT)    c_free(s->AtoKKT);
         if (s->rhotoKKT)  c_free(s->rhotoKKT);
 
-        // QDLDL workspace
+        // LDL workspace
         if (s->D)         c_free(s->D);
         if (s->etree)     c_free(s->etree);
         if (s->Lnz)       c_free(s->Lnz);
@@ -48,7 +48,7 @@ static int LDL_factor(csc *A,  ldl_solver * p, int nvar){
     int factor_status;
 
     // Compute elimination tree
-    sum_Lnz = QDLDL_etree(A->n, A->p, A->i, p->iwork, p->Lnz, p->etree);
+    sum_Lnz = LDL_etree(A->n, A->p, A->i, p->iwork, p->Lnz, p->etree);
 
     if (sum_Lnz < 0){
       // Error
@@ -63,7 +63,7 @@ static int LDL_factor(csc *A,  ldl_solver * p, int nvar){
     p->L->x = (float *)c_malloc(sizeof(float)*sum_Lnz);
 
     // Factor matrix
-    factor_status = QDLDL_factor(A->n, A->p, A->i, A->x,
+    factor_status = LDL_factor(A->n, A->p, A->i, A->x,
                                  p->L->p, p->L->i, p->L->x,
                                  p->D, p->Dinv, p->Lnz,
                                  p->etree, p->bwork, p->iwork, p->fwork);
@@ -195,7 +195,7 @@ int init_linsys_solver_ldl(ldl_solver ** sp, const csc * P, const csc * A, float
 #endif
 
     // Assign type
-    s->type = QDLDL_SOLVER;
+    s->type = LDL_SOLVER;
 
     // Set number of threads to 1 (single threaded)
     s->nthreads = 1;
@@ -210,27 +210,27 @@ int init_linsys_solver_ldl(ldl_solver ** sp, const csc * P, const csc * A, float
     s->L->nz = -1;
 
     // Diagonal matrix stored as a vector D
-    s->Dinv = (QDLDL_float *)c_malloc(sizeof(QDLDL_float) * n_plus_m);
-    s->D    = (QDLDL_float *)c_malloc(sizeof(QDLDL_float) * n_plus_m);
+    s->Dinv = (float *)c_malloc(sizeof(float) * n_plus_m);
+    s->D    = (float *)c_malloc(sizeof(float) * n_plus_m);
 
     // Permutation vector P
-    s->P    = (QDLDL_int *)c_malloc(sizeof(QDLDL_int) * n_plus_m);
+    s->P    = (int *)c_malloc(sizeof(int) * n_plus_m);
 
     // Working vector
-    s->bp   = (QDLDL_float *)c_malloc(sizeof(QDLDL_float) * n_plus_m);
+    s->bp   = (float *)c_malloc(sizeof(float) * n_plus_m);
 
     // Solution vector
-    s->sol  = (QDLDL_float *)c_malloc(sizeof(QDLDL_float) * n_plus_m);
+    s->sol  = (float *)c_malloc(sizeof(float) * n_plus_m);
 
     // Parameter vector
     s->rho_inv_vec = (float *)c_malloc(sizeof(float) * s->m);
 
     // Elimination tree workspace
-    s->etree = (QDLDL_int *)c_malloc(n_plus_m * sizeof(QDLDL_int));
-    s->Lnz   = (QDLDL_int *)c_malloc(n_plus_m * sizeof(QDLDL_int));
+    s->etree = (int *)c_malloc(n_plus_m * sizeof(int));
+    s->Lnz   = (int *)c_malloc(n_plus_m * sizeof(int));
 
     // Preallocate L matrix (Lx and Li are sparsity dependent)
-    s->L->p = (int *)c_malloc((n_plus_m+1) * sizeof(QDLDL_int));
+    s->L->p = (int *)c_malloc((n_plus_m+1) * sizeof(int));
 
     // Lx and Li are sparsity dependent, so set them to
     // null initially so we don't try to free them prematurely
@@ -238,9 +238,9 @@ int init_linsys_solver_ldl(ldl_solver ** sp, const csc * P, const csc * A, float
     s->L->x = OSQP_NULL;
 
     // Preallocate workspace
-    s->iwork = (QDLDL_int *)c_malloc(sizeof(QDLDL_int)*(3*n_plus_m));
-    s->bwork = (QDLDL_bool *)c_malloc(sizeof(QDLDL_bool)*n_plus_m);
-    s->fwork = (QDLDL_float *)c_malloc(sizeof(QDLDL_float)*n_plus_m);
+    s->iwork = (int *)c_malloc(sizeof(int)*(3*n_plus_m));
+    s->bwork = (bool *)c_malloc(sizeof(bool)*n_plus_m);
+    s->fwork = (float *)c_malloc(sizeof(float)*n_plus_m);
 
     // Form and permute KKT matrix
     if (polish){ // Called from polish()
@@ -326,7 +326,7 @@ void permutet_x(int n, float * x, const float * b, const int * P) {
 static void LDLSolve(float *x, float *b, const csc *L, const float *Dinv, const int *P, float *bp) {
     /* solves P'LDL'P x = b for x */
     permute_x(L->n, bp, b, P);
-    QDLDL_solve(L->n, L->p, L->i, L->x, Dinv, bp);
+    LDL_solve(L->n, L->p, L->i, L->x, Dinv, bp);
     permutet_x(L->n, x, bp, P);
 
 }
@@ -371,7 +371,7 @@ int update_linsys_solver_matrices_ldl(ldl_solver * s, const csc *P, const csc *A
     // Update KKT matrix with new A
     update_KKT_A(s->KKT, A, s->AtoKKT);
 
-    return (QDLDL_factor(s->KKT->n, s->KKT->p, s->KKT->i, s->KKT->x,
+    return (LDL_factor(s->KKT->n, s->KKT->p, s->KKT->i, s->KKT->x,
         s->L->p, s->L->i, s->L->x, s->D, s->Dinv, s->Lnz,
         s->etree, s->bwork, s->iwork, s->fwork) < 0);
 
@@ -389,7 +389,7 @@ int update_linsys_solver_rho_vec_ldl(ldl_solver * s, const float * rho_vec){
     // Update KKT matrix with new rho_vec
     update_KKT_param2(s->KKT, s->rho_inv_vec, s->rhotoKKT, s->m);
 
-    return (QDLDL_factor(s->KKT->n, s->KKT->p, s->KKT->i, s->KKT->x,
+    return (LDL_factor(s->KKT->n, s->KKT->p, s->KKT->i, s->KKT->x,
         s->L->p, s->L->i, s->L->x, s->D, s->Dinv, s->Lnz,
         s->etree, s->bwork, s->iwork, s->fwork) < 0);
 }

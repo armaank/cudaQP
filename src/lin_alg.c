@@ -1,5 +1,6 @@
 #include "../include/lin_alg.h"
-
+#include "../include/glob_opts.h"
+#include <math.h>
 
 /* VECTOR FUNCTIONS ----------------------------------------------------------*/
 

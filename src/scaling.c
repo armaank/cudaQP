@@ -1,5 +1,5 @@
 #include "../include/scaling.h"
-
+#include "../include/lin_alg.h"
 
 
 // Set values lower than threshold SCALING_REG to 1
