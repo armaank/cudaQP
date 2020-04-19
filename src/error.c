@@ -1,4 +1,3 @@
-
 #include "error.h"
 
 const char *OSQP_ERROR_MESSAGE[] = {
@@ -12,8 +11,11 @@ const char *OSQP_ERROR_MESSAGE[] = {
 };
 
 
-int _qp_error(enum qp_error_type error_code,
+c_int _osqp_error(enum osqp_error_type error_code,
 		 const char * function_name) {
+# ifdef PRINTING
   c_print("ERROR in %s: %s\n", function_name, OSQP_ERROR_MESSAGE[error_code-1]);
-  return (int)error_code;
+# endif
+  return (c_int)error_code;
 }
+
