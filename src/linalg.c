@@ -481,7 +481,7 @@ float quad_form(const csc *P, const float *x)
             }
             else { // element in lower diagonal
                 // print("quad_form matrix is not upper triangular");
-                return 0; 
+                return 0;
             }
         }
     }

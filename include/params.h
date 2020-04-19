@@ -23,6 +23,9 @@
 #define WARM_START (1)
 #define SCALING (10)
 
+#define INFTY ((float)1e30)   
+#define qpNAN ((float)0x7fc00000UL)
+
 #define MIN_SCALING (1e-04) ///< minimum scaling value
 #define MAX_SCALING (1e+04) ///< maximum scaling value
 
