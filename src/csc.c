@@ -16,7 +16,7 @@ csc* csc_matrix(int m, int n, int nzmax, float *x, int *i, int *p)
 {
     csc *M = (csc *)c_malloc(sizeof(csc));
 
-    if (!M) return OSQP_NULL;
+    if (!M) return 0;
 
     M->m = m;
     M->n = n;
@@ -34,7 +34,7 @@ csc* csc_spalloc(int m, int n, int nzmax, int values, int triplet)
     csc *A = csc_calloc(1, sizeof(csc));
 
     /* out of memory */
-    if (!A) return NULL;
+    if (!A) return 0;
 
     /* define dimensions and nzmax */
     A->m = m;
@@ -43,12 +43,12 @@ csc* csc_spalloc(int m, int n, int nzmax, int values, int triplet)
     A->nz = triplet ? 0 : -1; /* allocate triplet or comp.col */
     A->p = csc_malloc(triplet ? nzmax : n + 1, sizeof(int));
     A->i = csc_malloc(nzmax, sizeof(int));
-    A->x = values ? csc_malloc(nzmax, sizeof(float)) : NULL;
+    A->x = values ? csc_malloc(nzmax, sizeof(float)) : 0;
 
     if (!A->p || !A->i || (values && !A->x))
     {
         csc_spfree(A);
-        return NULL;
+        return 0;
     }
     else
         return A;
@@ -89,14 +89,14 @@ int* csc_pinv(int const *p, int n)
 {
     int kk, *pinv;
 
-    /*NULL denotes identity */
-    if (!p) return NULL;
+    /*0 denotes identity - might need to return null here */
+    if (!p) return 0;
 
     /* allocate result */
     pinv = csc_malloc(n, sizeof(int));
 
     /* out of memory */
-    if (!pinv) return NULL;
+    if (!pinv) return 0;
 
     for (kk = 0; kk < n; kk++)
         pinv[p[kk]] = kk; // invert the permutation
@@ -110,7 +110,7 @@ csc* copy_csc_mat(const csc *A)
     csc *B = csc_spalloc(A->m, A->n, A->p[A->n], 1, 0);
 
     if (!B)
-        return NULL;
+        return 0;
 
     prea_int_vec_copy(A->p, B->p, A->n + 1);
     prea_int_vec_copy(A->i, B->i, A->p[A->n]);

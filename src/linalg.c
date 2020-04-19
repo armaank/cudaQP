@@ -122,7 +122,7 @@ float* vec_copy(float *a, int n)
     int ii;
 
     b = c_malloc(n * sizeof(float));
-    if (!b) return NULL;
+    if (!b) return 0;
 
     for (ii = 0; ii < n; ii++)
     {
@@ -481,7 +481,7 @@ float quad_form(const csc *P, const float *x)
             }
             else { // element in lower diagonal
                 // print("quad_form matrix is not upper triangular");
-                return NULL;
+                return 0; 
             }
         }
     }

@@ -1,6 +1,6 @@
 #include "../include/kkt.h"
 
-/* todo: figure out triplet format */
+/* todo: figure out triplet format, check nulls */
 
 /* form kkt matrix */
 csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param2, int *PtoKKT, int *AtoKKT, int **Pdiag_idx, int *Pdiag_n, int *param2toKKT)
@@ -29,10 +29,10 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
     KKT_trip = csc_spalloc(nKKT, nKKT, nnzKKTmax, 1, 1);
 
     if (!KKT_trip)
-        return NULL;  // failed to preallocate matrix
+        return 0;  // failed to preallocate matrix
 
     /* allocate vector of indices on the diagonal. worst case it has m elements */
-    if (Pdiag_idx != NULL)
+    if (Pdiag_idx != 0)
     {
         (*Pdiag_idx) = c_malloc(P->m * sizeof(int));
         *Pdiag_n = 0; // set 0 diagonal elements to start
@@ -60,7 +60,7 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
             KKT_trip->p[zKKT] = jj;
             KKT_trip->x[zKKT] = P->x[ptr];
 
-            if (PtoKKT != NULL)
+            if (PtoKKT != 0)
                 PtoKKT[ptr] = zKKT;  // update index from P to KTTtrip
 
             if (ii == jj)
@@ -69,7 +69,7 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
                 KKT_trip->x[zKKT] += param1;
 
                 // If index vector pointer supplied -> Store the index
-                if (Pdiag_idx != OSQP_NULL)
+                if (Pdiag_idx != OSQP_0)
                 {
                     (*Pdiag_idx)[*Pdiag_n] = ptr;
                     (*Pdiag_n)++;
@@ -89,7 +89,7 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
         }
     }
 
-    if (Pdiag_idx != NULL)
+    if (Pdiag_idx != 0)
     {
         /* realloc Pdiag_idx so that it contains exactly *Pdiag_n diagonal elements */
         (*Pdiag_idx) = c_realloc((*Pdiag_idx), (*Pdiag_n) * sizeof(int));
@@ -107,7 +107,7 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
             // column index of A
             KKT_trip->x[zKKT] = A->x[ptr]; // assign A value element
 
-            if (AtoKKT != NULL)
+            if (AtoKKT != 0)
                 AtoKKT[ptr] = zKKT; // Update index from A to
             // KKTtrip
             zKKT++;
@@ -121,7 +121,7 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
         KKT_trip->p[zKKT] = jj + P->n;
         KKT_trip->x[zKKT] = -param2[jj];
 
-        if (param2toKKT != NULL)
+        if (param2toKKT != 0)
             param2toKKT[j] = zKKT;  // update index from
         // param2 to KKTtrip
         zKKT++;
@@ -135,9 +135,9 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
     {
         // if no index vectors passed, do not store KKT mapping from Trip to CSC/CSR
         if (format == 0)
-            KKT = triplet_to_csc(KKT_trip, NULL);
+            KKT = triplet_to_csc(KKT_trip, 0);
         else
-            KKT = triplet_to_csr(KKT_trip, NULL);
+            KKT = triplet_to_csr(KKT_trip, 0);
     }
     else
     {
@@ -149,7 +149,7 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
             // error in allocating KKT_TtoC vector
             csc_spfree(KKT_trip);
             c_free(*Pdiag_idx);
-            return NULL;
+            return 0;
         }
 
         // store KKT mapping from Trip to CSC/CSR
@@ -159,7 +159,7 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
             KKT = triplet_to_csr(KKT_trip, KKT_TtoC);
 
         // update vectors of indices from P, A, param2 to KKT (now in CSC format)
-        if (PtoKKT != OSQP_NULL)
+        if (PtoKKT != 0)
         {
             for (ii = 0; ii < P->p[P->n]; ii++)
             {
@@ -167,7 +167,7 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
             }
         }
 
-        if (AtoKKT != NULL)
+        if (AtoKKT != 0)
         {
             for (ii = 0; ii < A->p[A->n]; ii++)
             {
@@ -175,7 +175,7 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
             }
         }
 
-        if (param2toKKT != NULL)
+        if (param2toKKT != 0)
         {
             for (ii = 0; ii < A->m; ii++)
             {

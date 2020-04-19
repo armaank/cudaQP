@@ -202,10 +202,10 @@ int LDL_factor(const int n, const int* Ap, const int* Ai, const float* Ax, int* 
                 yVals[Li[jj]] -= Lx[jj]*yVals_cidx;
             }
 
-            the cidx^th element of y = L\b.
-                                       //so compute the corresponding element of
-                                       //this row of L and put it into the right place
-                                       Li[tmpIdx] = kk;
+           // the cidx^th element of y = L\b.
+           //so compute the corresponding element of
+           //this row of L and put it into the right place
+            Li[tmpIdx] = kk;
             Lx[tmpIdx] = yVals_cidx *Dinv[cidx];
 
             D[kk] -= yVals_cidx*Lx[tmpIdx];
