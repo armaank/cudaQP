@@ -1,6 +1,3 @@
-#ifndef LDL_H
-#define LDL_H
-
 #include <stdbool.h>
 
 /* compute the elimination tree for a quasidefinite matrix */
@@ -18,4 +15,3 @@ void LDL_Lsolve(const int n, const int* Lp, const int* Li, const float* Lx, floa
 /* solves (L+I)'x = b */
 void LDL_Ltsolve(const int n, const int* Lp, const int* Li, const float* Lx, float* x);
 
-#endif // ifndef QDLDL_H
