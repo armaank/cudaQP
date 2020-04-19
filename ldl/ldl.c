@@ -1,5 +1,5 @@
 #include <stdbool.h>
-#include "../include/ldl.h"
+#include "ldl.h"
 #include "limits.h"
 
 #define LDL_UNKNOWN (-1)
