@@ -1,11 +1,11 @@
-#include "polish.h"
-#include "lin_alg.h"
-#include "util.h"
-#include "auxil.h"
-#include "lin_sys.h"
-#include "kkt.h"
-#include "proj.h"
-#include "error.h"
+#include "../include/polish.h"
+#include "../include/lin_alg.h"
+#include "../include/util.h"
+#include "../include/auxil.h"
+#include "../include/lin_sys.h"
+#include "../include/kkt.h"
+#include "../include/proj.h"
+#include "../include/error.h"
 
 /**
  * Form reduced matrix A that contains only rows that are active at the
@@ -16,9 +16,9 @@
  * @param  work Workspace
  * @return      Number of rows in Ared, negative if error
  */
-static c_int form_Ared(OSQPWorkspace *work) {
-  c_int j, ptr;
-  c_int Ared_nnz = 0;
+static int form_Ared(OSQPWorkspace *work) {
+  int j, ptr;
+  int Ared_nnz = 0;
 
   // Initialize counters for active constraints
   work->pol->n_low = 0;
@@ -102,8 +102,8 @@ static c_int form_Ared(OSQPWorkspace *work) {
  * @param  rhs  right-hand-side
  * @return      reduced rhs
  */
-static void form_rhs_red(OSQPWorkspace *work, c_float *rhs) {
-  c_int j;
+static void form_rhs_red(OSQPWorkspace *work, float *rhs) {
+  int j;
 
   // Form the rhs of the reduced KKT linear system
   for (j = 0; j < work->data->n; j++) { // -q
@@ -131,12 +131,12 @@ static void form_rhs_red(OSQPWorkspace *work, c_float *rhs) {
  * @param  b    RHS of the linear system
  * @return      Exitflag
  */
-static c_int iterative_refinement(OSQPWorkspace *work,
+static int iterative_refinement(OSQPWorkspace *work,
                                   LinSysSolver  *p,
-                                  c_float       *z,
-                                  c_float       *b) {
-  c_int i, j, n;
-  c_float *rhs;
+                                  float       *z,
+                                  float       *b) {
+  int i, j, n;
+  float *rhs;
 
   if (work->settings->polish_refine_iter > 0) {
 
@@ -144,7 +144,7 @@ static c_int iterative_refinement(OSQPWorkspace *work,
     n = work->data->n + work->pol->Ared->m;
 
     // Allocate rhs vector
-    rhs = (c_float *)c_malloc(sizeof(c_float) * n);
+    rhs = (float *)c_malloc(sizeof(float) * n);
 
     if (!rhs) {
       return osqp_error(OSQP_MEM_ALLOC_ERROR);
@@ -185,8 +185,8 @@ static c_int iterative_refinement(OSQPWorkspace *work,
  * @param work Workspace
  * @param yred Dual variables associated to active constraints
  */
-static void get_ypol_from_yred(OSQPWorkspace *work, c_float *yred) {
-  c_int j;
+static void get_ypol_from_yred(OSQPWorkspace *work, float *yred) {
+  int j;
 
   // If there are no active constraints
   if (work->pol->n_low + work->pol->n_upp == 0) {
@@ -209,11 +209,11 @@ static void get_ypol_from_yred(OSQPWorkspace *work, c_float *yred) {
   }
 }
 
-c_int polish(OSQPWorkspace *work) {
-  c_int mred, polish_successful, exitflag;
-  c_float *rhs_red;
+int polish(OSQPWorkspace *work) {
+  int mred, polish_successful, exitflag;
+  float *rhs_red;
   LinSysSolver *plsh;
-  c_float *pol_sol; // Polished solution
+  float *pol_sol; // Polished solution
 
 #ifdef PROFILING
   osqp_tic(work->timer); // Start timer
@@ -244,7 +244,7 @@ c_int polish(OSQPWorkspace *work) {
   }
 
   // Form reduced right-hand side rhs_red
-  rhs_red = c_malloc(sizeof(c_float) * (work->data->n + mred));
+  rhs_red = c_malloc(sizeof(float) * (work->data->n + mred));
   if (!rhs_red) {
     // Polishing failed
     work->info->status_polish = -1;

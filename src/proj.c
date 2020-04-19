@@ -1,8 +1,8 @@
-#include "proj.h"
+#include "../include/proj.h"
 
 
-void project(OSQPWorkspace *work, c_float *z) {
-  c_int i, m;
+void project(OSQPWorkspace *work, float *z) {
+  int i, m;
 
   m = work->data->m;
 
@@ -13,8 +13,8 @@ void project(OSQPWorkspace *work, c_float *z) {
   }
 }
 
-void project_normalcone(OSQPWorkspace *work, c_float *z, c_float *y) {
-  c_int i, m;
+void project_normalcone(OSQPWorkspace *work, float *z, float *y) {
+  int i, m;
 
   // NB: Use z_prev as temporary vector
 

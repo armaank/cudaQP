@@ -36,14 +36,14 @@
  */
 csc* form_KKT(const csc  *P,
               const  csc *A,
-              c_int       format,
-              c_float     param1,
-              c_float    *param2,
-              c_int      *PtoKKT,
-              c_int      *AtoKKT,
-              c_int     **Pdiag_idx,
-              c_int      *Pdiag_n,
-              c_int      *param2toKKT);
+              int       format,
+              float     param1,
+              float    *param2,
+              int      *PtoKKT,
+              int      *AtoKKT,
+              int     **Pdiag_idx,
+              int      *Pdiag_n,
+              int      *param2toKKT);
 
 /**
  * Update KKT matrix using the elements of P
@@ -57,10 +57,10 @@ csc* form_KKT(const csc  *P,
  */
 void update_KKT_P(csc          *KKT,
                   const csc    *P,
-                  const c_int  *PtoKKT,
-                  const c_float param1,
-                  const c_int  *Pdiag_idx,
-                  const c_int   Pdiag_n);
+                  const int  *PtoKKT,
+                  const float param1,
+                  const int  *Pdiag_idx,
+                  const int   Pdiag_n);
 
 
 /**
@@ -72,7 +72,7 @@ void update_KKT_P(csc          *KKT,
  */
 void update_KKT_A(csc         *KKT,
                   const csc   *A,
-                  const c_int *AtoKKT);
+                  const int *AtoKKT);
 
 
 /**
@@ -84,9 +84,9 @@ void update_KKT_A(csc         *KKT,
  * @param m             number of constraints
  */
 void update_KKT_param2(csc           *KKT,
-                       const c_float *param2,
-                       const c_int   *param2toKKT,
-                       const c_int    m);
+                       const float *param2,
+                       const int   *param2toKKT,
+                       const int    m);
 
 
 

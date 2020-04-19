@@ -22,7 +22,7 @@
  * @param  Function name
  * @return Error code
  */
-  c_int _osqp_error(enum osqp_error_type error_code,
+int _osqp_error(enum osqp_error_type error_code,
 		    const char * function_name);
 
 

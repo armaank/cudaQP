@@ -1,11 +1,10 @@
-#include "scaling.h"
+#include "../include/scaling.h"
 
-#if EMBEDDED != 1
 
 
 // Set values lower than threshold SCALING_REG to 1
-void limit_scaling(c_float *D, c_int n) {
-  c_int i;
+void limit_scaling(float *D, int n) {
+  int i;
 
   for (i = 0; i < n; i++) {
     D[i] = D[i] < MIN_SCALING ? 1.0 : D[i];
@@ -26,8 +25,8 @@ void limit_scaling(c_float *D, c_int n) {
  * @param n        Dimension of KKT matrix
  */
 void compute_inf_norm_cols_KKT(const csc *P, const csc *A,
-                               c_float *D, c_float *D_temp_A,
-                               c_float *E, c_int n) {
+                               float *D, float *D_temp_A,
+                               float *E, int n) {
   // First half
   //  [ P ]
   //  [ A ]
@@ -41,7 +40,7 @@ void compute_inf_norm_cols_KKT(const csc *P, const csc *A,
   mat_inf_norm_rows(A, E);
 }
 
-c_int scale_data(OSQPWorkspace *work) {
+int scale_data(OSQPWorkspace *work) {
   // Scale KKT matrix
   //
   //    [ P   A']
@@ -53,10 +52,10 @@ c_int scale_data(OSQPWorkspace *work) {
   //      [    E ]
   //
 
-  c_int   i;          // Iterations index
-  c_int   n, m;       // Number of constraints and variables
-  c_float c_temp;     // Cost function scaling
-  c_float inf_norm_q; // Infinity norm of q
+  int   i;          // Iterations index
+  int   n, m;       // Number of constraints and variables
+  float c_temp;     // Cost function scaling
+  float inf_norm_q; // Infinity norm of q
 
   n = work->data->n;
   m = work->data->m;
@@ -155,9 +154,8 @@ c_int scale_data(OSQPWorkspace *work) {
   return 0;
 }
 
-#endif // EMBEDDED
 
-c_int unscale_data(OSQPWorkspace *work) {
+int unscale_data(OSQPWorkspace *work) {
   // Unscale cost
   mat_mult_scalar(work->data->P, work->scaling->cinv);
   mat_premult_diag(work->data->P, work->scaling->Dinv);
@@ -174,7 +172,7 @@ c_int unscale_data(OSQPWorkspace *work) {
   return 0;
 }
 
-c_int unscale_solution(OSQPWorkspace *work) {
+int unscale_solution(OSQPWorkspace *work) {
   // primal
   vec_ew_prod(work->scaling->D,
               work->solution->x,

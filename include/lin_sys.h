@@ -14,7 +14,7 @@ extern "C" {
  * @param	linsys_solver  Linear system solver
  * @return Zero on success, nonzero on failure.
  */
-c_int load_linsys_solver(enum linsys_solver_type linsys_solver);
+int load_linsys_solver(enum linsys_solver_type linsys_solver);
 
 
 /**
@@ -22,7 +22,7 @@ c_int load_linsys_solver(enum linsys_solver_type linsys_solver);
  * @param	linsys_solver  Linear system solver
  * @return Zero on success, nonzero on failure.
  */
-c_int unload_linsys_solver(enum linsys_solver_type linsys_solver);
+int unload_linsys_solver(enum linsys_solver_type linsys_solver);
 
 
 // NB: Only the upper triangular part of P is stuffed!
@@ -39,13 +39,13 @@ c_int unload_linsys_solver(enum linsys_solver_type linsys_solver);
  *polishing or not
  * @return                Exitflag for error (0 if no errors)
  */
-c_int init_linsys_solver(LinSysSolver          **s,
+int init_linsys_solver(LinSysSolver          **s,
                          const csc              *P,
                          const csc              *A,
-                         c_float                 sigma,
-                         const c_float          *rho_vec,
+                         int                 sigma,
+                         const int          *rho_vec,
                          enum linsys_solver_type linsys_solver,
-                         c_int                   polish);
+                         int                   polish);
 
 
 #endif // ifndef LIN_SYS_H

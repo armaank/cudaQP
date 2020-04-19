@@ -1,18 +1,9 @@
-#include "util.h"
-
-/***************
-* Versioning  *
-***************/
-const char* osqp_version(void) {
-  return OSQP_VERSION;
-}
+#include "../include/util.h"
 
 /************************************
 * Printing Constants to set Layout *
 ************************************/
-#ifdef PRINTING
 # define HEADER_LINE_LEN 65
-#endif /* ifdef PRINTING */
 
 /**********************
 * Utility Functions  *
@@ -28,11 +19,10 @@ void c_strcpy(char dest[], const char source[]) {
   }
 }
 
-#ifdef PRINTING
 
 static void print_line(void) {
   char  the_line[HEADER_LINE_LEN + 1];
-  c_int i;
+  int i;
 
   for (i = 0; i < HEADER_LINE_LEN; ++i) the_line[i] = '-';
   the_line[HEADER_LINE_LEN] = '\0';
@@ -41,24 +31,18 @@ static void print_line(void) {
 
 void print_header(void) {
   // Different indentation required for windows
-#if defined(IS_WINDOWS) && !defined(PYTHON)
-  c_print("iter  ");
-#else
   c_print("iter   ");
-#endif
 
   // Main information
   c_print("objective    pri res    dua res    rho");
-# ifdef PROFILING
   c_print("        time");
-# endif /* ifdef PROFILING */
   c_print("\n");
 }
 
 void print_setup_header(const OSQPWorkspace *work) {
   OSQPData *data;
   OSQPSettings *settings;
-  c_int nnz; // Number of nonzeros in the problem
+  int nnz; // Number of nonzeros in the problem
 
   data     = work->data;
   settings = work->settings;
@@ -107,10 +91,8 @@ void print_setup_header(const OSQPWorkspace *work) {
       (int)settings->check_termination);
   else c_print("          check_termination: off,\n");
 
-# ifdef PROFILING
   if (settings->time_limit) c_print("          time_limit: %.2e sec,\n",
                                     settings->time_limit);
-# endif /* ifdef PROFILING */
 
   if (settings->scaling) c_print("          scaling: on, ");
   else c_print("          scaling: off, ");
@@ -140,7 +122,6 @@ void print_summary(OSQPWorkspace *work) {
   c_print("  %9.2e", info->pri_res);
   c_print("  %9.2e", info->dua_res);
   c_print("  %9.2e", work->settings->rho);
-# ifdef PROFILING
 
   if (work->first_run) {
     // total time: setup + solve
@@ -149,7 +130,6 @@ void print_summary(OSQPWorkspace *work) {
     // total time: update + solve
     c_print("  %9.2es", info->update_time + info->solve_time);
   }
-# endif /* ifdef PROFILING */
   c_print("\n");
 
   work->summary_printed = 1; // Summary has been printed
@@ -166,13 +146,9 @@ void print_polish(OSQPWorkspace *work) {
   c_print("  %9.2e", info->dua_res);
 
   // Different characters for windows/unix
-#if defined(IS_WINDOWS) && !defined(PYTHON)
-  c_print("  ---------");
-#else
-  c_print("   --------");
-#endif
 
-# ifdef PROFILING
+  c_print("   --------");
+
   if (work->first_run) {
     // total time: setup + solve
     c_print("  %9.2es", info->setup_time + info->solve_time +
@@ -182,11 +158,10 @@ void print_polish(OSQPWorkspace *work) {
     c_print("  %9.2es", info->update_time + info->solve_time +
             info->polish_time);
   }
-# endif /* ifdef PROFILING */
   c_print("\n");
 }
 
-void print_footer(OSQPInfo *info, c_int polish) {
+void print_footer(OSQPInfo *info, int polish) {
   c_print("\n"); // Add space after iterations
 
   c_print("status:               %s\n", info->status);
@@ -206,20 +181,11 @@ void print_footer(OSQPInfo *info, c_int polish) {
     c_print("optimal objective:    %.4f\n", info->obj_val);
   }
 
-# ifdef PROFILING
   c_print("run time:             %.2es\n", info->run_time);
-# endif /* ifdef PROFILING */
 
-# if EMBEDDED != 1
   c_print("optimal rho estimate: %.2e\n", info->rho_estimate);
-# endif /* if EMBEDDED != 1 */
   c_print("\n");
 }
-
-#endif /* End #ifdef PRINTING */
-
-
-#ifndef EMBEDDED
 
 OSQPSettings* copy_settings(const OSQPSettings *settings) {
   OSQPSettings *new = c_malloc(sizeof(OSQPSettings));
@@ -233,14 +199,11 @@ OSQPSettings* copy_settings(const OSQPSettings *settings) {
   new->sigma = settings->sigma;
   new->scaling = settings->scaling;
 
-# if EMBEDDED != 1
   new->adaptive_rho = settings->adaptive_rho;
   new->adaptive_rho_interval = settings->adaptive_rho_interval;
   new->adaptive_rho_tolerance = settings->adaptive_rho_tolerance;
-# ifdef PROFILING
   new->adaptive_rho_fraction = settings->adaptive_rho_fraction;
-# endif
-# endif // EMBEDDED != 1
+
   new->max_iter = settings->max_iter;
   new->eps_abs = settings->eps_abs;
   new->eps_rel = settings->eps_rel;
@@ -255,63 +218,16 @@ OSQPSettings* copy_settings(const OSQPSettings *settings) {
   new->scaled_termination = settings->scaled_termination;
   new->check_termination = settings->check_termination;
   new->warm_start = settings->warm_start;
-# ifdef PROFILING
   new->time_limit = settings->time_limit;
-# endif
 
   return new;
 }
 
-#endif // #ifndef EMBEDDED
 
 
 /*******************
 * Timer Functions *
 *******************/
-
-#ifdef PROFILING
-
-// Windows
-# ifdef IS_WINDOWS
-
-void osqp_tic(OSQPTimer *t)
-{
-  QueryPerformanceFrequency(&t->freq);
-  QueryPerformanceCounter(&t->tic);
-}
-
-c_float osqp_toc(OSQPTimer *t)
-{
-  QueryPerformanceCounter(&t->toc);
-  return (t->toc.QuadPart - t->tic.QuadPart) / (c_float)t->freq.QuadPart;
-}
-
-// Mac
-# elif defined IS_MAC
-
-void osqp_tic(OSQPTimer *t)
-{
-  /* read current clock cycles */
-  t->tic = mach_absolute_time();
-}
-
-c_float osqp_toc(OSQPTimer *t)
-{
-  uint64_t duration; /* elapsed time in clock cycles*/
-
-  t->toc   = mach_absolute_time();
-  duration = t->toc - t->tic;
-
-  /*conversion from clock cycles to nanoseconds*/
-  mach_timebase_info(&(t->tinfo));
-  duration *= t->tinfo.numer;
-  duration /= t->tinfo.denom;
-
-  return (c_float)duration / 1e9;
-}
-
-// Linux
-# else  /* ifdef IS_WINDOWS */
 
 /* read current time */
 void osqp_tic(OSQPTimer *t)
@@ -320,7 +236,7 @@ void osqp_tic(OSQPTimer *t)
 }
 
 /* return time passed since last call to tic on this timer */
-c_float osqp_toc(OSQPTimer *t)
+float osqp_toc(OSQPTimer *t)
 {
   struct timespec temp;
 
@@ -333,12 +249,9 @@ c_float osqp_toc(OSQPTimer *t)
     temp.tv_sec  = t->toc.tv_sec - t->tic.tv_sec;
     temp.tv_nsec = t->toc.tv_nsec - t->tic.tv_nsec;
   }
-  return (c_float)temp.tv_sec + (c_float)temp.tv_nsec / 1e9;
+  return (float)temp.tv_sec + (float)temp.tv_nsec / 1e9;
 }
 
-# endif /* ifdef IS_WINDOWS */
-
-#endif // If Profiling end
 
 
 /* ==================== DEBUG FUNCTIONS ======================= */
@@ -346,14 +259,12 @@ c_float osqp_toc(OSQPTimer *t)
 
 
 // If debug mode enabled
-#ifdef DDEBUG
 
-#ifdef PRINTING
 
 void print_csc_matrix(csc *M, const char *name)
 {
-  c_int j, i, row_start, row_stop;
-  c_int k = 0;
+  int j, i, row_start, row_stop;
+  int k = 0;
 
   // Print name
   c_print("%s :\n", name);
@@ -372,8 +283,8 @@ void print_csc_matrix(csc *M, const char *name)
 }
 
 void dump_csc_matrix(csc *M, const char *file_name) {
-  c_int j, i, row_strt, row_stop;
-  c_int k = 0;
+  int j, i, row_strt, row_stop;
+  int k = 0;
   FILE *f = fopen(file_name, "w");
 
   if (f != NULL) {
@@ -399,7 +310,7 @@ void dump_csc_matrix(csc *M, const char *file_name) {
 
 void print_trip_matrix(csc *M, const char *name)
 {
-  c_int k = 0;
+  int k = 0;
 
   // Print name
   c_print("%s :\n", name);
@@ -409,9 +320,9 @@ void print_trip_matrix(csc *M, const char *name)
   }
 }
 
-void print_dns_matrix(c_float *M, c_int m, c_int n, const char *name)
+void print_dns_matrix(float *M, int m, int n, const char *name)
 {
-  c_int i, j;
+  int i, j;
 
   c_print("%s : \n\t", name);
 
@@ -433,12 +344,12 @@ void print_dns_matrix(c_float *M, c_int m, c_int n, const char *name)
   c_print("\n");
 }
 
-void print_vec(c_float *v, c_int n, const char *name) {
+void print_vec(float *v, int n, const char *name) {
   print_dns_matrix(v, 1, n, name);
 }
 
-void dump_vec(c_float *v, c_int len, const char *file_name) {
-  c_int i;
+void dump_vec(float *v, int len, const char *file_name) {
+  int i;
   FILE *f = fopen(file_name, "w");
 
   if (f != NULL) {
@@ -452,8 +363,8 @@ void dump_vec(c_float *v, c_int len, const char *file_name) {
   }
 }
 
-void print_vec_int(c_int *x, c_int n, const char *name) {
-  c_int i;
+void print_veint(int *x, int n, const char *name) {
+  int i;
 
   c_print("%s = [", name);
 
@@ -462,7 +373,3 @@ void print_vec_int(c_int *x, c_int n, const char *name) {
   }
   c_print("]\n");
 }
-
-#endif // PRINTING
-
-#endif // DEBUG MODE

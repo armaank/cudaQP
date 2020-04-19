@@ -1,15 +1,15 @@
-#include "cs.h"
+#include "../include/cs.h"
 
 
-static void* csc_malloc(c_int n, c_int size) {
+static void* csc_malloc(int n, int size) {
   return c_malloc(n * size);
 }
 
-static void* csc_calloc(c_int n, c_int size) {
+static void* csc_calloc(int n, int size) {
   return c_calloc(n, size);
 }
 
-csc* csc_matrix(c_int m, c_int n, c_int nzmax, c_float *x, c_int *i, c_int *p)
+csc* csc_matrix(int m, int n, int nzmax, float *x, int *i, int *p)
 {
   csc *M = (csc *)c_malloc(sizeof(csc));
 
@@ -25,7 +25,7 @@ csc* csc_matrix(c_int m, c_int n, c_int nzmax, c_float *x, c_int *i, c_int *p)
   return M;
 }
 
-csc* csc_spalloc(c_int m, c_int n, c_int nzmax, c_int values, c_int triplet) {
+csc* csc_spalloc(int m, int n, int nzmax, int values, int triplet) {
   csc *A = csc_calloc(1, sizeof(csc)); /* allocate the csc struct */
 
   if (!A) return OSQP_NULL;            /* out of memory */
@@ -34,9 +34,9 @@ csc* csc_spalloc(c_int m, c_int n, c_int nzmax, c_int values, c_int triplet) {
   A->n     = n;
   A->nzmax = nzmax = c_max(nzmax, 1);
   A->nz    = triplet ? 0 : -1;         /* allocate triplet or comp.col */
-  A->p     = csc_malloc(triplet ? nzmax : n + 1, sizeof(c_int));
-  A->i     = csc_malloc(nzmax,  sizeof(c_int));
-  A->x     = values ? csc_malloc(nzmax,  sizeof(c_float)) : OSQP_NULL;
+  A->p     = csc_malloc(triplet ? nzmax : n + 1, sizeof(int));
+  A->i     = csc_malloc(nzmax,  sizeof(int));
+  A->x     = values ? csc_malloc(nzmax,  sizeof(float)) : OSQP_NULL;
   if (!A->p || !A->i || (values && !A->x)){
     csc_spfree(A);
     return OSQP_NULL;
@@ -52,9 +52,9 @@ void csc_spfree(csc *A) {
   }
 }
 
-csc* triplet_to_csc(const csc *T, c_int *TtoC) {
-  c_int m, n, nz, p, k, *Cp, *Ci, *w, *Ti, *Tj;
-  c_float *Cx, *Tx;
+csc* triplet_to_csc(const csc *T, int *TtoC) {
+  int m, n, nz, p, k, *Cp, *Ci, *w, *Ti, *Tj;
+  float *Cx, *Tx;
   csc     *C;
 
   m  = T->m;
@@ -64,7 +64,7 @@ csc* triplet_to_csc(const csc *T, c_int *TtoC) {
   Tx = T->x;
   nz = T->nz;
   C  = csc_spalloc(m, n, nz, Tx != OSQP_NULL, 0);     /* allocate result */
-  w  = csc_calloc(n, sizeof(c_int));                  /* get workspace */
+  w  = csc_calloc(n, sizeof(int));                  /* get workspace */
 
   if (!C || !w) return csc_done(C, w, OSQP_NULL, 0);  /* out of memory */
 
@@ -87,9 +87,9 @@ csc* triplet_to_csc(const csc *T, c_int *TtoC) {
   return csc_done(C, w, OSQP_NULL, 1);     /* success; free w and return C */
 }
 
-csc* triplet_to_csr(const csc *T, c_int *TtoC) {
-  c_int m, n, nz, p, k, *Cp, *Cj, *w, *Ti, *Tj;
-  c_float *Cx, *Tx;
+csc* triplet_to_csr(const csc *T, int *TtoC) {
+  int m, n, nz, p, k, *Cp, *Cj, *w, *Ti, *Tj;
+  float *Cx, *Tx;
   csc     *C;
 
   m  = T->m;
@@ -99,7 +99,7 @@ csc* triplet_to_csr(const csc *T, c_int *TtoC) {
   Tx = T->x;
   nz = T->nz;
   C  = csc_spalloc(m, n, nz, Tx != OSQP_NULL, 0);     /* allocate result */
-  w  = csc_calloc(m, sizeof(c_int));                  /* get workspace */
+  w  = csc_calloc(m, sizeof(int));                  /* get workspace */
 
   if (!C || !w) return csc_done(C, w, OSQP_NULL, 0);  /* out of memory */
 
@@ -122,8 +122,8 @@ csc* triplet_to_csr(const csc *T, c_int *TtoC) {
   return csc_done(C, w, OSQP_NULL, 1);     /* success; free w and return C */
 }
 
-c_int csc_cumsum(c_int *p, c_int *c, c_int n) {
-  c_int i, nz = 0;
+int csc_cumsum(int *p, int *c, int n) {
+  int i, nz = 0;
 
   if (!p || !c) return -1;  /* check inputs */
 
@@ -137,12 +137,12 @@ c_int csc_cumsum(c_int *p, c_int *c, c_int n) {
   return nz; /* return sum (c [0..n-1]) */
 }
 
-c_int* csc_pinv(c_int const *p, c_int n) {
-  c_int k, *pinv;
+int* csc_pinv(int const *p, int n) {
+  int k, *pinv;
 
   if (!p) return OSQP_NULL;                /* p = OSQP_NULL denotes identity */
 
-  pinv = csc_malloc(n, sizeof(c_int));     /* allocate result */
+  pinv = csc_malloc(n, sizeof(int));     /* allocate result */
 
   if (!pinv) return OSQP_NULL;             /* out of memory */
 
@@ -150,9 +150,9 @@ c_int* csc_pinv(c_int const *p, c_int n) {
   return pinv;                             /* return result */
 }
 
-csc* csc_symperm(const csc *A, const c_int *pinv, c_int *AtoC, c_int values) {
-  c_int i, j, p, q, i2, j2, n, *Ap, *Ai, *Cp, *Ci, *w;
-  c_float *Cx, *Ax;
+csc* csc_symperm(const csc *A, const int *pinv, int *AtoC, int values) {
+  int i, j, p, q, i2, j2, n, *Ap, *Ai, *Cp, *Ci, *w;
+  float *Cx, *Ax;
   csc     *C;
 
   n  = A->n;
@@ -161,7 +161,7 @@ csc* csc_symperm(const csc *A, const c_int *pinv, c_int *AtoC, c_int values) {
   Ax = A->x;
   C  = csc_spalloc(n, n, Ap[n], values && (Ax != OSQP_NULL),
                    0);                                /* alloc result*/
-  w = csc_calloc(n, sizeof(c_int));                   /* get workspace */
+  w = csc_calloc(n, sizeof(int));                   /* get workspace */
 
   if (!C || !w) return csc_done(C, w, OSQP_NULL, 0);  /* out of memory */
 
@@ -225,7 +225,7 @@ void prea_copy_csc_mat(const csc *A, csc *B) {
   B->nzmax = A->nzmax;
 }
 
-csc* csc_done(csc *C, void *w, void *x, c_int ok) {
+csc* csc_done(csc *C, void *w, void *x, int ok) {
   c_free(w);                   /* free workspace */
   c_free(x);
   if (ok) return C;
@@ -238,18 +238,16 @@ csc* csc_done(csc *C, void *w, void *x, c_int ok) {
 csc* csc_to_triu(csc *M) {
   csc  *M_trip;    // Matrix in triplet format
   csc  *M_triu;    // Resulting upper triangular matrix
-  c_int nnzorigM;  // Number of nonzeros from original matrix M
-  c_int nnzmaxM;   // Estimated maximum number of elements of upper triangular M
-  c_int n;         // Dimension of M
-  c_int ptr, i, j; // Counters for (i,j) and index in M
-  c_int z_M = 0;   // Counter for elements in M_trip
+  int nnzorigM;  // Number of nonzeros from original matrix M
+  int nnzmaxM;   // Estimated maximum number of elements of upper triangular M
+  int n;         // Dimension of M
+  int ptr, i, j; // Counters for (i,j) and index in M
+  int z_M = 0;   // Counter for elements in M_trip
 
 
   // Check if matrix is square
   if (M->m != M->n) {
-#ifdef PRINTING
     c_eprint("Matrix M not square");
-#endif /* ifdef PRINTING */
     return OSQP_NULL;
   }
   n = M->n;
@@ -275,9 +273,7 @@ csc* csc_to_triu(csc *M) {
   M_trip = csc_spalloc(n, n, nnzmaxM, 1, 1); // Triplet format
 
   if (!M_trip) {
-#ifdef PRINTING
     c_eprint("Upper triangular matrix extraction failed (out of memory)");
-#endif /* ifdef PRINTING */
     return OSQP_NULL;
   }
 

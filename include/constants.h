@@ -79,11 +79,11 @@ extern const char * OSQP_ERROR_MESSAGE[];
 # endif /* ifndef OSQP_NULL */
 
 # ifndef OSQP_NAN
-#  define OSQP_NAN ((c_float)0x7fc00000UL)  // not a number
+#  define OSQP_NAN ((float)0x7fc00000UL)  // not a number
 # endif /* ifndef OSQP_NAN */
 
 # ifndef OSQP_INFTY
-#  define OSQP_INFTY ((c_float)1e30)        // infinity
+#  define OSQP_INFTY ((float)1e30)        // infinity
 # endif /* ifndef OSQP_INFTY */
 
 

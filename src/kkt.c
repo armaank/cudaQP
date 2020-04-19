@@ -1,25 +1,24 @@
-#include "kkt.h"
+#include "../include/kkt.h"
 
-#ifndef EMBEDDED
 
 
 csc* form_KKT(const csc  *P,
               const  csc *A,
-              c_int       format,
-              c_float     param1,
-              c_float    *param2,
-              c_int      *PtoKKT,
-              c_int      *AtoKKT,
-              c_int     **Pdiag_idx,
-              c_int      *Pdiag_n,
-              c_int      *param2toKKT) {
-  c_int  nKKT, nnzKKTmax; // Size, number of nonzeros and max number of nonzeros
+              int       format,
+              float     param1,
+              float    *param2,
+              int      *PtoKKT,
+              int      *AtoKKT,
+              int     **Pdiag_idx,
+              int      *Pdiag_n,
+              int      *param2toKKT) {
+  int  nKKT, nnzKKTmax; // Size, number of nonzeros and max number of nonzeros
                           // in KKT matrix
   csc   *KKT_trip, *KKT;  // KKT matrix in triplet format and CSC format
-  c_int  ptr, i, j;       // Counters for elements (i,j) and index pointer
-  c_int  zKKT = 0;        // Counter for total number of elements in P and in
+  int  ptr, i, j;       // Counters for elements (i,j) and index pointer
+  int  zKKT = 0;        // Counter for total number of elements in P and in
                           // KKT
-  c_int *KKT_TtoC;        // Pointer to vector mapping from KKT in triplet form
+  int *KKT_TtoC;        // Pointer to vector mapping from KKT in triplet form
                           // to CSC
 
   // Get matrix dimensions
@@ -38,7 +37,7 @@ csc* form_KKT(const csc  *P,
 
   // Allocate vector of indices on the diagonal. Worst case it has m elements
   if (Pdiag_idx != OSQP_NULL) {
-    (*Pdiag_idx) = c_malloc(P->m * sizeof(c_int));
+    (*Pdiag_idx) = c_malloc(P->m * sizeof(int));
     *Pdiag_n     = 0; // Set 0 diagonal elements to start
   }
 
@@ -91,7 +90,7 @@ csc* form_KKT(const csc  *P,
 
   if (Pdiag_idx != OSQP_NULL) {
     // Realloc Pdiag_idx so that it contains exactly *Pdiag_n diagonal elements
-    (*Pdiag_idx) = c_realloc((*Pdiag_idx), (*Pdiag_n) * sizeof(c_int));
+    (*Pdiag_idx) = c_realloc((*Pdiag_idx), (*Pdiag_n) * sizeof(int));
   }
 
 
@@ -132,7 +131,7 @@ csc* form_KKT(const csc  *P,
   }
   else {
     // Allocate vector of indices from triplet to csc
-    KKT_TtoC = c_malloc((zKKT) * sizeof(c_int));
+    KKT_TtoC = c_malloc((zKKT) * sizeof(int));
 
     if (!KKT_TtoC) {
       // Error in allocating KKT_TtoC vector
@@ -176,18 +175,14 @@ csc* form_KKT(const csc  *P,
   return KKT;
 }
 
-#endif /* ifndef EMBEDDED */
-
-
-#if EMBEDDED != 1
 
 void update_KKT_P(csc          *KKT,
                   const csc    *P,
-                  const c_int  *PtoKKT,
-                  const c_float param1,
-                  const c_int  *Pdiag_idx,
-                  const c_int   Pdiag_n) {
-  c_int i, j; // Iterations
+                  const int  *PtoKKT,
+                  const float param1,
+                  const int  *Pdiag_idx,
+                  const int   Pdiag_n) {
+  int i, j; // Iterations
 
   // Update elements of KKT using P
   for (i = 0; i < P->p[P->n]; i++) {
@@ -202,8 +197,8 @@ void update_KKT_P(csc          *KKT,
   }
 }
 
-void update_KKT_A(csc *KKT, const csc *A, const c_int *AtoKKT) {
-  c_int i; // Iterations
+void update_KKT_A(csc *KKT, const csc *A, const int *AtoKKT) {
+  int i; // Iterations
 
   // Update elements of KKT using A
   for (i = 0; i < A->p[A->n]; i++) {
@@ -211,9 +206,9 @@ void update_KKT_A(csc *KKT, const csc *A, const c_int *AtoKKT) {
   }
 }
 
-void update_KKT_param2(csc *KKT, const c_float *param2,
-                       const c_int *param2toKKT, const c_int m) {
-  c_int i; // Iterations
+void update_KKT_param2(csc *KKT, const float *param2,
+                       const int *param2toKKT, const int m) {
+  int i; // Iterations
 
   // Update elements of KKT using param2
   for (i = 0; i < m; i++) {
@@ -221,4 +216,3 @@ void update_KKT_param2(csc *KKT, const c_float *param2,
   }
 }
 
-#endif // EMBEDDED != 1

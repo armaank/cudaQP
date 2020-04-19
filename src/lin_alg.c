@@ -1,25 +1,25 @@
-#include "lin_alg.h"
+#include "../include/lin_alg.h"
 
 
 /* VECTOR FUNCTIONS ----------------------------------------------------------*/
 
 
-void vec_add_scaled(c_float       *c,
-                    const c_float *a,
-                    const c_float *b,
-                    c_int          n,
-                    c_float        sc) {
-  c_int i;
+void vec_add_scaled(float       *c,
+                    const float *a,
+                    const float *b,
+                    int          n,
+                    float        sc) {
+  int i;
 
   for (i = 0; i < n; i++) {
     c[i] =  a[i] + sc * b[i];
   }
 }
 
-c_float vec_scaled_norm_inf(const c_float *S, const c_float *v, c_int l) {
-  c_int   i;
-  c_float abs_Sv_i;
-  c_float max = 0.0;
+float vec_scaled_norm_inf(const float *S, const float *v, int l) {
+  int   i;
+  float abs_Sv_i;
+  float max = 0.0;
 
   for (i = 0; i < l; i++) {
     abs_Sv_i = c_absval(S[i] * v[i]);
@@ -29,10 +29,10 @@ c_float vec_scaled_norm_inf(const c_float *S, const c_float *v, c_int l) {
   return max;
 }
 
-c_float vec_norm_inf(const c_float *v, c_int l) {
-  c_int   i;
-  c_float abs_v_i;
-  c_float max = 0.0;
+float vec_norm_inf(const float *v, int l) {
+  int   i;
+  float abs_v_i;
+  float max = 0.0;
 
   for (i = 0; i < l; i++) {
     abs_v_i = c_absval(v[i]);
@@ -42,9 +42,9 @@ c_float vec_norm_inf(const c_float *v, c_int l) {
   return max;
 }
 
-c_float vec_norm_inf_diff(const c_float *a, const c_float *b, c_int l) {
-  c_float nmDiff = 0.0, tmp;
-  c_int   i;
+float vec_norm_inf_diff(const float *a, const float *b, int l) {
+  float nmDiff = 0.0, tmp;
+  int   i;
 
   for (i = 0; i < l; i++) {
     tmp = c_absval(a[i] - b[i]);
@@ -54,56 +54,55 @@ c_float vec_norm_inf_diff(const c_float *a, const c_float *b, c_int l) {
   return nmDiff;
 }
 
-c_float vec_mean(const c_float *a, c_int n) {
-  c_float mean = 0.0;
-  c_int   i;
+float vec_mean(const float *a, int n) {
+  float mean = 0.0;
+  int   i;
 
   for (i = 0; i < n; i++) {
     mean += a[i];
   }
-  mean /= (c_float)n;
+  mean /= (float)n;
 
   return mean;
 }
 
-void int_vec_set_scalar(c_int *a, c_int sc, c_int n) {
-  c_int i;
+void int_vec_set_scalar(int *a, int sc, int n) {
+  int i;
 
   for (i = 0; i < n; i++) {
     a[i] = sc;
   }
 }
 
-void vec_set_scalar(c_float *a, c_float sc, c_int n) {
-  c_int i;
+void vec_set_scalar(float *a, float sc, int n) {
+  int i;
 
   for (i = 0; i < n; i++) {
     a[i] = sc;
   }
 }
 
-void vec_add_scalar(c_float *a, c_float sc, c_int n) {
-  c_int i;
+void vec_add_scalar(float *a, float sc, int n) {
+  int i;
 
   for (i = 0; i < n; i++) {
     a[i] += sc;
   }
 }
 
-void vec_mult_scalar(c_float *a, c_float sc, c_int n) {
-  c_int i;
+void vec_mult_scalar(float *a, float sc, int n) {
+  int i;
 
   for (i = 0; i < n; i++) {
     a[i] *= sc;
   }
 }
 
-#ifndef EMBEDDED
-c_float* vec_copy(c_float *a, c_int n) {
-  c_float *b;
-  c_int    i;
+float* vec_copy(float *a, int n) {
+  float *b;
+  int    i;
 
-  b = c_malloc(n * sizeof(c_float));
+  b = c_malloc(n * sizeof(float));
   if (!b) return OSQP_NULL;
 
   for (i = 0; i < n; i++) {
@@ -113,36 +112,35 @@ c_float* vec_copy(c_float *a, c_int n) {
   return b;
 }
 
-#endif // end EMBEDDED
 
 
-void prea_int_vec_copy(const c_int *a, c_int *b, c_int n) {
-  c_int i;
-
-  for (i = 0; i < n; i++) {
-    b[i] = a[i];
-  }
-}
-
-void prea_vec_copy(const c_float *a, c_float *b, c_int n) {
-  c_int i;
+void prea_int_vec_copy(const int *a, int *b, int n) {
+  int i;
 
   for (i = 0; i < n; i++) {
     b[i] = a[i];
   }
 }
 
-void vec_ew_recipr(const c_float *a, c_float *b, c_int n) {
-  c_int i;
+void prea_vec_copy(const float *a, float *b, int n) {
+  int i;
 
   for (i = 0; i < n; i++) {
-    b[i] = (c_float)1.0 / a[i];
+    b[i] = a[i];
   }
 }
 
-c_float vec_prod(const c_float *a, const c_float *b, c_int n) {
-  c_float prod = 0.0;
-  c_int   i; // Index
+void vec_ew_recipr(const float *a, float *b, int n) {
+  int i;
+
+  for (i = 0; i < n; i++) {
+    b[i] = (float)1.0 / a[i];
+  }
+}
+
+float vec_prod(const float *a, const float *b, int n) {
+  float prod = 0.0;
+  int   i; // Index
 
   for (i = 0; i < n; i++) {
     prod += a[i] * b[i];
@@ -151,63 +149,60 @@ c_float vec_prod(const c_float *a, const c_float *b, c_int n) {
   return prod;
 }
 
-void vec_ew_prod(const c_float *a, const c_float *b, c_float *c, c_int n) {
-  c_int i;
+void vec_ew_prod(const float *a, const float *b, float *c, int n) {
+  int i;
 
   for (i = 0; i < n; i++) {
     c[i] = b[i] * a[i];
   }
 }
 
-#if EMBEDDED != 1
-void vec_ew_sqrt(c_float *a, c_int n) {
-  c_int i;
+void vec_ew_sqrt(float *a, int n) {
+  int i;
 
   for (i = 0; i < n; i++) {
     a[i] = c_sqrt(a[i]);
   }
 }
 
-void vec_ew_max(c_float *a, c_int n, c_float max_val) {
-  c_int i;
+void vec_ew_max(float *a, int n, float max_val) {
+  int i;
 
   for (i = 0; i < n; i++) {
     a[i] = c_max(a[i], max_val);
   }
 }
 
-void vec_ew_min(c_float *a, c_int n, c_float min_val) {
-  c_int i;
+void vec_ew_min(float *a, int n, float min_val) {
+  int i;
 
   for (i = 0; i < n; i++) {
     a[i] = c_min(a[i], min_val);
   }
 }
 
-void vec_ew_max_vec(const c_float *a, const c_float *b, c_float *c, c_int n) {
-  c_int i;
+void vec_ew_max_vec(const float *a, const float *b, float *c, int n) {
+  int i;
 
   for (i = 0; i < n; i++) {
     c[i] = c_max(a[i], b[i]);
   }
 }
 
-void vec_ew_min_vec(const c_float *a, const c_float *b, c_float *c, c_int n) {
-  c_int i;
+void vec_ew_min_vec(const float *a, const float *b, float *c, int n) {
+  int i;
 
   for (i = 0; i < n; i++) {
     c[i] = c_min(a[i], b[i]);
   }
 }
 
-#endif // EMBEDDED != 1
-
 
 /* MATRIX FUNCTIONS ----------------------------------------------------------*/
 
 /* multiply scalar to matrix */
-void mat_mult_scalar(csc *A, c_float sc) {
-  c_int i, nnzA;
+void mat_mult_scalar(csc *A, float sc) {
+  int i, nnzA;
 
   nnzA = A->p[A->n];
 
@@ -216,8 +211,8 @@ void mat_mult_scalar(csc *A, c_float sc) {
   }
 }
 
-void mat_premult_diag(csc *A, const c_float *d) {
-  c_int j, i;
+void mat_premult_diag(csc *A, const float *d) {
+  int j, i;
 
   for (j = 0; j < A->n; j++) {                // Cycle over columns
     for (i = A->p[j]; i < A->p[j + 1]; i++) { // Cycle every row in the column
@@ -227,8 +222,8 @@ void mat_premult_diag(csc *A, const c_float *d) {
   }
 }
 
-void mat_postmult_diag(csc *A, const c_float *d) {
-  c_int j, i;
+void mat_postmult_diag(csc *A, const float *d) {
+  int j, i;
 
   for (j = 0; j < A->n; j++) {                // Cycle over columns j
     for (i = A->p[j]; i < A->p[j + 1]; i++) { // Cycle every row i in column j
@@ -238,8 +233,8 @@ void mat_postmult_diag(csc *A, const c_float *d) {
   }
 }
 
-void mat_vec(const csc *A, const c_float *x, c_float *y, c_int plus_eq) {
-  c_int i, j;
+void mat_vec(const csc *A, const float *x, float *y, int plus_eq) {
+  int i, j;
 
   if (!plus_eq) {
     // y = 0
@@ -270,9 +265,9 @@ void mat_vec(const csc *A, const c_float *x, c_float *y, c_int plus_eq) {
   }
 }
 
-void mat_tpose_vec(const csc *A, const c_float *x, c_float *y,
-                   c_int plus_eq, c_int skip_diag) {
-  c_int i, j, k;
+void mat_tpose_vec(const csc *A, const float *x, float *y,
+                   int plus_eq, int skip_diag) {
+  int i, j, k;
 
   if (!plus_eq) {
     // y = 0
@@ -321,9 +316,8 @@ void mat_tpose_vec(const csc *A, const c_float *x, c_float *y,
   }
 }
 
-#if EMBEDDED != 1
-void mat_inf_norm_cols(const csc *M, c_float *E) {
-  c_int j, ptr;
+void mat_inf_norm_cols(const csc *M, float *E) {
+  int j, ptr;
 
   // Initialize zero max elements
   for (j = 0; j < M->n; j++) {
@@ -338,8 +332,8 @@ void mat_inf_norm_cols(const csc *M, c_float *E) {
   }
 }
 
-void mat_inf_norm_rows(const csc *M, c_float *E) {
-  c_int i, j, ptr;
+void mat_inf_norm_rows(const csc *M, float *E) {
+  int i, j, ptr;
 
   // Initialize zero max elements
   for (j = 0; j < M->m; j++) {
@@ -355,9 +349,9 @@ void mat_inf_norm_rows(const csc *M, c_float *E) {
   }
 }
 
-void mat_inf_norm_cols_sym_triu(const csc *M, c_float *E) {
-  c_int   i, j, ptr;
-  c_float abs_x;
+void mat_inf_norm_cols_sym_triu(const csc *M, float *E) {
+  int   i, j, ptr;
+  float abs_x;
 
   // Initialize zero max elements
   for (j = 0; j < M->n; j++) {
@@ -381,12 +375,9 @@ void mat_inf_norm_cols_sym_triu(const csc *M, c_float *E) {
   }
 }
 
-#endif /* if EMBEDDED != 1 */
-
-
-c_float quad_form(const csc *P, const c_float *x) {
-  c_float quad_form = 0.;
-  c_int   i, j, ptr;                                // Pointers to iterate over
+float quad_form(const csc *P, const float *x) {
+  float quad_form = 0.;
+  int   i, j, ptr;                                // Pointers to iterate over
                                                     // matrix: (i,j) a element
                                                     // pointer
 
@@ -395,16 +386,14 @@ c_float quad_form(const csc *P, const c_float *x) {
       i = P->i[ptr];                                // Row index
 
       if (i == j) {                                 // Diagonal element
-        quad_form += (c_float).5 * P->x[ptr] * x[i] * x[i];
+        quad_form += (float).5 * P->x[ptr] * x[i] * x[i];
       }
       else if (i < j) {                             // Off-diagonal element
         quad_form += P->x[ptr] * x[i] * x[j];
       }
       else {                                        // Element in lower diagonal
                                                     // part
-#ifdef PRINTING
         c_eprint("quad_form matrix is not upper triangular");
-#endif /* ifdef PRINTING */
         return OSQP_NULL;
       }
     }

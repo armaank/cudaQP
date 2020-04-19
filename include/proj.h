@@ -12,7 +12,7 @@
  * @param work Workspace
  */
 void project(OSQPWorkspace *work,
-             c_float       *z);
+             float       *z);
 
 
 /**
@@ -22,8 +22,8 @@ void project(OSQPWorkspace *work,
  * @param y    Dual variable y
  */
 void project_normalcone(OSQPWorkspace *work,
-                        c_float       *z,
-                        c_float       *y);
+                        float       *z,
+                        float       *y);
 
 
 

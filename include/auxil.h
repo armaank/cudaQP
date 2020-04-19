@@ -12,14 +12,14 @@
  * @param work Workspace
  * @return     rho estimate
  */
-c_float compute_rho_estimate(OSQPWorkspace *work);
+float compute_rho_estimate(OSQPWorkspace *work);
 
 /**
  * Adapt rho value based on current unscaled primal/dual residuals
  * @param work Workspace
  * @return     Exitflag
  */
-c_int   adapt_rho(OSQPWorkspace *work);
+int   adapt_rho(OSQPWorkspace *work);
 
 /**
  * Set values of rho vector based on constraint types
@@ -34,16 +34,16 @@ void    set_rho_vec(OSQPWorkspace *work);
  * @param work Workspace
  * @return     Exitflag
  */
-c_int   update_rho_vec(OSQPWorkspace *work);
+int   update_rho_vec(OSQPWorkspace *work);
 
 
 /**
- * Swap c_float vector pointers
+ * Swap float vector pointers
  * @param a first vector
  * @param b second vector
  */
-void swap_vectors(c_float **a,
-                  c_float **b);
+void swap_vectors(float **a,
+                  float **b);
 
 
 /**
@@ -89,14 +89,14 @@ void update_y(OSQPWorkspace *work);
  * @param  x    Value x
  * @return      Objective function value
  */
-c_float compute_obj_val(OSQPWorkspace *work,
-                        c_float       *x);
+float compute_obj_val(OSQPWorkspace *work,
+                        float       *x);
 
 /**
  * Check whether QP has solution
  * @param info OSQPInfo
  */
-c_int has_solution(OSQPInfo *info);
+int has_solution(OSQPInfo *info);
 
 /**
  * Store the QP solution
@@ -113,9 +113,9 @@ void store_solution(OSQPWorkspace *work);
  * @param polish             Boolean (if called from polish)
  */
 void update_info(OSQPWorkspace *work,
-                 c_int          iter,
-                 c_int          compute_objective,
-                 c_int          polish);
+                 int          iter,
+                 int          compute_objective,
+                 int          polish);
 
 
 /**
@@ -131,7 +131,7 @@ void reset_info(OSQPInfo *info);
  * @param status_val new status value
  */
 void update_status(OSQPInfo *info,
-                   c_int     status_val);
+                   int     status_val);
 
 
 /**
@@ -143,8 +143,8 @@ void update_status(OSQPInfo *info,
  * @param  approximate Boolean
  * @return      Residuals check
  */
-c_int check_termination(OSQPWorkspace *work,
-                        c_int          approximate);
+int check_termination(OSQPWorkspace *work,
+                        int          approximate);
 
 
 
@@ -153,7 +153,7 @@ c_int check_termination(OSQPWorkspace *work,
  * @param  data OSQPData to be validated
  * @return      Exitflag to check
  */
-c_int validate_data(const OSQPData *data);
+int validate_data(const OSQPData *data);
 
 
 /**
@@ -161,7 +161,7 @@ c_int validate_data(const OSQPData *data);
  * @param  settings OSQPSettings to be validated
  * @return          Exitflag to check
  */
-c_int validate_settings(const OSQPSettings *settings);
+int validate_settings(const OSQPSettings *settings);
 
 
 #endif // ifndef AUXIL_H

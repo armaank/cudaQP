@@ -14,7 +14,7 @@
  * @param  work Workspace
  * @return      exitflag
  */
-c_int scale_data(OSQPWorkspace *work);
+int scale_data(OSQPWorkspace *work);
 
 
 /**
@@ -22,7 +22,7 @@ c_int scale_data(OSQPWorkspace *work);
  * @param  work Workspace
  * @return      exitflag
  */
-c_int unscale_data(OSQPWorkspace *work);
+int unscale_data(OSQPWorkspace *work);
 
 
 /**
@@ -30,6 +30,6 @@ c_int unscale_data(OSQPWorkspace *work);
  * @param  work Workspace
  * @return      exitflag
  */
-c_int unscale_solution(OSQPWorkspace *work);
+int unscale_solution(OSQPWorkspace *work);
 
 #endif // ifndef SCALING_H

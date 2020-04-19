@@ -21,12 +21,6 @@
 
 
 
-/* Use customized number representation -----------------------------------   */
-typedef int c_int;       /* for indices */
-
-
-typedef float c_float;  /* for numerical values  */
-
 
 /* Use customized operations */
 

@@ -7,50 +7,10 @@
  *
  */
 
-#include "ctrlc.h"
-
-#if defined MATLAB
-
-static int istate;
-
-void osqp_start_interrupt_listener(void) {
-  istate = utSetInterruptEnabled(1);
-}
-
-void osqp_end_interrupt_listener(void) {
-  utSetInterruptEnabled(istate);
-}
-
-int osqp_is_interrupted(void) {
-  return utIsInterruptPending();
-}
-
-#elif defined IS_WINDOWS
-
-static int int_detected;
-static BOOL WINAPI handle_ctrlc(DWORD dwCtrlType) {
-  if (dwCtrlType != CTRL_C_EVENT) return FALSE;
-
-  int_detected = 1;
-  return TRUE;
-}
-
-void osqp_start_interrupt_listener(void) {
-  int_detected = 0;
-  SetConsoleCtrlHandler(handle_ctrlc, TRUE);
-}
-
-void osqp_end_interrupt_listener(void) {
-  SetConsoleCtrlHandler(handle_ctrlc, FALSE);
-}
-
-int osqp_is_interrupted(void) {
-  return int_detected;
-}
-
-#else /* Unix */
-
+#include "../include/ctrlc.h"
 # include <signal.h>
+
+
 static int int_detected;
 struct sigaction oact;
 static void handle_ctrlc(int dummy) {
@@ -77,4 +37,3 @@ int osqp_is_interrupted(void) {
   return int_detected;
 }
 
-#endif /* END IF IS_MATLAB / WINDOWS */

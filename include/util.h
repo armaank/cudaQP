@@ -57,7 +57,7 @@ void print_polish(OSQPWorkspace *work);
  * @param polish is polish enabled?
  */
 void print_footer(OSQPInfo *info,
-                  c_int     polish);
+                  int     polish);
 
 
 
@@ -99,7 +99,7 @@ void    osqp_tic(OSQPTimer *t);
  * @param  t Timer object
  * @return   Reported time
  */
-c_float osqp_toc(OSQPTimer *t);
+float osqp_toc(OSQPTimer *t);
 
 
 
@@ -110,12 +110,12 @@ c_float osqp_toc(OSQPTimer *t);
 
 
 /* Compare CSC matrices */
-c_int is_eq_csc(csc    *A,
+int is_eq_csc(csc    *A,
                 csc    *B,
-                c_float tol);
+                float tol);
 
 /* Convert sparse CSC to dense */
-c_float* csc_to_dns(csc *M);
+float* csc_to_dns(csc *M);
 
 
 
@@ -135,24 +135,24 @@ void print_trip_matrix(csc        *M,
                        const char *name);
 
 /* Print a dense matrix */
-void print_dns_matrix(c_float    *M,
-                      c_int       m,
-                      c_int       n,
+void print_dns_matrix(float    *M,
+                      int       m,
+                      int       n,
                       const char *name);
 
 /* Print vector  */
-void print_vec(c_float    *v,
-               c_int       n,
+void print_vec(float    *v,
+               int       n,
                const char *name);
 
 /* Dump vector to file */
-void dump_vec(c_float    *v,
-              c_int       len,
+void dump_vec(float    *v,
+              int       len,
               const char *file_name);
 
 // Print int array
-void print_vec_int(c_int      *x,
-                   c_int       n,
+void print_veint(int      *x,
+                   int       n,
                    const char *name);
 
 

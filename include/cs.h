@@ -19,12 +19,12 @@
  * @param  p     Vector of column pointers
  * @return       New matrix pointer
  */
-csc* csc_matrix(c_int    m,
-                c_int    n,
-                c_int    nzmax,
-                c_float *x,
-                c_int   *i,
-                c_int   *p);
+csc* csc_matrix(int    m,
+                int    n,
+                int    nzmax,
+                float *x,
+                int   *i,
+                int   *p);
 
 
 /**
@@ -37,11 +37,11 @@ csc* csc_matrix(c_int    m,
  * @param  triplet Allocate CSC or triplet format matrix (1/0)
  * @return         Matrix pointer
  */
-csc* csc_spalloc(c_int m,
-                 c_int n,
-                 c_int nzmax,
-                 c_int values,
-                 c_int triplet);
+csc* csc_spalloc(int m,
+                 int n,
+                 int nzmax,
+                 int values,
+                 int triplet);
 
 
 /**
@@ -63,7 +63,7 @@ void csc_spfree(csc *A);
 csc* csc_done(csc  *C,
               void *w,
               void *x,
-              c_int ok);
+              int ok);
 
 /*****************************************************************************
 * Copy Matrices                                                             *
@@ -99,7 +99,7 @@ void prea_copy_csc_mat(const csc *A,
  * @return      matrix in CSC format
  */
 csc* triplet_to_csc(const csc *T,
-                    c_int     *TtoC);
+                    int     *TtoC);
 
 
 /**
@@ -113,13 +113,13 @@ csc* triplet_to_csc(const csc *T,
  * @return      matrix in CSR format
  */
 csc* triplet_to_csr(const csc *T,
-                    c_int     *TtoC);
+                    int     *TtoC);
 
 
 /**
  * Convert sparse to dense
  */
-c_float* csc_to_dns(csc *M);
+float* csc_to_dns(csc *M);
 
 
 /**
@@ -143,16 +143,16 @@ csc* csc_to_triu(csc *M);
  * @param  n Number of elements
  * @return   Exitflag
  */
-c_int csc_cumsum(c_int *p,
-                 c_int *c,
-                 c_int  n);
+int csc_cumsum(int *p,
+                 int *c,
+                 int  n);
 
 /**
  * Compute inverse of permutation matrix stored in the vector p.
  * The computed inverse is also stored in a vector.
  */
-c_int* csc_pinv(c_int const *p,
-                c_int        n);
+int* csc_pinv(int const *p,
+                int        n);
 
 /**
  * C = A(p,p)= PAP' where A and C are symmetric the upper part stored;
@@ -164,9 +164,9 @@ c_int* csc_pinv(c_int const *p,
  * @return        New matrix (allocated)
  */
 csc* csc_symperm(const csc   *A,
-                 const c_int *pinv,
-                 c_int       *AtoC,
-                 c_int        values);
+                 const int *pinv,
+                 int       *AtoC,
+                 int        values);
 
 
 #endif // ifndef CS_H

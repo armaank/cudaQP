@@ -6,10 +6,6 @@
 # define CTRLC_H
 
 # include "glob_opts.h"
-
-bool utIsInterruptPending(void);
-bool utSetInterruptEnabled(bool);
-
 #  include <signal.h>
 
 

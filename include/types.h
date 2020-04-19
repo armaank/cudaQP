@@ -16,13 +16,13 @@
  *  but the API requires that the matrices are in the CSC format.
  */
 typedef struct {
-  c_int    nzmax; ///< maximum number of entries
-  c_int    m;     ///< number of rows
-  c_int    n;     ///< number of columns
-  c_int   *p;     ///< column pointers (size n+1); col indices (size nzmax) start from 0 when using triplet format (direct KKT matrix formation)
-  c_int   *i;     ///< row indices, size nzmax starting from 0
-  c_float *x;     ///< numerical values, size nzmax
-  c_int    nz;    ///< number of entries in triplet matrix, -1 for csc
+  int    nzmax; ///< maximum number of entries
+  int    m;     ///< number of rows
+  int    n;     ///< number of columns
+  int   *p;     ///< column pointers (size n+1); col indices (size nzmax) start from 0 when using triplet format (direct KKT matrix formation)
+  int   *i;     ///< row indices, size nzmax starting from 0
+  float *x;     ///< numerical values, size nzmax
+  int    nz;    ///< number of entries in triplet matrix, -1 for csc
 } csc;
 
 /**
@@ -40,20 +40,20 @@ typedef struct OSQP_TIMER OSQPTimer;
  * Problem scaling matrices stored as vectors
  */
 typedef struct {
-  c_float  c;    ///< cost function scaling
-  c_float *D;    ///< primal variable scaling
-  c_float *E;    ///< dual variable scaling
-  c_float  cinv; ///< cost function rescaling
-  c_float *Dinv; ///< primal variable rescaling
-  c_float *Einv; ///< dual variable rescaling
+  float  c;    ///< cost function scaling
+  float *D;    ///< primal variable scaling
+  float *E;    ///< dual variable scaling
+  float  cinv; ///< cost function rescaling
+  float *Dinv; ///< primal variable rescaling
+  float *Einv; ///< dual variable rescaling
 } OSQPScaling;
 
 /**
  * Solution structure
  */
 typedef struct {
-  c_float *x; ///< primal solution
-  c_float *y; ///< Lagrange multiplier associated to \f$l <= Ax <= u\f$
+  float *x; ///< primal solution
+  float *y; ///< Lagrange multiplier associated to \f$l <= Ax <= u\f$
 } OSQPSolution;
 
 
@@ -61,24 +61,24 @@ typedef struct {
  * Solver return information
  */
 typedef struct {
-  c_int iter;          ///< number of iterations taken
+  int iter;          ///< number of iterations taken
   char  status[32];    ///< status string, e.g. 'solved'
-  c_int status_val;    ///< status as c_int, defined in constants.h
+  int status_val;    ///< status as int, defined in constants.h
 
-  c_int status_polish; ///< polish status: successful (1), unperformed (0), (-1) unsuccessful
+  int status_polish; ///< polish status: successful (1), unperformed (0), (-1) unsuccessful
 
-  c_float obj_val;     ///< primal objective
-  c_float pri_res;     ///< norm of primal residual
-  c_float dua_res;     ///< norm of dual residual
+  float obj_val;     ///< primal objective
+  float pri_res;     ///< norm of primal residual
+  float dua_res;     ///< norm of dual residual
 
-  c_float setup_time;  ///< time taken for setup phase (seconds)
-  c_float solve_time;  ///< time taken for solve phase (seconds)
-  c_float update_time; ///< time taken for update phase (seconds)
-  c_float polish_time; ///< time taken for polish phase (seconds)
-  c_float run_time;    ///< total time  (seconds)
+  float setup_time;  ///< time taken for setup phase (seconds)
+  float solve_time;  ///< time taken for solve phase (seconds)
+  float update_time; ///< time taken for update phase (seconds)
+  float polish_time; ///< time taken for polish phase (seconds)
+  float run_time;    ///< total time  (seconds)
 
-  c_int   rho_updates;  ///< number of rho updates
-  c_float rho_estimate; ///< best rho estimate so far from residuals
+  int   rho_updates;  ///< number of rho updates
+  float rho_estimate; ///< best rho estimate so far from residuals
 } OSQPInfo;
 
 
@@ -89,18 +89,18 @@ typedef struct {
 typedef struct {
   csc *Ared;          ///< active rows of A
   ///<    Ared = vstack[Alow, Aupp]
-  c_int    n_low;     ///< number of lower-active rows
-  c_int    n_upp;     ///< number of upper-active rows
-  c_int   *A_to_Alow; ///< Maps indices in A to indices in Alow
-  c_int   *A_to_Aupp; ///< Maps indices in A to indices in Aupp
-  c_int   *Alow_to_A; ///< Maps indices in Alow to indices in A
-  c_int   *Aupp_to_A; ///< Maps indices in Aupp to indices in A
-  c_float *x;         ///< optimal x-solution obtained by polish
-  c_float *z;         ///< optimal z-solution obtained by polish
-  c_float *y;         ///< optimal y-solution obtained by polish
-  c_float  obj_val;   ///< objective value at polished solution
-  c_float  pri_res;   ///< primal residual at polished solution
-  c_float  dua_res;   ///< dual residual at polished solution
+  int    n_low;     ///< number of lower-active rows
+  int    n_upp;     ///< number of upper-active rows
+  int   *A_to_Alow; ///< Maps indices in A to indices in Alow
+  int   *A_to_Aupp; ///< Maps indices in A to indices in Aupp
+  int   *Alow_to_A; ///< Maps indices in Alow to indices in A
+  int   *Aupp_to_A; ///< Maps indices in Aupp to indices in A
+  float *x;         ///< optimal x-solution obtained by polish
+  float *z;         ///< optimal z-solution obtained by polish
+  float *y;         ///< optimal y-solution obtained by polish
+  float  obj_val;   ///< objective value at polished solution
+  float  pri_res;   ///< primal residual at polished solution
+  float  dua_res;   ///< dual residual at polished solution
 } OSQPPolish;
 # endif // ifndef EMBEDDED
 
@@ -113,13 +113,13 @@ typedef struct {
  * Data structure
  */
 typedef struct {
-  c_int    n; ///< number of variables n
-  c_int    m; ///< number of constraints m
+  int    n; ///< number of variables n
+  int    m; ///< number of constraints m
   csc     *P; ///< the upper triangular part of the quadratic cost matrix P in csc format (size n x n).
   csc     *A; ///< linear constraints matrix A in csc format (size m x n)
-  c_float *q; ///< dense array for linear part of cost function (size n)
-  c_float *l; ///< dense array for lower bound (size m)
-  c_float *u; ///< dense array for upper bound (size m)
+  float *q; ///< dense array for linear part of cost function (size n)
+  float *l; ///< dense array for lower bound (size m)
+  float *u; ///< dense array for upper bound (size m)
 } OSQPData;
 
 
@@ -127,34 +127,34 @@ typedef struct {
  * Settings struct
  */
 typedef struct {
-  c_float rho;                    ///< ADMM step rho
-  c_float sigma;                  ///< ADMM step sigma
-  c_int   scaling;                ///< heuristic data scaling iterations; if 0, then disabled.
+  float rho;                    ///< ADMM step rho
+  float sigma;                  ///< ADMM step sigma
+  int   scaling;                ///< heuristic data scaling iterations; if 0, then disabled.
 
-  c_int   adaptive_rho;           ///< boolean, is rho step size adaptive?
-  c_int   adaptive_rho_interval;  ///< number of iterations between rho adaptations; if 0, then it is automatic
-  c_float adaptive_rho_tolerance; ///< tolerance X for adapting rho. The new rho has to be X times larger or 1/X times smaller than the current one to trigger a new factorization.
-  c_float adaptive_rho_fraction;  ///< interval for adapting rho (fraction of the setup time)
+  int   adaptive_rho;           ///< boolean, is rho step size adaptive?
+  int   adaptive_rho_interval;  ///< number of iterations between rho adaptations; if 0, then it is automatic
+  float adaptive_rho_tolerance; ///< tolerance X for adapting rho. The new rho has to be X times larger or 1/X times smaller than the current one to trigger a new factorization.
+  float adaptive_rho_fraction;  ///< interval for adapting rho (fraction of the setup time)
 
-  c_int                   max_iter;      ///< maximum number of iterations
-  c_float                 eps_abs;       ///< absolute convergence tolerance
-  c_float                 eps_rel;       ///< relative convergence tolerance
-  c_float                 eps_prim_inf;  ///< primal infeasibility tolerance
-  c_float                 eps_dual_inf;  ///< dual infeasibility tolerance
-  c_float                 alpha;         ///< relaxation parameter
+  int                   max_iter;      ///< maximum number of iterations
+  float                 eps_abs;       ///< absolute convergence tolerance
+  float                 eps_rel;       ///< relative convergence tolerance
+  float                 eps_prim_inf;  ///< primal infeasibility tolerance
+  float                 eps_dual_inf;  ///< dual infeasibility tolerance
+  float                 alpha;         ///< relaxation parameter
   enum linsys_solver_type linsys_solver; ///< linear system solver to use
 
-  c_float delta;                         ///< regularization parameter for polishing
-  c_int   polish;                        ///< boolean, polish ADMM solution
-  c_int   polish_refine_iter;            ///< number of iterative refinement steps in polishing
+  float delta;                         ///< regularization parameter for polishing
+  int   polish;                        ///< boolean, polish ADMM solution
+  int   polish_refine_iter;            ///< number of iterative refinement steps in polishing
 
-  c_int verbose;                         ///< boolean, write out progress
+  int verbose;                         ///< boolean, write out progress
 
-  c_int scaled_termination;              ///< boolean, use scaled termination criteria
-  c_int check_termination;               ///< integer, check termination interval; if 0, then termination checking is disabled
-  c_int warm_start;                      ///< boolean, warm start
+  int scaled_termination;              ///< boolean, use scaled termination criteria
+  int check_termination;               ///< integer, check termination interval; if 0, then termination checking is disabled
+  int warm_start;                      ///< boolean, warm start
 
-  c_float time_limit;                    ///< maximum number of seconds allowed to solve the problem; if 0, then disabled
+  float time_limit;                    ///< maximum number of seconds allowed to solve the problem; if 0, then disabled
 } OSQPSettings;
 
 
@@ -175,26 +175,26 @@ typedef struct {
    * @name Vector used to store a vectorized rho parameter
    * @{
    */
-  c_float *rho_vec;     ///< vector of rho values
-  c_float *rho_inv_vec; ///< vector of inv rho values
+  float *rho_vec;     ///< vector of rho values
+  float *rho_inv_vec; ///< vector of inv rho values
 
   /** @} */
 
-  c_int *constr_type; ///< Type of constraints: loose (-1), equality (1), inequality (0)
+  int *constr_type; ///< Type of constraints: loose (-1), equality (1), inequality (0)
 
   /**
    * @name Iterates
    * @{
    */
-  c_float *x;        ///< Iterate x
-  c_float *y;        ///< Iterate y
-  c_float *z;        ///< Iterate z
-  c_float *xz_tilde; ///< Iterate xz_tilde
+  float *x;        ///< Iterate x
+  float *y;        ///< Iterate y
+  float *z;        ///< Iterate z
+  float *xz_tilde; ///< Iterate xz_tilde
 
-  c_float *x_prev;   ///< Previous x
+  float *x_prev;   ///< Previous x
 
   /**< NB: Used also as workspace vector for dual residual */
-  c_float *z_prev;   ///< Previous z
+  float *z_prev;   ///< Previous z
 
   /**< NB: Used also as workspace vector for primal residual */
 
@@ -205,9 +205,9 @@ typedef struct {
    * approximate tolerances computation and adapting rho
    * @{
    */
-  c_float *Ax;  ///< scaled A * x
-  c_float *Px;  ///< scaled P * x
-  c_float *Aty; ///< scaled A' * y
+  float *Ax;  ///< scaled A * x
+  float *Px;  ///< scaled P * x
+  float *Aty; ///< scaled A' * y
 
   /** @} */
 
@@ -215,8 +215,8 @@ typedef struct {
    * @name Primal infeasibility variables
    * @{
    */
-  c_float *delta_y;   ///< difference between consecutive dual iterates
-  c_float *Atdelta_y; ///< A' * delta_y
+  float *delta_y;   ///< difference between consecutive dual iterates
+  float *Atdelta_y; ///< A' * delta_y
 
   /** @} */
 
@@ -224,9 +224,9 @@ typedef struct {
    * @name Dual infeasibility variables
    * @{
    */
-  c_float *delta_x;  ///< difference between consecutive primal iterates
-  c_float *Pdelta_x; ///< P * delta_x
-  c_float *Adelta_x; ///< A * delta_x
+  float *delta_x;  ///< difference between consecutive primal iterates
+  float *Pdelta_x; ///< P * delta_x
+  float *Adelta_x; ///< A * delta_x
 
   /** @} */
 
@@ -235,9 +235,9 @@ typedef struct {
    * @{
    */
 
-  c_float *D_temp;   ///< temporary primal variable scaling vectors
-  c_float *D_temp_A; ///< temporary primal variable scaling vectors storing norms of A columns
-  c_float *E_temp;   ///< temporary constraints scaling vectors storing norms of A' columns
+  float *D_temp;   ///< temporary primal variable scaling vectors
+  float *D_temp_A; ///< temporary primal variable scaling vectors storing norms of A columns
+  float *E_temp;   ///< temporary constraints scaling vectors storing norms of A' columns
 
 
   /** @} */
@@ -250,15 +250,15 @@ typedef struct {
   OSQPTimer *timer;       ///< timer object
 
   /// flag indicating whether the solve function has been run before
-  c_int first_run;
+  int first_run;
 
   /// flag indicating whether the update_time should be cleared
-  c_int clear_update_time;
+  int clear_update_time;
 
   /// flag indicating that osqp_update_rho is called from osqp_solve function
-  c_int rho_update_from_solve;
+  int rho_update_from_solve;
 
-  c_int summary_printed; ///< Has last summary been printed? (true/false)
+  int summary_printed; ///< Has last summary been printed? (true/false)
 
 } OSQPWorkspace;
 
@@ -271,19 +271,19 @@ typedef struct {
  */
 struct linsys_solver {
   enum linsys_solver_type type;                 ///< linear system solver type functions
-  c_int (*solve)(LinSysSolver *self,
-                 c_float      *b);              ///< solve linear system
+  int (*solve)(LinSysSolver *self,
+                 float      *b);              ///< solve linear system
 
   void (*free)(LinSysSolver *self);             ///< free linear system solver (only in desktop version)
 
-  c_int (*update_matrices)(LinSysSolver *s,
+  int (*update_matrices)(LinSysSolver *s,
                            const csc *P,            ///< update matrices P
                            const csc *A);           //   and A in the solver
 
-  c_int (*update_rho_vec)(LinSysSolver  *s,
-                          const c_float *rho_vec);  ///< Update rho_vec
+  int (*update_rho_vec)(LinSysSolver  *s,
+                          const float *rho_vec);  ///< Update rho_vec
 
-  c_int nthreads; ///< number of threads active
+  int nthreads; ///< number of threads active
 };
 
 
