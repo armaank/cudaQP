@@ -1,4 +1,8 @@
+#include <stdlib.h>
+#include <math.h>
+#include "ops.h"
 #include "types.h"
+
 /* vector functions */
 /* uses malloc */
 float* vec_copy(float *a,

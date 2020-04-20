@@ -1,9 +1,5 @@
 /* csc.c */
 #include "../include/csc.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include "../include/ops.h"
-// #include "../include/linalg.h"
 
 static void* csc_malloc(int n, int size)
 {

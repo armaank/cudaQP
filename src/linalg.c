@@ -5,9 +5,6 @@
  */
 
 #include "../include/linalg.h"
-#include "../include/ops.h"
-#include <math.h>
-#include <stdlib.h>
 /* vector functions */
 
 void vec_add_scaled(float *c, const float *a, const float *b, int n, float sc)

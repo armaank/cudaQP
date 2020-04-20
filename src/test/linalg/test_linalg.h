@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include "../../../include/unittest.h"
 #include "../../../include/csc.h"
-
-#include "data.h"
 #include "../qptest.h"
+#include "data.h"
+
 #define TESTS_TOL 1e-4 // Define tests tolerance
 
 

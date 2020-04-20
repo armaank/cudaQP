@@ -1,5 +1,3 @@
-#include <time.h>
-#include <sys/time.h>
 #include "../include/timer.h"
 
 void qp_tic(qp_timer *t)

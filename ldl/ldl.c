@@ -1,6 +1,4 @@
-#include <stdbool.h>
 #include "ldl.h"
-#include "limits.h"
 
 #define LDL_UNKNOWN (-1)
 #define LDL_USED (1)

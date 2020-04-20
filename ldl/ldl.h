@@ -1,5 +1,5 @@
 #include <stdbool.h>
-
+#include <limits.h>
 /* compute the elimination tree for a quasidefinite matrix */
 int LDL_etree(const int n, const int* Ap, const int* Ai, int* work, int* Lnz, int* etree);
 

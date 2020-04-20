@@ -1,6 +1,7 @@
-// #include "types.h"
+#include <stdlib.h>
+#include <stdio.h>
 #include "linalg.h"
-
+#include "ops.h"
 /* create Compressed-Column-Sparse matrix from existing arrays */
 csc* csc_matrix(int m, int n, int nzmax, float *x, int *i, int *p);
 

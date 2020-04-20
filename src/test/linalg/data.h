@@ -1,6 +1,3 @@
-
-
-
 /* create data and solutions structure */
 typedef struct {
     csc * test_sp_matrix_A;
