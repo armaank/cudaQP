@@ -1,24 +1,9 @@
-#ifndef CSC_H
-# define CSC_H
-
-# include "linalg.h" // Vector copy operations
-
-/* matrix in compressed-column form */
-typedef struct {
-    int    nzmax; ///< maximum number of entries
-    int    m;     ///< number of rows
-    int    n;     ///< number of columns
-    int   *p;     ///< column pointers (size n+1); col indices (size nzmax) start from 0 when using triplet format (direct KKT matrix formation)
-    int   *i;     ///< row indices, size nzmax starting from 0
-    float *x;     ///< numerical values, size nzmax
-    int    nz;    ///< number of entries in triplet matrix, -1 for csc
-} csc;
-
-# endif /* ifndef TYPES_H */
-
+#include <stdlib.h>
+#include <stdio.h>
+#include "linalg.h"
+#include "ops.h"
 /* create Compressed-Column-Sparse matrix from existing arrays */
-csc* csc_matrix(int m, int n, int nzmax, c_float *x, int *i, int *p);
-
+csc* csc_matrix(int m, int n, int nzmax, float *x, int *i, int *p);
 
 /* create uninitialized CSC matrix  */
 csc* csc_spalloc(int m, int n, int nzmax, int values, int triplet);
@@ -39,7 +24,7 @@ csc* triplet_to_csc(const csc *T, int *TtoC);
 csc* triplet_to_csr(const csc *T, int *TtoC);
 
 /* convert sparse to dense */
-c_float* csc_to_dns(csc *M);
+float* csc_to_dns(csc *M);
 
 /* convert square CSC matrix into upper triangular one */
 csc* csc_to_triu(csc *M);
@@ -53,4 +38,7 @@ int* csc_pinv(int const *p, int n);
 /* C = A(p,p)= PAP' where A and C are symmetric the upper part stored */
 csc* csc_symperm(const csc *A, const int *pinv, int *AtoC, int values);
 
-#endif // ifndef CSC_H
+csc* csc_done(csc  *C,
+              void *w,
+              void *x,
+              int ok);

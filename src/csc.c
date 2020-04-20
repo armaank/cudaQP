@@ -1,31 +1,14 @@
 /* csc.c */
-
 #include "../include/csc.h"
 
 static void* csc_malloc(int n, int size)
 {
-    return c_malloc(n * size);
+    return malloc(n * size);
 }
 
 static void* csc_calloc(int n, int size)
 {
-    return c_calloc(n, size);
-}
-
-csc* csc_matrix(int m, int n, int nzmax, float *x, int *i, int *p)
-{
-    csc *M = (csc *)c_malloc(sizeof(csc));
-
-    if (!M) return 0;
-
-    M->m = m;
-    M->n = n;
-    M->nz = -1;
-    M->nzmax = nzmax;
-    M->x = x;
-    M->i = i;
-    M->p = p;
-    return M;
+    return calloc(n, size);
 }
 
 csc* csc_spalloc(int m, int n, int nzmax, int values, int triplet)
@@ -58,10 +41,10 @@ void csc_spfree(csc *A)
 {
     if (A)
     {
-        if (A->p) c_free(A->p);
-        if (A->i) c_free(A->i);
-        if (A->x) c_free(A->x);
-        c_free(A);
+        if (A->p) free(A->p);
+        if (A->i) free(A->i);
+        if (A->x) free(A->x);
+        free(A);
     }
 }
 
@@ -127,8 +110,128 @@ void prea_copy_csc_mat(const csc *A, csc *B)
 
     B->nzmax = A->nzmax;
 }
+csc* csc_done(csc *C, void *w, void *x, int ok) {
+    free(w);                   /* free workspace */
+    free(x);
+    if (ok) return C;
+    else {
+        csc_spfree(C);
+        return 0;
+    }
+}
 
 
+csc* triplet_to_csc(const csc *T, int *TtoC) {
+    int m, n, nz, p, k, *Cp, *Ci, *w, *Ti, *Tj;
+    float *Cx, *Tx;
+    csc     *C;
 
+    m  = T->m;
+    n  = T->n;
+    Ti = T->i;
+    Tj = T->p;
+    Tx = T->x;
+    nz = T->nz;
+    C  = csc_spalloc(m, n, nz, Tx != 0, 0);     /* allocate result */
+    w  = csc_calloc(n, sizeof(int));                  /* get workspace */
+
+    if (!C || !w) return csc_done(C, w, 0, 0);  /* out of memory */
+
+    Cp = C->p;
+    Ci = C->i;
+    Cx = C->x;
+
+    for (k = 0; k < nz; k++) w[Tj[k]]++;  /* column counts */
+    csc_cumsum(Cp, w, n);                 /* column pointers */
+
+    for (k = 0; k < nz; k++) {
+        Ci[p = w[Tj[k]]++] = Ti[k];         /* A(i,j) is the pth entry in C */
+
+        if (Cx) {
+            Cx[p] = Tx[k];
+
+            if (TtoC != 0) TtoC[k] = p;  // Assign vector of indices
+        }
+    }
+    return csc_done(C, w, 0, 1);     /* success; free w and return C */
+}
+
+csc* csc_to_triu(csc *M) {
+    csc  *M_trip;    // Matrix in triplet format
+    csc  *M_triu;    // Resulting upper triangular matrix
+    int nnzorigM;  // Number of nonzeros from original matrix M
+    int nnzmaxM;   // Estimated maximum number of elements of upper triangular M
+    int n;         // Dimension of M
+    int ptr, i, j; // Counters for (i,j) and index in M
+    int z_M = 0;   // Counter for elements in M_trip
+
+
+    // Check if matrix is square
+    if (M->m != M->n) {
+        printf("Matrix M not square");
+        return 0;
+    }
+    n = M->n;
+
+    // Get number of nonzeros full M
+    nnzorigM = M->p[n];
+
+    // Estimate nnzmaxM
+    // Number of nonzero elements in original M + diagonal part.
+    // -> Full matrix M as input: estimate is half the number of total elements +
+    // diagonal = .5 * (nnzorigM + n)
+    // -> Upper triangular matrix M as input: estimate is the number of total
+    // elements + diagonal = nnzorigM + n
+    // The maximum between the two is nnzorigM + n
+    nnzmaxM = nnzorigM + n;
+
+    // OLD
+    // nnzmaxM = n*(n+1)/2;  // Full upper triangular matrix (This version
+    // allocates too much memory!)
+    // nnzmaxM = .5 * (nnzorigM + n);  // half of the total elements + diagonal
+
+    // Allocate M_trip
+    M_trip = csc_spalloc(n, n, nnzmaxM, 1, 1); // Triplet format
+
+    if (!M_trip) {
+        printf("Upper triangular matrix extraction failed (out of memory)");
+        return 0;
+    }
+
+    // Fill M_trip with only elements in M which are in the upper triangular
+    for (j = 0; j < n; j++) { // Cycle over columns
+        for (ptr = M->p[j]; ptr < M->p[j + 1]; ptr++) {
+            // Get row index
+            i = M->i[ptr];
+
+            // Assign element only if in the upper triangular
+            if (i <= j) {
+                // c_print("\nM(%i, %i) = %.4f", M->i[ptr], j, M->x[ptr]);
+
+                M_trip->i[z_M] = i;
+                M_trip->p[z_M] = j;
+                M_trip->x[z_M] = M->x[ptr];
+
+                // Increase counter for the number of elements
+                z_M++;
+            }
+        }
+    }
+
+    // Set number of nonzeros
+    M_trip->nz = z_M;
+
+    // Convert triplet matrix to csc format
+    M_triu = triplet_to_csc(M_trip, 0);
+
+    // Assign number of nonzeros of full matrix to triu M
+    M_triu->nzmax = nnzmaxM;
+
+    // Cleanup and return result
+    csc_spfree(M_trip);
+
+    // Return matrix in triplet form
+    return M_triu;
+}
 
 

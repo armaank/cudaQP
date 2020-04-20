@@ -1,6 +1,3 @@
-#ifndef TIME_H
-#define TIME_H
-
 #include <time.h>
 #include <sys/time.h>
 
@@ -16,4 +13,3 @@ void qp_tic(qp_timer *t);
 float qp_toc(qp_timer *t);
 
 
-#endif TIME_H

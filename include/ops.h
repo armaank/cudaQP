@@ -1,6 +1,4 @@
-#ifndef OPS_H
-#define OPS_H
-
+#  include <math.h>
 
 # ifndef c_absval
 #  define c_absval(x) (((x) < 0) ? -(x) : (x))
@@ -19,4 +17,4 @@
 #  define c_roundmultiple(x, N) ((x) + .5 * (N)-c_fmod((x) + .5 * (N), (N)))
 # endif /* ifndef c_roundmultiple */
 
-#endif /* ifndef OPS_H */
+#   define c_sqrt sqrt

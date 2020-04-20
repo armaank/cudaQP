@@ -34,7 +34,7 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
     /* allocate vector of indices on the diagonal. worst case it has m elements */
     if (Pdiag_idx != 0)
     {
-        (*Pdiag_idx) = c_malloc(P->m * sizeof(int));
+        (*Pdiag_idx) = malloc(P->m * sizeof(int));
         *Pdiag_n = 0; // set 0 diagonal elements to start
     }
 
@@ -92,7 +92,7 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
     if (Pdiag_idx != 0)
     {
         /* realloc Pdiag_idx so that it contains exactly *Pdiag_n diagonal elements */
-        (*Pdiag_idx) = c_realloc((*Pdiag_idx), (*Pdiag_n) * sizeof(int));
+        (*Pdiag_idx) = realloc((*Pdiag_idx), (*Pdiag_n) * sizeof(int));
     }
 
 
@@ -148,7 +148,7 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
         {
             // error in allocating KKT_TtoC vector
             csc_spfree(KKT_trip);
-            c_free(*Pdiag_idx);
+            free(*Pdiag_idx);
             return 0;
         }
 
@@ -184,7 +184,7 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
         }
 
         // Free mapping
-        c_free(KKT_TtoC);
+        free(KKT_TtoC);
     }
 
     // free matrix in triplet format and return result

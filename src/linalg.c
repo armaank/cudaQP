@@ -5,7 +5,6 @@
  */
 
 #include "../include/linalg.h"
-
 /* vector functions */
 
 void vec_add_scaled(float *c, const float *a, const float *b, int n, float sc)
@@ -121,7 +120,7 @@ float* vec_copy(float *a, int n)
     float *b;
     int ii;
 
-    b = c_malloc(n * sizeof(float));
+    b = malloc(n * sizeof(float));
     if (!b) return 0;
 
     for (ii = 0; ii < n; ii++)
@@ -187,7 +186,7 @@ void vec_ew_prod(const float *a, const float *b, float *c, int n)
 
 void vec_ew_sqrt(float *a, int n)
 {
-    int i;
+    int ii;
 
     for (ii = 0; ii < n; ii++)
     {
@@ -219,9 +218,9 @@ void vec_ew_max_vec(const float *a, const float *b, float *c, int n)
 {
     int ii;
 
-    for (i = 0; ii < n; ii++)
+    for (ii = 0; ii < n; ii++)
     {
-        c[i] = c_max(a[ii], b[ii]);
+        c[ii] = c_max(a[ii], b[ii]);
     }
 }
 
@@ -257,7 +256,7 @@ void mat_premult_diag(csc *A, const float *d)
     {   // cycle over columns
         for (ii = A->p[jj]; ii < A->p[jj + 1]; ii++)
         {   // cycle every row in the column
-            A->x[ii] *= d[A->ii[ii]]; // scale by corresponding element of d for row ii
+            A->x[ii] *= d[A->i[ii]]; // scale by corresponding element of d for row ii
         }
     }
 }
@@ -301,7 +300,7 @@ void mat_vec(const csc *A, const float *x, float *y, int plus_eq)
         {
             for (ii = A->p[jj]; ii < A->p[jj + 1]; ii++)
             {
-                y[A->ii[ii]] -= A->x[ii] * x[jj];
+                y[A->i[ii]] -= A->x[ii] * x[jj];
             }
         }
     }
@@ -312,7 +311,7 @@ void mat_vec(const csc *A, const float *x, float *y, int plus_eq)
         {
             for (ii = A->p[jj]; ii < A->p[jj + 1]; ii++)
             {
-                y[A->ii[ii]] += A->x[ii] * x[jj];
+                y[A->i[ii]] += A->x[ii] * x[jj];
             }
         }
     }
@@ -346,7 +345,7 @@ void mat_tpose_vec(const csc *A, const float *x, float *y, int plus_eq, int skip
             {
                 for (kk = A->p[jj]; kk < A->p[jj + 1]; kk++)
                 {
-                    ii = A->ii[kk];
+                    ii = A->i[kk];
                     y[jj] -= ii == jj ? 0 : A->x[kk] * x[ii];
                 }
             }
@@ -357,7 +356,7 @@ void mat_tpose_vec(const csc *A, const float *x, float *y, int plus_eq, int skip
             {
                 for (kk = A->p[jj]; kk < A->p[jj + 1]; kk++)
                 {
-                    y[jj] -= A->x[kk] * x[A->ii[kk]];
+                    y[jj] -= A->x[kk] * x[A->i[kk]];
                 }
             }
         }
@@ -371,7 +370,7 @@ void mat_tpose_vec(const csc *A, const float *x, float *y, int plus_eq, int skip
             {
                 for (kk = A->p[jj]; kk < A->p[jj + 1]; kk++)
                 {
-                    i = A->ii[kk];
+                    ii = A->i[kk];
                     y[jj] += ii == jj ? 0 : A->x[kk] * x[ii];
                 }
             }
@@ -382,7 +381,7 @@ void mat_tpose_vec(const csc *A, const float *x, float *y, int plus_eq, int skip
             {
                 for (kk = A->p[jj]; kk < A->p[jj + 1]; kk++)
                 {
-                    y[jj] += A->x[kk] * x[A->ii[kk]];
+                    y[jj] += A->x[kk] * x[A->i[kk]];
                 }
             }
         }
@@ -424,7 +423,7 @@ void mat_inf_norm_rows(const csc *M, float *E)
     {
         for (ptr = M->p[jj]; ptr < M->p[jj + 1]; ptr++)
         {
-            ii = M->ii[ptr];
+            ii = M->i[ptr];
             E[ii] = c_max(c_absval(M->x[ptr]), E[ii]);
         }
     }
@@ -448,7 +447,7 @@ void mat_inf_norm_cols_sym_triu(const csc *M, float *E)
     for (jj = 0; jj < M->n; jj++) {
         for (ptr = M->p[jj]; ptr < M->p[jj + 1]; ptr++)
         {
-            ii = M->ii[ptr];
+            ii = M->i[ptr];
             abs_x = c_absval(M->x[ptr]);
             E[jj] = c_max(abs_x, E[jj]);
 
@@ -469,7 +468,7 @@ float quad_form(const csc *P, const float *x)
     {   // iterate over columns
         for (ptr = P->p[jj]; ptr < P->p[jj + 1]; ptr++)
         {   // iterate over rows
-            ii = P->ii[ptr]; // Row index
+            ii = P->i[ptr]; // Row index
 
             if (ii == jj)
             {   // diagonal element
