@@ -88,7 +88,7 @@ void update_y(qpWorkspace *work);
  * @return      Objective function value
  */
 float compute_obj_val(qpWorkspace *work,
-                        float       *x);
+                      float       *x);
 
 /**
  * Check whether QP has solution
@@ -142,7 +142,7 @@ void update_status(qpInfo *info,
  * @return      Residuals check
  */
 int check_termination(qpWorkspace *work,
-                        int          approximate);
+                      int          approximate);
 
 /**
  * Validate problem data
