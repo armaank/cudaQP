@@ -235,92 +235,92 @@ csc* csc_to_triu(csc *M) {
 }
 
 csc* csc_symperm(const csc *A, const int *pinv, int *AtoC, int values) {
-  int i, j, p, q, i2, j2, n, *Ap, *Ai, *Cp, *Ci, *w;
-  float *Cx, *Ax;
-  csc     *C;
+    int i, j, p, q, i2, j2, n, *Ap, *Ai, *Cp, *Ci, *w;
+    float *Cx, *Ax;
+    csc     *C;
 
-  n  = A->n;
-  Ap = A->p;
-  Ai = A->i;
-  Ax = A->x;
-  C  = csc_spalloc(n, n, Ap[n], values && (Ax != 0),
-                   0);                                /* alloc result*/
-  w = csc_calloc(n, sizeof(int));                   /* get workspace */
+    n  = A->n;
+    Ap = A->p;
+    Ai = A->i;
+    Ax = A->x;
+    C  = csc_spalloc(n, n, Ap[n], values && (Ax != 0),
+                     0);                                /* alloc result*/
+    w = csc_calloc(n, sizeof(int));                   /* get workspace */
 
-  if (!C || !w) return csc_done(C, w, 0, 0);  /* out of memory */
+    if (!C || !w) return csc_done(C, w, 0, 0);  /* out of memory */
 
-  Cp = C->p;
-  Ci = C->i;
-  Cx = C->x;
+    Cp = C->p;
+    Ci = C->i;
+    Cx = C->x;
 
-  for (j = 0; j < n; j++)    /* count entries in each column of C */
-  {
-    j2 = pinv ? pinv[j] : j; /* column j of A is column j2 of C */
+    for (j = 0; j < n; j++)    /* count entries in each column of C */
+    {
+        j2 = pinv ? pinv[j] : j; /* column j of A is column j2 of C */
 
-    for (p = Ap[j]; p < Ap[j + 1]; p++) {
-      i = Ai[p];
+        for (p = Ap[j]; p < Ap[j + 1]; p++) {
+            i = Ai[p];
 
-      if (i > j) continue;     /* skip lower triangular part of A */
-      i2 = pinv ? pinv[i] : i; /* row i of A is row i2 of C */
-      w[c_max(i2, j2)]++;      /* column count of C */
+            if (i > j) continue;     /* skip lower triangular part of A */
+            i2 = pinv ? pinv[i] : i; /* row i of A is row i2 of C */
+            w[c_max(i2, j2)]++;      /* column count of C */
+        }
     }
-  }
-  csc_cumsum(Cp, w, n);        /* compute column pointers of C */
+    csc_cumsum(Cp, w, n);        /* compute column pointers of C */
 
-  for (j = 0; j < n; j++) {
-    j2 = pinv ? pinv[j] : j;   /* column j of A is column j2 of C */
+    for (j = 0; j < n; j++) {
+        j2 = pinv ? pinv[j] : j;   /* column j of A is column j2 of C */
 
-    for (p = Ap[j]; p < Ap[j + 1]; p++) {
-      i = Ai[p];
+        for (p = Ap[j]; p < Ap[j + 1]; p++) {
+            i = Ai[p];
 
-      if (i > j) continue;                             /* skip lower triangular
+            if (i > j) continue;                             /* skip lower triangular
                                                           part of A*/
-      i2                         = pinv ? pinv[i] : i; /* row i of A is row i2
+            i2                         = pinv ? pinv[i] : i; /* row i of A is row i2
                                                           of C */
-      Ci[q = w[c_max(i2, j2)]++] = c_min(i2, j2);
+            Ci[q = w[c_max(i2, j2)]++] = c_min(i2, j2);
 
-      if (Cx) Cx[q] = Ax[p];
+            if (Cx) Cx[q] = Ax[p];
 
-      if (AtoC) { // If vector AtoC passed, store values of the mappings
-        AtoC[p] = q;
-      }
+            if (AtoC) { // If vector AtoC passed, store values of the mappings
+                AtoC[p] = q;
+            }
+        }
     }
-  }
-  return csc_done(C, w, 0, 1); /* success; free workspace, return C */
+    return csc_done(C, w, 0, 1); /* success; free workspace, return C */
 }
 
 csc* triplet_to_csr(const csc *T, int *TtoC) {
-  int m, n, nz, p, k, *Cp, *Cj, *w, *Ti, *Tj;
-  float *Cx, *Tx;
-  csc     *C;
+    int m, n, nz, p, k, *Cp, *Cj, *w, *Ti, *Tj;
+    float *Cx, *Tx;
+    csc     *C;
 
-  m  = T->m;
-  n  = T->n;
-  Ti = T->i;
-  Tj = T->p;
-  Tx = T->x;
-  nz = T->nz;
-  C  = csc_spalloc(m, n, nz, Tx != 0, 0);     /* allocate result */
-  w  = csc_calloc(m, sizeof(int));                  /* get workspace */
+    m  = T->m;
+    n  = T->n;
+    Ti = T->i;
+    Tj = T->p;
+    Tx = T->x;
+    nz = T->nz;
+    C  = csc_spalloc(m, n, nz, Tx != 0, 0);     /* allocate result */
+    w  = csc_calloc(m, sizeof(int));                  /* get workspace */
 
-  if (!C || !w) return csc_done(C, w, 0, 0);  /* out of memory */
+    if (!C || !w) return csc_done(C, w, 0, 0);  /* out of memory */
 
-  Cp = C->p;
-  Cj = C->i;
-  Cx = C->x;
+    Cp = C->p;
+    Cj = C->i;
+    Cx = C->x;
 
-  for (k = 0; k < nz; k++) w[Ti[k]]++;  /* row counts */
-  csc_cumsum(Cp, w, m);                 /* row pointers */
+    for (k = 0; k < nz; k++) w[Ti[k]]++;  /* row counts */
+    csc_cumsum(Cp, w, m);                 /* row pointers */
 
-  for (k = 0; k < nz; k++) {
-    Cj[p = w[Ti[k]]++] = Tj[k];         /* A(i,j) is the pth entry in C */
+    for (k = 0; k < nz; k++) {
+        Cj[p = w[Ti[k]]++] = Tj[k];         /* A(i,j) is the pth entry in C */
 
-    if (Cx) {
-      Cx[p] = Tx[k];
+        if (Cx) {
+            Cx[p] = Tx[k];
 
-      if (TtoC != 0) TtoC[k] = p;  // Assign vector of indices
+            if (TtoC != 0) TtoC[k] = p;  // Assign vector of indices
+        }
     }
-  }
-  return csc_done(C, w, 0, 1);     /* success; free w and return C */
+    return csc_done(C, w, 0, 1);     /* success; free w and return C */
 }
 

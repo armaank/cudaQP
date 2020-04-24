@@ -6,7 +6,7 @@
 /* vector functions */
 /* uses malloc */
 float* vec_copy(float *a,
-                  int    n);
+                int    n);
 /* copy vector a into preallocated vector b */
 void prea_vec_copy(const float *a, float *b, int n);
 
