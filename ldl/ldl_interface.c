@@ -1,18 +1,9 @@
-// #include "../../include/ops.h"
-// #include "../../include/constants.h"
-
-// #include "./ldl_src/ldl.h"
-// #include "ldl_interface.h"
-
-// #include "amd.h"
-
-// #include "kkt.h"
 
 #include "ldl_interface.h"
 
 
 // Free LDL Factorization structure
-void free_linsys_solver_qdldl(qdldl_solver *s) {
+void free_linsys_solver_ldl(ldl_solver *s) {
     if (s) {
         if (s->L)           csc_spfree(s->L);
         if (s->P)           free(s->P);
@@ -48,7 +39,7 @@ void free_linsys_solver_qdldl(qdldl_solver *s) {
  * @param  nvar Number of QP variables
  * @return      exitstatus (0 is good)
  */
-static int LDL_factor(csc *A,  qdldl_solver * p, int nvar){
+static int QDLDL_factor(csc *A,  ldl_solver * p, int nvar){
 
     int sum_Lnz;
     int factor_status;
@@ -88,19 +79,19 @@ static int LDL_factor(csc *A,  qdldl_solver * p, int nvar){
 }
 
 
-static int permute_KKT(csc ** KKT, qdldl_solver * p, int Pnz, int Anz, int m, int * PtoKKT, int * AtoKKT, int * rhotoKKT){
-    float *info;
+static int permute_KKT(csc ** KKT, ldl_solver * p, int Pnz, int Anz, int m, int * PtoKKT, int * AtoKKT, int * rhotoKKT){
+    double *info;
     int amd_status;
     int * Pinv;
     csc *KKT_temp;
     int * KtoPKPt;
     int i; // Indexing
 
-    info = (float *)malloc(AMD_INFO * sizeof(float));
+    info = (double *)malloc(AMD_INFO * sizeof(double));
 
     // Compute permutation matrix P using AMD
-    amd_status = amd_l_order((*KKT)->n, (*KKT)->p, (*KKT)->i, p->P, (float *)0, info);
-    amd_status = amd_order((*KKT)->n, (*KKT)->p, (*KKT)->i, p->P, (float *)0, info);
+    // amd_status = amd_l_order((*KKT)->n, (*KKT)->p, (*KKT)->i, p->P, (float *)0, info);
+    amd_status = amd_order((*KKT)->n, (*KKT)->p, (*KKT)->i, p->P, (double *)0, info);
     if (amd_status < 0) {
         // Free Amd info and return an error
         free(info);
@@ -156,7 +147,7 @@ static int permute_KKT(csc ** KKT, qdldl_solver * p, int Pnz, int Anz, int m, in
 
 
 // Initialize LDL Factorization structure
-int init_linsys_solver_qdldl(qdldl_solver ** sp, const csc * P, const csc * A, float sigma, const float * rho_vec, int polish){
+int init_linsys_solver_ldl(ldl_solver ** sp, const csc * P, const csc * A, float sigma, const float * rho_vec, int polish){
 
     // Define Variables
     csc * KKT_temp;     // Temporary KKT pointer
@@ -164,8 +155,8 @@ int init_linsys_solver_qdldl(qdldl_solver ** sp, const csc * P, const csc * A, f
     int n_plus_m;     // Define n_plus_m dimension
 
     // Allocate private structure to store KKT factorization
-    qdldl_solver *s;
-    s = c_calloc(1, sizeof(qdldl_solver));
+    ldl_solver *s;
+    s = calloc(1, sizeof(ldl_solver));
     *sp = s;
 
     // Size of KKT
@@ -180,12 +171,12 @@ int init_linsys_solver_qdldl(qdldl_solver ** sp, const csc * P, const csc * A, f
     s->polish = polish;
 
     // Link Functions
-    s->solve = &solve_linsys_qdldl;
+    s->solve = &solve_linsys_ldl;
 
-    s->free = &free_linsys_solver_qdldl;
+    s->free = &free_linsys_solver_ldl;
 
-    s->update_matrices = &update_linsys_solver_matrices_qdldl;
-    s->update_rho_vec = &update_linsys_solver_rho_vec_qdldl;
+    s->update_matrices = &update_linsys_solver_matrices_ldl;
+    s->update_rho_vec = &update_linsys_solver_rho_vec_ldl;
 
     // Assign type
     s->type = LDL_SOLVER;
@@ -273,15 +264,15 @@ int init_linsys_solver_qdldl(qdldl_solver ** sp, const csc * P, const csc * A, f
     if (!KKT_temp){
         printf("Error forming and permuting KKT matrix");
 
-        free_linsys_solver_qdldl(s);
+        free_linsys_solver_ldl(s);
         *sp = 0;
         return QP_LINSYS_SOLVER_INIT_ERROR;
     }
 
     // Factorize the KKT matrix
-    if (LDL_factor(KKT_temp, s, P->n) < 0) {
+    if (QDLDL_factor(KKT_temp, s, P->n) < 0) {
         csc_spfree(KKT_temp);
-        free_linsys_solver_qdldl(s);
+        free_linsys_solver_ldl(s);
         *sp = 0;
         return QP_NONCVX_ERROR;
     }
@@ -299,9 +290,6 @@ int init_linsys_solver_qdldl(qdldl_solver ** sp, const csc * P, const csc * A, f
     return 0;
 }
 
-#endif  // EMBEDDED
-
-
 // Permute x = P*b using P
 void permute_x(int n, float * x, const float * b, const int * P) {
     int j;
@@ -314,7 +302,6 @@ void permutet_x(int n, float * x, const float * b, const int * P) {
     for (j = 0 ; j < n ; j++) x[P[j]] = b[j];
 }
 
-
 static void LDLSolve(float *x, float *b, const csc *L, const float *Dinv, const int *P, float *bp) {
     /* solves P'LDL'P x = b for x */
     permute_x(L->n, bp, b, P);
@@ -324,15 +311,13 @@ static void LDLSolve(float *x, float *b, const csc *L, const float *Dinv, const 
 }
 
 
-int solve_linsys_qdldl(qdldl_solver * s, float * b) {
+int solve_linsys_ldl(ldl_solver * s, float * b) {
     int j;
 
-#ifndef EMBEDDED
     if (s->polish) {
         /* stores solution to the KKT system in b */
         LDLSolve(b, b, s->L, s->Dinv, s->P, s->bp);
     } else {
-#endif
         /* stores solution to the KKT system in s->sol */
         LDLSolve(s->sol, b, s->L, s->Dinv, s->P, s->bp);
 
@@ -345,17 +330,13 @@ int solve_linsys_qdldl(qdldl_solver * s, float * b) {
         for (j = 0 ; j < s->m ; j++) {
             b[j + s->n] += s->rho_inv_vec[j] * s->sol[j + s->n];
         }
-#ifndef EMBEDDED
     }
-#endif
-
     return 0;
 }
 
 
-#if EMBEDDED != 1
 // Update private structure with new P and A
-int update_linsys_solver_matrices_qdldl(qdldl_solver * s, const csc *P, const csc *A) {
+int update_linsys_solver_matrices_ldl(ldl_solver * s, const csc *P, const csc *A) {
 
     // Update KKT matrix with new P
     update_KKT_P(s->KKT, P, s->PtoKKT, s->sigma, s->Pdiag_idx, s->Pdiag_n);
@@ -370,7 +351,7 @@ int update_linsys_solver_matrices_qdldl(qdldl_solver * s, const csc *P, const cs
 }
 
 
-int update_linsys_solver_rho_vec_qdldl(qdldl_solver * s, const float * rho_vec){
+int update_linsys_solver_rho_vec_ldl(ldl_solver * s, const float * rho_vec){
     int i;
 
     // Update internal rho_inv_vec
@@ -387,4 +368,3 @@ int update_linsys_solver_rho_vec_qdldl(qdldl_solver * s, const float * rho_vec){
 }
 
 
-#endif

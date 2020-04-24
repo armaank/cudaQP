@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "ops.h"
-#include "types.h"
+#include "qptypes.h"
 
 /* vector functions */
 /* uses malloc */

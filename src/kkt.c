@@ -44,7 +44,7 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
         // no elements in column jj => add diagonal element param1
         if (P->p[jj] == P->p[jj + 1])
         {
-            KKT_trip->ii[zKKT] = jj;
+            KKT_trip->i[zKKT] = jj;
             KKT_trip->p[zKKT] = jj;
             KKT_trip->x[zKKT] = param1;
             zKKT++;
@@ -53,10 +53,10 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
         for (ptr = P->p[jj]; ptr < P->p[jj + 1]; ptr++)
         {   // cycle over rows
             // get current row
-            ii = P->ii[ptr];
+            ii = P->i[ptr];
 
             // add element of P
-            KKT_trip->ii[zKKT] = ii;
+            KKT_trip->i[zKKT] = ii;
             KKT_trip->p[zKKT] = jj;
             KKT_trip->x[zKKT] = P->x[ptr];
 
@@ -69,7 +69,7 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
                 KKT_trip->x[zKKT] += param1;
 
                 // If index vector pointer supplied -> Store the index
-                if (Pdiag_idx != OSQP_0)
+                if (Pdiag_idx != 0)
                 {
                     (*Pdiag_idx)[*Pdiag_n] = ptr;
                     (*Pdiag_n)++;
@@ -78,10 +78,10 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
             zKKT++;
 
             // Add diagonal param1 in case
-            if ((ii < jj) && (ptr + 1 == P->[j+1]))
+            if ((ii < jj) && (ptr + 1 == P->p[jj+1]))
             {   // Diagonal element not reached, last element of col jj
                 // Add diagonal element param1
-                KKT_trip->ii[zKKT] = jj;
+                KKT_trip->i[zKKT] = jj;
                 KKT_trip->p[zKKT] = jj;
                 KKT_trip->x[zKKT] = param1;
                 zKKT++;
@@ -103,7 +103,7 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
         {
             KKT_trip->p[zKKT] = P->m + A->i[ptr]; // assign column index from
             // row index of A
-            KKT_trip->ii[zKKT] = jj; // assign row index from
+            KKT_trip->i[zKKT] = jj; // assign row index from
             // column index of A
             KKT_trip->x[zKKT] = A->x[ptr]; // assign A value element
 
@@ -117,12 +117,12 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
     /* - diag(param2) at bottom right */
     for (jj = 0; jj < A->m; jj++)
     {
-        KKT_trip->ii[zKKT] = jj + P->n;
+        KKT_trip->i[zKKT] = jj + P->n;
         KKT_trip->p[zKKT] = jj + P->n;
         KKT_trip->x[zKKT] = -param2[jj];
 
         if (param2toKKT != 0)
-            param2toKKT[j] = zKKT;  // update index from
+            param2toKKT[jj] = zKKT;  // update index from
         // param2 to KKTtrip
         zKKT++;
     }
@@ -142,7 +142,7 @@ csc* form_KKT(const csc *P, const csc *A, int format, float param1, float *param
     else
     {
         // allocate vector of indices from triplet to csc
-        KKT_TtoC = c_malloc((zKKT) * sizeof(int));
+        KKT_TtoC = malloc((zKKT) * sizeof(int));
 
         if (!KKT_TtoC)
         {

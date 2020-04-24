@@ -1,7 +1,6 @@
 
-#include "../../include/constants.h"
-#include "../../include/amd.h"
-#include "../../include/kkt.h"
+#include "suitesparse/amd.h"
+#include "../include/kkt.h"
 #include "./ldl_src/ldl.h"
 
 /**

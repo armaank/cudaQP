@@ -6,6 +6,9 @@
 # define EPS_PRIM_INF (1E-4)
 # define EPS_DUAL_INF (1E-4)
 # define ALPHA (1.6)
+
+# define LINSYS_SOLVER (LDL_SOLVER)
+
 # define RHO_MIN (1e-06)
 # define RHO_MAX (1e06)
 # define RHO_EQ_OVER_RHO_INEQ (1e03)
