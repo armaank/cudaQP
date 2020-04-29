@@ -17,4 +17,4 @@
 int _qp_error(enum qp_error_type error_code,
               const char * function_name);
 
-#endif ERROR_H
+#endif //ERROR_H

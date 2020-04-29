@@ -1,13 +1,13 @@
 #ifndef QP_H
-#define QP_H
+# define QP_H
 
 
 #include "auxil.h"
-# include "lin_sys.h"
+# include "linsys.h"
 // # include "polish.h"
-# include "ctrlc.h"
+# include "ctrl.h"
 #include "scaling.h"
-
+#include "qptypes.h" // might remove this? 
 // # include "util.h" // Needed for qp_set_default_params functions
 
 
@@ -105,8 +105,7 @@ int qp_cleanup(qpWorkspace *work);
  * @param  q_new New linear cost
  * @return       Exitflag for errors and warnings
  */
-int qp_update_lin_cos#ifndef OSQP_TYPES_H
-# define OSQP_TYPES_Ht(qpWorkspace *work,
+int qp_update_lin_cost(qpWorkspace *work,
                        const float *q_new);
 
 
@@ -265,8 +264,6 @@ int qp_update_rho(qpWorkspace *work,
  * @name Update params
  * @{
  */
-#ifndef OSQP_TYPES_H
-# define OSQP_TYPES_H
 
 /**
  * Update max_iter setting
@@ -407,4 +404,6 @@ int qp_update_time_limit(qpWorkspace *work,
                          float        time_limit_new);
 
 
-#endif QP_H
+#endif //QP_H
+
+

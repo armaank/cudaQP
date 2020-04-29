@@ -167,4 +167,4 @@ int validate_data(const qpData *data);
  */
 int validate_params(const qpParams *params);
 
-#endif AUXIL_H
+#endif //AUXIL_H

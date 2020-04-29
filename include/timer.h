@@ -16,4 +16,4 @@ void qp_tic(qpTimer *t);
 /* report time */
 float qp_toc(qpTimer *t);
 
-#endif TIMER_H
+#endif //TIMER_H

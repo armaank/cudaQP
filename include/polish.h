@@ -19,4 +19,4 @@
  */
 int polish(qpWorkspace *work);
 
-#endif POLISH_H
+#endif //POLISH_H

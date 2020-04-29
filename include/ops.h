@@ -22,4 +22,4 @@
 
 #   define c_sqrt sqrt
 
-#endif OPS_H
+#endif //OPS_H

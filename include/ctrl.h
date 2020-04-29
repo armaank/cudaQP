@@ -31,4 +31,4 @@ void qp_end_interrupt_listener(void);
  */
 int qp_is_interrupted(void);
 
-#endif CTRL_H
+#endif //CTRL_H

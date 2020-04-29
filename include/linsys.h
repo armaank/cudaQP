@@ -41,4 +41,4 @@ int init_linsys_solver(LinSysSolver          **s,
                        const float          *rho_vec,
                        enum linsys_solver_type linsys_solver,
                        int                   polish);
-#endif LINSYS_H
+#endif //LINSYS_H

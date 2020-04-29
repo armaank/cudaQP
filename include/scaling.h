@@ -31,4 +31,4 @@ int unscale_data(qpWorkspace *work);
  */
 int unscale_solution(qpWorkspace *work);
 
-#endif SCALING_H
+#endif //SCALING_H

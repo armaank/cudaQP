@@ -116,4 +116,4 @@ void mat_inf_norm_cols_sym_triu(const csc *M, float *E);
  */
 float quad_form(const csc *P, const float *x);
 
-#endif LINALG_H
+#endif //LINALG_H

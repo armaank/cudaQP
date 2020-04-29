@@ -259,4 +259,4 @@ struct linsys_solver {
     int nthreads; ///< number of threads active
 };
 
-#endif QPTYPES_H
+#endif //QPTYPES_H

@@ -1,4 +1,4 @@
-#include "proj.h"
+#include "../include/proj.h"
 
 
 void project(qpWorkspace *work, float *z) {

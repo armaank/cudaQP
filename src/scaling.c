@@ -1,4 +1,4 @@
-#include "scaling.h"
+#include "../include/scaling.h"
 
 // Set values lower than threshold SCALING_REG to 1
 void limit_scaling(float *D, int n) {
@@ -66,7 +66,7 @@ int scale_data(qpWorkspace *work) {
     vec_set_scalar(work->scaling->Einv, 1., work->data->m);
 
 
-    for (i = 0; i < work->param->scaling; i++) {
+    for (i = 0; i < work->params->scaling; i++) {
         //
         // First Ruiz step
         //

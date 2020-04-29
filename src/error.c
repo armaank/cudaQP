@@ -11,8 +11,8 @@ const char *QP_ERROR_MESSAGE[] = {
 };
 
 
-int _qp_error(enum osqp_error_type error_code,
+int _qp_error(enum qp_error_type error_code,
               const char * function_name) {
-    print("ERROR in %s: %s\n", function_name, QP_ERROR_MESSAGE[error_code-1]);
+    printf("ERROR in %s: %s\n", function_name, QP_ERROR_MESSAGE[error_code-1]);
     return (int)error_code;
 }

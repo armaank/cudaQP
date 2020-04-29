@@ -26,4 +26,4 @@ void project_normalcone(qpWorkspace *work,
                         float       *y);
 
 
-#endif PROJ_H
+#endif //PROJ_H

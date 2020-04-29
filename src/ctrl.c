@@ -1,6 +1,6 @@
 
 
-#include "ctrl.h"
+#include "../include/ctrl.h"
 # include <signal.h>
 
 static int int_detected;

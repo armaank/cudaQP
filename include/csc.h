@@ -46,4 +46,4 @@ csc* csc_done(csc  *C,
               void *x,
               int ok);
 
-#endif CSC_H
+#endif //CSC_H

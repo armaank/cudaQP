@@ -64,4 +64,4 @@ enum qp_error_type {
 };
 extern const char * QP_ERROR_MESSAGE[];
 
-#endif CONSTANTS_H
+#endif //CONSTANTS_H

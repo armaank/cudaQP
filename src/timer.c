@@ -1,12 +1,13 @@
-#include "../include/timer.h"
+// #include "../include/timer.h"
+#include "../include/qptypes.h"
 
-void qp_tic(qp_timer *t)
+void qp_tic(qpTimer *t)
 {
     clock_gettime(CLOCK_MONOTONIC, &t->tic);
 }
 
 /* return time passed since last call to tic on this timer */
-float qp_toc(qp_timer *t)
+float qp_toc(qpTimer *t)
 {
     struct timespec temp;
 

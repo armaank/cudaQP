@@ -9,4 +9,4 @@
        if (message) return message; } while (0)
 extern int tests_run;
 
-#endif UNITTEST_H
+#endif //UNITTEST_H

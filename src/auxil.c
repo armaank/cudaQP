@@ -1,5 +1,6 @@
-// #include "osqp.h" // For qp rho update
+#include "../include/qp.h" // For qp rho update
 #include "../include/auxil.h"
+// #include "../include/timer.h"
 // #include "proj.h"
 // #include "lin_alg.h"
 // #include "constants.h"
@@ -68,7 +69,7 @@ int adapt_rho(qpWorkspace *work) {
     // Check if the new rho is large or small enough and update it in case
     if ((rho_new > work->params->rho * work->params->adaptive_rho_tolerance) ||
             (rho_new < work->params->rho /  work->params->adaptive_rho_tolerance)) {
-        exitflag                 = osqp_update_rho(work, rho_new);
+        exitflag                 = qp_update_rho(work, rho_new);
         work->info->rho_updates += 1;
     }
 
@@ -81,8 +82,8 @@ void set_rho_vec(qpWorkspace *work) {
     work->params->rho = c_min(c_max(work->params->rho, RHO_MIN), RHO_MAX);
 
     for (i = 0; i < work->data->m; i++) {
-        if ((work->data->l[i] < -qp_INFTY * MIN_SCALING) &&
-                (work->data->u[i] > qp_INFTY * MIN_SCALING)) {
+        if ((work->data->l[i] < -qpINFTY * MIN_SCALING) &&
+                (work->data->u[i] > qpINFTY * MIN_SCALING)) {
             // Loose bounds
             work->constr_type[i] = -1;
             work->rho_vec[i]     = RHO_MIN;
@@ -106,8 +107,8 @@ int update_rho_vec(qpWorkspace *work) {
     constr_type_changed = 0;
 
     for (i = 0; i < work->data->m; i++) {
-        if ((work->data->l[i] < -qp_INFTY * MIN_SCALING) &&
-                (work->data->u[i] > qp_INFTY * MIN_SCALING)) {
+        if ((work->data->l[i] < -qpINFTY * MIN_SCALING) &&
+                (work->data->u[i] > qpINFTY * MIN_SCALING)) {
             // Loose bounds
             if (work->constr_type[i] != -1) {
                 work->constr_type[i] = -1;
@@ -371,15 +372,15 @@ int is_primal_infeasible(qpWorkspace *work, float eps_prim_inf) {
 
     // Project delta_y onto the polar of the recession cone of [l,u]
     for (i = 0; i < work->data->m; i++) {
-        if (work->data->u[i] > qp_INFTY * MIN_SCALING) {          // Infinite upper bound
-            if (work->data->l[i] < -qp_INFTY * MIN_SCALING) {       // Infinite lower bound
+        if (work->data->u[i] > qpINFTY * MIN_SCALING) {          // Infinite upper bound
+            if (work->data->l[i] < -qpINFTY * MIN_SCALING) {       // Infinite lower bound
                 // Both bounds infinite
                 work->delta_y[i] = 0.0;
             } else {
                 // Only upper bound infinite
                 work->delta_y[i] = c_min(work->delta_y[i], 0.0);
             }
-        } else if (work->data->l[i] < -qp_INFTY * MIN_SCALING) {  // Infinite lower bound
+        } else if (work->data->l[i] < -qpINFTY * MIN_SCALING) {  // Infinite lower bound
             // Only lower bound infinite
             work->delta_y[i] = c_max(work->delta_y[i], 0.0);
         }
@@ -491,9 +492,9 @@ int is_dual_infeasible(qpWorkspace *work, float eps_dual_inf) {
                 // NB: Note that MIN_SCALING is used to adjust the infinity value
                 //     in case the problem is scaled.
                 for (i = 0; i < work->data->m; i++) {
-                    if (((work->data->u[i] < qp_INFTY * MIN_SCALING) &&
+                    if (((work->data->u[i] < qpINFTY * MIN_SCALING) &&
                             (work->Adelta_x[i] >  eps_dual_inf * norm_delta_x)) ||
-                            ((work->data->l[i] > -qp_INFTY * MIN_SCALING) &&
+                            ((work->data->l[i] > -qpINFTY * MIN_SCALING) &&
                              (work->Adelta_x[i] < -eps_dual_inf * norm_delta_x))) {
                         // At least one condition not satisfied -> not dual infeasible
                         return 0;
@@ -532,8 +533,8 @@ void store_solution(qpWorkspace *work) {
             unscale_solution(work);
     } else {
         // No solution present. Solution is NaN
-        vec_set_scalar(work->solution->x, qp_NAN, work->data->n);
-        vec_set_scalar(work->solution->y, qp_NAN, work->data->m);
+        vec_set_scalar(work->solution->x, qpNAN, work->data->n);
+        vec_set_scalar(work->solution->y, qpNAN, work->data->m);
 
 
         // Normalize infeasibility certificates if embedded is off
@@ -605,7 +606,7 @@ void update_info(qpWorkspace *work,
     *dua_res = compute_dua_res(work, x, y);
 
     // Update timing
-    *run_time = osqp_toc(work->timer);
+    *run_time = qp_toc(work->timer);
 
     work->summary_printed = 0; // The just updated info have not been printed
 }
@@ -672,12 +673,12 @@ int check_termination(qpWorkspace *work, int approximate) {
     eps_dual_inf = work->params->eps_dual_inf;
 
     // If residuals are too large, the problem is probably non convex
-    if ((work->info->pri_res > qp_INFTY) ||
-            (work->info->dua_res > qp_INFTY)) {
+    if ((work->info->pri_res > qpINFTY) ||
+            (work->info->dua_res > qpINFTY)) {
         // Looks like residuals are diverging. Probably the problem is non convex!
         // Terminate and report it
         update_status(work->info, qp_NON_CVX);
-        work->info->obj_val = qp_NAN;
+        work->info->obj_val = qpNAN;
         return 1;
     }
 
@@ -739,7 +740,7 @@ int check_termination(qpWorkspace *work, int approximate) {
             // Update infeasibility certificate
             vec_ew_prod(work->scaling->E, work->delta_y, work->delta_y, work->data->m);
         }
-        work->info->obj_val = qp_INFTY;
+        work->info->obj_val = qpINFTY;
         exitflag            = 1;
     }
     else if (dual_inf_check) {
@@ -754,7 +755,7 @@ int check_termination(qpWorkspace *work, int approximate) {
             // Update infeasibility certificate
             vec_ew_prod(work->scaling->D, work->delta_x, work->delta_x, work->data->n);
         }
-        work->info->obj_val = -qp_INFTY;
+        work->info->obj_val = -qpINFTY;
         exitflag            = 1;
     }
 
@@ -828,8 +829,7 @@ int validate_data(const qpData *data) {
 }
 
 int validate_linsys_solver(int linsys_solver) {
-    if ((linsys_solver != QDLDL_SOLVER) &&
-            (linsys_solver != MKL_PARDISO_SOLVER)) {
+    if ((linsys_solver != LDL_SOLVER) ) {
         return 1;
     }
 
@@ -839,7 +839,7 @@ int validate_linsys_solver(int linsys_solver) {
     return 0;
 }
 
-int validate_params(const qpSettings *params) {
+int validate_params(const qpParams *params) {
     if (!params) {
         printf("Missing params!");
         return 1;
