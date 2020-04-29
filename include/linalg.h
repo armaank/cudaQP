@@ -1,3 +1,6 @@
+#ifndef LINALG_H
+#define LINALG_H
+
 #include <stdlib.h>
 #include <math.h>
 #include "ops.h"
@@ -6,7 +9,7 @@
 /* vector functions */
 /* uses malloc */
 float* vec_copy(float *a,
-                  int    n);
+                int    n);
 /* copy vector a into preallocated vector b */
 void prea_vec_copy(const float *a, float *b, int n);
 
@@ -113,4 +116,4 @@ void mat_inf_norm_cols_sym_triu(const csc *M, float *E);
  */
 float quad_form(const csc *P, const float *x);
 
-
+#endif //LINALG_H

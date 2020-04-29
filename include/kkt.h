@@ -1,3 +1,5 @@
+#ifndef KKT_H
+#define KKT_H
 #  include "csc.h"
 
 /**
@@ -83,4 +85,4 @@ void update_KKT_param2(csc           *KKT,
                        const float *param2,
                        const int   *param2toKKT,
                        const int    m);
-
+#endif //KKT_H

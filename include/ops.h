@@ -1,3 +1,6 @@
+#ifndef OPS_H
+#define OPS_H
+
 #  include <math.h>
 
 # ifndef c_absval
@@ -14,7 +17,9 @@
 
 // Round x to the nearest multiple of N
 # ifndef c_roundmultiple
-#  define c_roundmultiple(x, N) ((x) + .5 * (N)-c_fmod((x) + .5 * (N), (N)))
+#  define c_roundmultiple(x, N) ((x) + .5 * (N)-fmodf((x) + .5 * (N), (N)))
 # endif /* ifndef c_roundmultiple */
 
 #   define c_sqrt sqrt
+
+#endif //OPS_H

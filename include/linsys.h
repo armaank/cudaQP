@@ -1,4 +1,5 @@
-
+#ifndef LINSYS_H
+#define LINSYS_H
 
 /* KKT linear system definition and solution */
 
@@ -34,10 +35,10 @@ int unload_linsys_solver(enum linsys_solver_type linsys_solver);
  * @return                Exitflag for error (0 if no errors)
  */
 int init_linsys_solver(LinSysSolver          **s,
-                         const csc              *P,
-                         const csc              *A,
-                         float                 sigma,
-                         const float          *rho_vec,
-                         enum linsys_solver_type linsys_solver,
-                         int                   polish);
-
+                       const csc              *P,
+                       const csc              *A,
+                       float                 sigma,
+                       const float          *rho_vec,
+                       enum linsys_solver_type linsys_solver,
+                       int                   polish);
+#endif //LINSYS_H

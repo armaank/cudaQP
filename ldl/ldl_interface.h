@@ -1,3 +1,5 @@
+#ifndef LDL_INTERFACE_H
+#define LDL_INTERFACE_H
 
 #include "suitesparse/amd.h"
 #include "../include/kkt.h"
@@ -109,3 +111,5 @@ int update_linsys_solver_rho_vec_ldl(ldl_solver * s, const float * rho_vec);
  * @param s linear system solver object
  */
 void free_linsys_solver_ldl(ldl_solver * s);
+
+#endif 
