@@ -1,4 +1,4 @@
-#include "polish.h"
+#include "../include/polish.h"
 // #include "lin_alg.h"
 // #include "util.h"
 // #include "auxil.h"
@@ -220,7 +220,7 @@ int polish(qpWorkspace *work) {
 
     // Form Ared by assuming the active constraints and store in work->pol->Ared
     mred = form_Ared(work);
-    if (mred < 0) { // work->pol->red = qp_NULL
+    if (mred < 0) { // work->pol->red = 0; // qp_NULL
         // Polishing failed
         work->info->status_polish = -1;
 
@@ -229,7 +229,7 @@ int polish(qpWorkspace *work) {
 
     // Form and factorize reduced KKT
     exitflag = init_linsys_solver(&plsh, work->data->P, work->pol->Ared,
-                                  work->params->delta, qp_NULL,
+                                  work->params->delta, 0,
                                   work->params->linsys_solver, 1);
 
     if (exitflag) {
@@ -327,7 +327,7 @@ int polish(qpWorkspace *work) {
 
         // Print summary
 
-        if (work->params->verbose) print_polish(work);
+        if (work->params->verbose) printf("worked"); // print_polish(work);
     } else { // Polishing failed
         work->info->status_polish = -1;
 

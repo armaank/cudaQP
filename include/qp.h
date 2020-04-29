@@ -4,10 +4,12 @@
 
 #include "auxil.h"
 # include "linsys.h"
-// # include "polish.h"
+#include "error.h"
+# include "polish.h"
 # include "ctrl.h"
 #include "scaling.h"
 #include "qptypes.h" // might remove this? 
+#include "constants.h"
 // # include "util.h" // Needed for qp_set_default_params functions
 
 
@@ -53,8 +55,11 @@ void qp_set_default_params(qpParams *params);
  * @return              Exitflag for errors (0 if no errors)
  */
 int qp_setup(qpWorkspace** workp, const qpData* data, const qpParams* params);
-
-
+void print_summary(qpWorkspace *work);
+// void print_polish(qpWorkspace *work);
+void print_footer(qpInfo *info,
+                  int     polish);
+qpParams* copy_params(const qpParams *params);
 /**
  * Solve quadratic program
  *

@@ -1,4 +1,4 @@
-#ifndef CONSTNATS_H
+#ifndef CONSTANTS_H
 #define CONSTANTS_H
 
 # define RHO (0.1)
@@ -42,7 +42,18 @@
 # define qp_NON_CVX (-7)              /* problem non convex */
 # define qp_UNSOLVED (-10)            /* Unsolved. Only setup function has been called */
 
+# define SCALED_TERMINATION (0)
+# define CHECK_TERMINATION (25)
+# define WARM_START (1)
+# define SCALING (10)
+#  define DELTA (1E-6)
+#  define POLISH (0)
+#  define POLISH_REFINE_ITER (3)
+#  define VERBOSE (1)
 
+#  define TIME_LIMIT (0)                        ///< Disable time limit as default
+
+# define PRINT_INTERVAL 200
 /*************************
 * Linear System Solvers *
 *************************/

@@ -12,7 +12,7 @@
 #include "../qptest.h"
 #include "data.h"
 
-
+#define TESTS_TOL 1e-4 // Define tests tolerance
 
 static const char* test_basic_qp_solve()
 {
@@ -122,16 +122,16 @@ static const char* test_basic_qp_solve()
      ============================= */
 
   // Setup workspace with empty params
-  exitflag = qp_setup(&work, data, qp_NULL);
+  exitflag = qp_setup(&work, data, 0);
   ut_assert("Basic QP test solve: Setup should result in error due to empty params",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
 
   // Setup workspace with a wrong number of scaling iterations
   tmp_int = params->scaling;
   params->scaling = -1;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to a negative number of scaling iterations",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->scaling = tmp_int;
 
   // Setup workspace with wrong params->adaptive_rho
@@ -139,7 +139,7 @@ static const char* test_basic_qp_solve()
   params->adaptive_rho = 2;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to non-boolean params->adaptive_rho",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->adaptive_rho = tmp_int;
 
   // Setup workspace with wrong params->adaptive_rho_interval
@@ -147,7 +147,7 @@ static const char* test_basic_qp_solve()
   params->adaptive_rho_interval = -1;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to negative params->adaptive_rho_interval",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->adaptive_rho_interval = tmp_int;
 
   // Setup workspace with wrong params->adaptive_rho_fraction
@@ -155,7 +155,7 @@ static const char* test_basic_qp_solve()
   params->adaptive_rho_fraction = -1.5;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to non-positive params->adaptive_rho_fraction",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->adaptive_rho_fraction = tmp_float;
 
   // Setup workspace with wrong params->adaptive_rho_tolerance
@@ -163,7 +163,7 @@ static const char* test_basic_qp_solve()
   params->adaptive_rho_tolerance = 0.5;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to wrong params->adaptive_rho_tolerance",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->adaptive_rho_tolerance = tmp_float;
 
   // Setup workspace with wrong params->polish_refine_iter
@@ -171,7 +171,7 @@ static const char* test_basic_qp_solve()
   params->polish_refine_iter = -3;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to negative params->polish_refine_iter",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->polish_refine_iter = tmp_int;
 
   // Setup workspace with wrong params->rho
@@ -179,7 +179,7 @@ static const char* test_basic_qp_solve()
   params->rho = 0.0;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to non-positive params->rho",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->rho = tmp_float;
 
   // Setup workspace with wrong params->sigma
@@ -187,7 +187,7 @@ static const char* test_basic_qp_solve()
   params->sigma = -0.1;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to non-positive params->sigma",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->sigma = tmp_float;
 
   // Setup workspace with wrong params->delta
@@ -195,7 +195,7 @@ static const char* test_basic_qp_solve()
   params->delta = -1.1;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to non-positive params->delta",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->delta = tmp_float;
 
   // Setup workspace with wrong params->max_iter
@@ -203,7 +203,7 @@ static const char* test_basic_qp_solve()
   params->max_iter = 0;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to non-positive params->max_iter",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->max_iter = tmp_int;
 
   // Setup workspace with wrong params->eps_abs
@@ -211,7 +211,7 @@ static const char* test_basic_qp_solve()
   params->eps_abs = -1.1;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to negative params->eps_abs",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->eps_abs = tmp_float;
 
   // Setup workspace with wrong params->eps_rel
@@ -219,7 +219,7 @@ static const char* test_basic_qp_solve()
   params->eps_rel = -0.1;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to negative params->eps_rel",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->eps_rel = tmp_float;
 
   // Setup workspace with wrong params->eps_prim_inf
@@ -227,7 +227,7 @@ static const char* test_basic_qp_solve()
   params->eps_prim_inf = -0.1;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to non-positive params->eps_prim_inf",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->eps_prim_inf = tmp_float;
 
   // Setup workspace with wrong params->eps_dual_inf
@@ -235,7 +235,7 @@ static const char* test_basic_qp_solve()
   params->eps_dual_inf = 0.0;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to non-positive params->eps_dual_inf",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->eps_dual_inf = tmp_float;
 
   // Setup workspace with wrong params->alpha
@@ -243,7 +243,7 @@ static const char* test_basic_qp_solve()
   params->alpha = 2.0;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to wrong params->alpha",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->alpha = tmp_float;
 
   // Setup workspace with wrong params->linsys_solver
@@ -251,7 +251,7 @@ static const char* test_basic_qp_solve()
   params->linsys_solver = 5;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to wrong params->linsys_solver",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->linsys_solver = tmp_int;
 
   // Setup workspace with wrong params->verbose
@@ -259,7 +259,7 @@ static const char* test_basic_qp_solve()
   params->verbose = 2;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to non-boolean params->verbose",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->verbose = tmp_int;
 
   // Setup workspace with wrong params->scaled_termination
@@ -267,7 +267,7 @@ static const char* test_basic_qp_solve()
   params->scaled_termination = 2;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to non-boolean params->scaled_termination",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->scaled_termination = tmp_int;
 
   // Setup workspace with wrong params->check_termination
@@ -275,7 +275,7 @@ static const char* test_basic_qp_solve()
   params->check_termination = -1;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to non-boolean params->check_termination",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->check_termination = tmp_int;
 
   // Setup workspace with wrong params->warm_start
@@ -283,7 +283,7 @@ static const char* test_basic_qp_solve()
   params->warm_start = 5;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to non-boolean params->warm_start",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->warm_start = tmp_int;
 
   // Setup workspace with wrong params->time_limit
@@ -291,7 +291,7 @@ static const char* test_basic_qp_solve()
   params->time_limit = -0.2;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to wrong params->time_limit",
-            exitflag == qp_SETTINGS_VALIDATION_ERROR);
+            exitflag == QP_SETTINGS_VALIDATION_ERROR);
   params->time_limit = tmp_float;
 
 
@@ -300,16 +300,16 @@ static const char* test_basic_qp_solve()
      ========================= */
 
   // Setup workspace with empty data
-  exitflag = qp_setup(&work, qp_NULL, params);
+  exitflag = qp_setup(&work, 0, params);
   ut_assert("Basic QP test solve: Setup should result in error due to empty data",
-            exitflag == qp_DATA_VALIDATION_ERROR);
+            exitflag == QP_DATA_VALIDATION_ERROR);
 
   // Setup workspace with wrong data->m
   tmp_int = data->m;
   data->m = data->m - 1;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to wrong data->m",
-            exitflag == qp_DATA_VALIDATION_ERROR);
+            exitflag == QP_DATA_VALIDATION_ERROR);
   data->m = tmp_int;
 
   // Setup workspace with wrong data->n
@@ -317,13 +317,13 @@ static const char* test_basic_qp_solve()
   data->n = data->n + 1;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to wrong data->n",
-            exitflag == qp_DATA_VALIDATION_ERROR);
+            exitflag == QP_DATA_VALIDATION_ERROR);
 
   // Setup workspace with zero data->n
   data->n = 0;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to zero data->n",
-            exitflag == qp_DATA_VALIDATION_ERROR);
+            exitflag == QP_DATA_VALIDATION_ERROR);
   data->n = tmp_int;
 
   // Setup workspace with wrong P->m
@@ -331,7 +331,7 @@ static const char* test_basic_qp_solve()
   data->P->m = data->n + 1;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to wrong P->m",
-            exitflag == qp_DATA_VALIDATION_ERROR);
+            exitflag == QP_DATA_VALIDATION_ERROR);
   data->P->m = tmp_int;
 
   // Setup workspace with wrong P->n
@@ -339,7 +339,7 @@ static const char* test_basic_qp_solve()
   data->P->n = data->n + 1;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to wrong P->n",
-            exitflag == qp_DATA_VALIDATION_ERROR);
+            exitflag == QP_DATA_VALIDATION_ERROR);
   data->P->n = tmp_int;
 
   // Setup workspace with non-upper-triangular P
@@ -369,14 +369,14 @@ static const char* test_basic_qp_solve()
   data->P = P_tmp;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to non-triu structure of P",
-            exitflag == qp_DATA_VALIDATION_ERROR);
+            exitflag == QP_DATA_VALIDATION_ERROR);
   data->P = tmp_mat;
 
   // Setup workspace with non-consistent bounds
   data->l[0] = data->u[0] + 1.0;
   exitflag = qp_setup(&work, data, params);
   ut_assert("Basic QP test solve: Setup should result in error due to non-consistent bounds",
-            exitflag == qp_DATA_VALIDATION_ERROR);
+            exitflag == QP_DATA_VALIDATION_ERROR);
 
 
   // Cleanup data
@@ -920,17 +920,17 @@ static const char* test_basic_qp_warm_start()
 
 static const char* test_basic_qp()
 {
-  mu_run_test(test_basic_qp_solve);
+  ut_run_test(test_basic_qp_solve);
 // #ifdef ENABLE_MKL_PARDISO
-//   mu_run_test(test_basic_qp_solve_pardiso);
+//   ut_run_test(test_basic_qp_solve_pardiso);
 // #endif
-  mu_run_test(test_basic_qp_update);
-  mu_run_test(test_basic_qp_check_termination);
-  mu_run_test(test_basic_qp_update_rho);
+  ut_run_test(test_basic_qp_update);
+  ut_run_test(test_basic_qp_check_termination);
+  ut_run_test(test_basic_qp_update_rho);
 // #ifdef PROFILING
-//   mu_run_test(test_basic_qp_time_limit);
+//   ut_run_test(test_basic_qp_time_limit);
 // #endif
-  mu_run_test(test_basic_qp_warm_start);
+  ut_run_test(test_basic_qp_warm_start);
 
   return 0;
 }

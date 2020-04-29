@@ -1,4 +1,4 @@
-#include "qp.h"
+#include "../include/qp.h"
 // #include "auxil.h"
 // #include "util.h"
 // #include "scaling.h"
@@ -21,6 +21,150 @@
 /**********************
 * Main API Functions *
 **********************/
+static void print_line(void) {
+
+  int HEADER_LINE_LEN = 65;
+  char  the_line[HEADER_LINE_LEN + 1];
+  int i;
+
+  for (i = 0; i < HEADER_LINE_LEN; ++i) the_line[i] = '-';
+  the_line[HEADER_LINE_LEN] = '\0';
+  printf("%s\n", the_line);
+}
+
+void print_footer(qpInfo *info, int polish) {
+  printf("\n"); // Add space after iterations
+
+  printf("status:               %s\n", info->status);
+
+  if (polish && (info->status_val == qp_SOLVED)) {
+    if (info->status_polish == 1) {
+      printf("solution polish:      successful\n");
+    } else if (info->status_polish < 0) {
+      printf("solution polish:      unsuccessful\n");
+    }
+  }
+
+  printf("number of iterations: %i\n", (int)info->iter);
+
+  if ((info->status_val == qp_SOLVED) ||
+      (info->status_val == qp_SOLVED_INACCURATE)) {
+    printf("optimal objective:    %.4f\n", info->obj_val);
+  }
+
+  printf("run time:             %.2es\n", info->run_time);
+
+  printf("optimal rho estimate: %.2e\n", info->rho_estimate);
+  printf("\n");
+}
+void print_header(void) {
+  printf("iter   ");
+
+
+  // Main information
+  printf("objective    pri res    dua res    rho");
+  printf("        time");
+  printf("\n");
+}
+void print_setup_header(const qpWorkspace *work) {
+  qpData *data;
+  qpParams *params;
+  int nnz; // Number of nonzeros in the problem
+
+  data     = work->data;
+  params = work->params;
+
+  // Number of nonzeros
+  nnz = data->P->p[data->P->n] + data->A->p[data->A->n];
+
+  print_line();
+  printf("           OSQP v%d  -  Operator Splitting QP Solver\n"
+          "              (c) Bartolomeo Stellato,  Goran Banjac\n"
+          "        University of Oxford  -  Stanford University 2019\n",
+          26);
+  print_line();
+
+  // Print variables and constraints
+  printf("problem:  ");
+  printf("variables n = %i, constraints m = %i\n          ",
+                                    (int)data->n,
+          (int)data->m);
+  printf("nnz(P) + nnz(A) = %i\n", (int)nnz);
+
+  // Print Settings
+  printf("params: ");
+  printf("linear system solver = %s",
+          LINSYS_SOLVER_NAME[params->linsys_solver]);
+
+  if (work->linsys_solver->nthreads != 1) {
+    printf(" (%d threads)", (int)work->linsys_solver->nthreads);
+  }
+  printf(",\n          ");
+
+  printf("eps_abs = %.1e, eps_rel = %.1e,\n          ",
+          params->eps_abs, params->eps_rel);
+  printf("eps_prim_inf = %.1e, eps_dual_inf = %.1e,\n          ",
+          params->eps_prim_inf, params->eps_dual_inf);
+  printf("rho = %.2e ", params->rho);
+
+  if (params->adaptive_rho) printf("(adaptive)");
+  printf(",\n          ");
+  printf("sigma = %.2e, alpha = %.2f, ",
+          params->sigma, params->alpha);
+  printf("max_iter = %i\n", (int)params->max_iter);
+
+  if (params->check_termination) printf(
+      "          check_termination: on (interval %i),\n",
+      (int)params->check_termination);
+  else printf("          check_termination: off,\n");
+
+  if (params->time_limit) printf("          time_limit: %.2e sec,\n",
+                                    params->time_limit);
+
+  if (params->scaling) printf("          scaling: on, ");
+  else printf("          scaling: off, ");
+
+  if (params->scaled_termination) printf("scaled_termination: on\n");
+  else printf("scaled_termination: off\n");
+
+  if (params->warm_start) printf("          warm start: on, ");
+  else printf("          warm start: off, ");
+
+  if (params->polish) printf("polish: on, ");
+  else printf("polish: off, ");
+
+  if (params->time_limit) printf("time_limit: %.2e sec\n", params->time_limit);
+  else printf("time_limit: off\n");
+
+  printf("\n");
+}
+
+
+void print_summary(qpWorkspace *work) {
+  qpInfo *info;
+
+  info = work->info;
+
+  printf("%4i",     (int)info->iter);
+  printf(" %12.4e", info->obj_val);
+  printf("  %9.2e", info->pri_res);
+  printf("  %9.2e", info->dua_res);
+  printf("  %9.2e", work->params->rho);
+
+  if (work->first_run) {
+    // total time: setup + solve
+    printf("  %9.2es", info->setup_time + info->solve_time);
+  } else {
+    // total time: update + solve
+    printf("  %9.2es", info->update_time + info->solve_time);
+  }
+  printf("\n");
+
+  work->summary_printed = 1; // Summary has been printed
+}
+
+
+
 void qp_set_default_params(qpParams *params) {
 
     params->rho           = (float)RHO;            /* ADMM step */
@@ -64,6 +208,41 @@ void qp_set_default_params(qpParams *params) {
     params->time_limit = TIME_LIMIT;
 }
 
+qpParams* copy_params(const qpParams *params) {
+  qpParams *new = malloc(sizeof(qpParams));
+
+  if (!new) return 0;
+
+  // Copy params
+  // NB. Copying them explicitly because memcpy is not
+  // defined when PRINTING is disabled (appears in string.h)
+  new->rho = params->rho;
+  new->sigma = params->sigma;
+  new->scaling = params->scaling;
+
+  new->adaptive_rho = params->adaptive_rho;
+  new->adaptive_rho_interval = params->adaptive_rho_interval;
+  new->adaptive_rho_tolerance = params->adaptive_rho_tolerance;
+  new->adaptive_rho_fraction = params->adaptive_rho_fraction;
+
+  new->max_iter = params->max_iter;
+  new->eps_abs = params->eps_abs;
+  new->eps_rel = params->eps_rel;
+  new->eps_prim_inf = params->eps_prim_inf;
+  new->eps_dual_inf = params->eps_dual_inf;
+  new->alpha = params->alpha;
+  new->linsys_solver = params->linsys_solver;
+  new->delta = params->delta;
+  new->polish = params->polish;
+  new->polish_refine_iter = params->polish_refine_iter;
+  new->verbose = params->verbose;
+  new->scaled_termination = params->scaled_termination;
+  new->check_termination = params->check_termination;
+  new->warm_start = params->warm_start;
+  new->time_limit = params->time_limit;
+
+  return new;
+}
 
 
 int qp_setup(qpWorkspace** workp, const qpData *data, const qpParams *params) {
@@ -72,49 +251,49 @@ int qp_setup(qpWorkspace** workp, const qpData *data, const qpParams *params) {
     qpWorkspace * work;
 
     // Validate data
-    if (validate_data(data)) return qp_error(qp_DATA_VALIDATION_ERROR);
+    if (validate_data(data)) return qp_error(QP_DATA_VALIDATION_ERROR);
 
     // Validate params
-    if (validate_params(params)) return qp_error(qp_SETTINGS_VALIDATION_ERROR);
+    if (validate_params(params)) return qp_error(QP_SETTINGS_VALIDATION_ERROR);
 
     // Allocate empty workspace
     work = calloc(1, sizeof(qpWorkspace));
-    if (!(work)) return qp_error(qp_MEM_ALLOC_ERROR);
+    if (!(work)) return qp_error(QP_MEM_ALLOC_ERROR);
     *workp = work;
 
     // Start and allocate directly timer
     work->timer = malloc(sizeof(qpTimer));
-    if (!(work->timer)) return qp_error(qp_MEM_ALLOC_ERROR);
+    if (!(work->timer)) return qp_error(QP_MEM_ALLOC_ERROR);
     qp_tic(work->timer);
 
     // Copy problem data into workspace
     work->data = malloc(sizeof(qpData));
-    if (!(work->data)) return qp_error(qp_MEM_ALLOC_ERROR);
+    if (!(work->data)) return qp_error(QP_MEM_ALLOC_ERROR);
     work->data->n = data->n;
     work->data->m = data->m;
 
     // Cost function
     work->data->P = copy_csc_mat(data->P);
     work->data->q = vec_copy(data->q, data->n);
-    if (!(work->data->P) || !(work->data->q)) return qp_error(qp_MEM_ALLOC_ERROR);
+    if (!(work->data->P) || !(work->data->q)) return qp_error(QP_MEM_ALLOC_ERROR);
 
     // Constraints
     work->data->A = copy_csc_mat(data->A);
-    if (!(work->data->A)) return qp_error(qp_MEM_ALLOC_ERROR);
+    if (!(work->data->A)) return qp_error(QP_MEM_ALLOC_ERROR);
     work->data->l = vec_copy(data->l, data->m);
     work->data->u = vec_copy(data->u, data->m);
     if ( data->m && (!(work->data->l) || !(work->data->u)) )
-        return qp_error(qp_MEM_ALLOC_ERROR);
+        return qp_error(QP_MEM_ALLOC_ERROR);
 
     // Vectorized rho parameter
     work->rho_vec     = malloc(data->m * sizeof(float));
     work->rho_inv_vec = malloc(data->m * sizeof(float));
     if ( data->m && (!(work->rho_vec) || !(work->rho_inv_vec)) )
-        return qp_error(qp_MEM_ALLOC_ERROR);
+        return qp_error(QP_MEM_ALLOC_ERROR);
 
     // Type of constraints
     work->constr_type = calloc(data->m, sizeof(int));
-    if (data->m && !(work->constr_type)) return qp_error(qp_MEM_ALLOC_ERROR);
+    if (data->m && !(work->constr_type)) return qp_error(QP_MEM_ALLOC_ERROR);
 
     // Allocate internal solver variables (ADMM steps)
     work->x        = calloc(data->n, sizeof(float));
@@ -124,9 +303,9 @@ int qp_setup(qpWorkspace** workp, const qpData *data, const qpParams *params) {
     work->z_prev   = calloc(data->m, sizeof(float));
     work->y        = calloc(data->m, sizeof(float));
     if (!(work->x) || !(work->xz_tilde) || !(work->x_prev))
-        return qp_error(qp_MEM_ALLOC_ERROR);
+        return qp_error(QP_MEM_ALLOC_ERROR);
     if ( data->m && (!(work->z) || !(work->z_prev) || !(work->y)) )
-        return qp_error(qp_MEM_ALLOC_ERROR);
+        return qp_error(QP_MEM_ALLOC_ERROR);
 
     // Initialize variables x, y, z to 0
     cold_start(work);
@@ -147,27 +326,27 @@ int qp_setup(qpWorkspace** workp, const qpData *data, const qpParams *params) {
 
     if (!(work->Px) || !(work->Aty) || !(work->Atdelta_y) ||
             !(work->delta_x) || !(work->Pdelta_x))
-        return qp_error(qp_MEM_ALLOC_ERROR);
+        return qp_error(QP_MEM_ALLOC_ERROR);
     if ( data->m && (!(work->Ax) || !(work->delta_y) || !(work->Adelta_x)) )
-        return qp_error(qp_MEM_ALLOC_ERROR);
+        return qp_error(QP_MEM_ALLOC_ERROR);
 
     // Copy params
     work->params = copy_params(params);
-    if (!(work->params)) return qp_error(qp_MEM_ALLOC_ERROR);
+    if (!(work->params)) return qp_error(QP_MEM_ALLOC_ERROR);
 
     // Perform scaling
     if (params->scaling) {
         // Allocate scaling structure
         work->scaling = malloc(sizeof(qpScaling));
-        if (!(work->scaling)) return qp_error(qp_MEM_ALLOC_ERROR);
+        if (!(work->scaling)) return qp_error(QP_MEM_ALLOC_ERROR);
         work->scaling->D    = malloc(data->n * sizeof(float));
         work->scaling->Dinv = malloc(data->n * sizeof(float));
         work->scaling->E    = malloc(data->m * sizeof(float));
         work->scaling->Einv = malloc(data->m * sizeof(float));
         if (!(work->scaling->D) || !(work->scaling->Dinv))
-            return qp_error(qp_MEM_ALLOC_ERROR);
+            return qp_error(QP_MEM_ALLOC_ERROR);
         if ( data->m && (!(work->scaling->E) || !(work->scaling->Einv)) )
-            return qp_error(qp_MEM_ALLOC_ERROR);
+            return qp_error(QP_MEM_ALLOC_ERROR);
 
 
         // Allocate workspace variables used in scaling
@@ -175,24 +354,24 @@ int qp_setup(qpWorkspace** workp, const qpData *data, const qpParams *params) {
         work->D_temp_A = malloc(data->n * sizeof(float));
         work->E_temp   = malloc(data->m * sizeof(float));
         // if (!(work->D_temp) || !(work->D_temp_A) || !(work->E_temp))
-        //   return qp_error(qp_MEM_ALLOC_ERROR);
-        if (!(work->D_temp) || !(work->D_temp_A)) return qp_error(qp_MEM_ALLOC_ERROR);
-        if (data->m && !(work->E_temp))           return qp_error(qp_MEM_ALLOC_ERROR);
+        //   return qp_error(QP_MEM_ALLOC_ERROR);
+        if (!(work->D_temp) || !(work->D_temp_A)) return qp_error(QP_MEM_ALLOC_ERROR);
+        if (data->m && !(work->E_temp))           return qp_error(QP_MEM_ALLOC_ERROR);
 
         // Scale data
         scale_data(work);
     } else {
-        work->scaling  = qp_NULL;
-        work->D_temp   = qp_NULL;
-        work->D_temp_A = qp_NULL;
-        work->E_temp   = qp_NULL;
+        work->scaling  = 0;
+        work->D_temp   = 0;
+        work->D_temp_A = 0;
+        work->E_temp   = 0;
     }
 
     // Set type of constraints
     set_rho_vec(work);
 
     // Load linear system solver
-    if (load_linsys_solver(work->params->linsys_solver)) return qp_error(qp_LINSYS_SOLVER_LOAD_ERROR);
+    if (load_linsys_solver(work->params->linsys_solver)) return qp_error(QP_LINSYS_SOLVER_LOAD_ERROR);
 
     // Initialize linear system solver structure
     exitflag = init_linsys_solver(&(work->linsys_solver), work->data->P, work->data->A,
@@ -205,7 +384,7 @@ int qp_setup(qpWorkspace** workp, const qpData *data, const qpParams *params) {
 
     // Initialize active constraints structure
     work->pol = malloc(sizeof(qpPolish));
-    if (!(work->pol)) return qp_error(qp_MEM_ALLOC_ERROR);
+    if (!(work->pol)) return qp_error(QP_MEM_ALLOC_ERROR);
     work->pol->Alow_to_A = malloc(data->m * sizeof(int));
     work->pol->Aupp_to_A = malloc(data->m * sizeof(int));
     work->pol->A_to_Alow = malloc(data->m * sizeof(int));
@@ -213,23 +392,23 @@ int qp_setup(qpWorkspace** workp, const qpData *data, const qpParams *params) {
     work->pol->x         = malloc(data->n * sizeof(float));
     work->pol->z         = malloc(data->m * sizeof(float));
     work->pol->y         = malloc(data->m * sizeof(float));
-    if (!(work->pol->x)) return qp_error(qp_MEM_ALLOC_ERROR);
+    if (!(work->pol->x)) return qp_error(QP_MEM_ALLOC_ERROR);
     if ( data->m && (!(work->pol->Alow_to_A) || !(work->pol->Aupp_to_A) ||
                      !(work->pol->A_to_Alow) || !(work->pol->A_to_Aupp) ||
                      !(work->pol->z) || !(work->pol->y)) )
-        return qp_error(qp_MEM_ALLOC_ERROR);
+        return qp_error(QP_MEM_ALLOC_ERROR);
 
     // Allocate solution
     work->solution = calloc(1, sizeof(qpSolution));
-    if (!(work->solution)) return qp_error(qp_MEM_ALLOC_ERROR);
+    if (!(work->solution)) return qp_error(QP_MEM_ALLOC_ERROR);
     work->solution->x = calloc(1, data->n * sizeof(float));
     work->solution->y = calloc(1, data->m * sizeof(float));
-    if (!(work->solution->x))            return qp_error(qp_MEM_ALLOC_ERROR);
-    if (data->m && !(work->solution->y)) return qp_error(qp_MEM_ALLOC_ERROR);
+    if (!(work->solution->x))            return qp_error(QP_MEM_ALLOC_ERROR);
+    if (data->m && !(work->solution->y)) return qp_error(QP_MEM_ALLOC_ERROR);
 
     // Allocate and initialize information
     work->info = calloc(1, sizeof(qpInfo));
-    if (!(work->info)) return qp_error(qp_MEM_ALLOC_ERROR);
+    if (!(work->info)) return qp_error(QP_MEM_ALLOC_ERROR);
     work->info->status_polish = 0;              // Polishing not performed
     update_status(work->info, qp_UNSOLVED);
 
@@ -292,7 +471,7 @@ int qp_solve(qpWorkspace *work) {
 
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
 
     if (work->clear_update_time == 1)
@@ -328,6 +507,7 @@ int qp_solve(qpWorkspace *work) {
     if (work->params->verbose) {
         // Print Header for every column
         print_header();
+        // printf("header");
     }
 
 
@@ -414,6 +594,7 @@ int qp_solve(qpWorkspace *work) {
             if (can_print) {
                 // Print summary
                 print_summary(work);
+                // printf("work");
             }
 
             if (can_check_termination) {
@@ -545,6 +726,7 @@ int qp_solve(qpWorkspace *work) {
     /* Print summary for last iteration */
     if (work->params->verbose && !work->summary_printed) {
         print_summary(work);
+        // printf("work");
     }
 
 
@@ -740,7 +922,7 @@ int qp_cleanup(qpWorkspace *work) {
 int qp_update_lin_cost(qpWorkspace *work, const float *q_new) {
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
 
     if (work->clear_update_time == 1) {
@@ -775,7 +957,7 @@ int qp_update_bounds(qpWorkspace *work,
     int i, exitflag = 0;
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
 
     if (work->clear_update_time == 1) {
@@ -824,7 +1006,7 @@ int qp_update_lower_bound(qpWorkspace *work, const float *l_new) {
     int i, exitflag = 0;
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
 
     if (work->clear_update_time == 1) {
@@ -871,7 +1053,7 @@ int qp_update_upper_bound(qpWorkspace *work, const float *u_new) {
     int i, exitflag = 0;
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
 
     if (work->clear_update_time == 1) {
@@ -917,7 +1099,7 @@ int qp_update_upper_bound(qpWorkspace *work, const float *u_new) {
 int qp_warm_start(qpWorkspace *work, const float *x, const float *y) {
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
     // Update warm_start setting to true
     if (!work->params->warm_start) work->params->warm_start = 1;
@@ -942,7 +1124,7 @@ int qp_warm_start(qpWorkspace *work, const float *x, const float *y) {
 int qp_warm_start_x(qpWorkspace *work, const float *x) {
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
     // Update warm_start setting to true
     if (!work->params->warm_start) work->params->warm_start = 1;
@@ -964,7 +1146,7 @@ int qp_warm_start_x(qpWorkspace *work, const float *x) {
 int qp_warm_start_y(qpWorkspace *work, const float *y) {
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
     // Update warm_start setting to true
     if (!work->params->warm_start) work->params->warm_start = 1;
@@ -993,7 +1175,7 @@ int qp_update_P(qpWorkspace *work,
     int nnzP;     // Number of nonzeros in P
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
 
     if (work->clear_update_time == 1) {
@@ -1073,7 +1255,7 @@ int qp_update_A(qpWorkspace *work,
     int nnzA;     // Number of nonzeros in A
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
 
     if (work->clear_update_time == 1) {
@@ -1155,7 +1337,7 @@ int qp_update_P_A(qpWorkspace *work,
     int nnzP, nnzA; // Number of nonzeros in P and A
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
 
     if (work->clear_update_time == 1) {
@@ -1257,7 +1439,7 @@ int qp_update_rho(qpWorkspace *work, float rho_new) {
     int exitflag, i;
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
     // Check value of rho
     if (rho_new <= 0) {
@@ -1306,15 +1488,13 @@ int qp_update_rho(qpWorkspace *work, float rho_new) {
     return exitflag;
 }
 
-#endif // EMBEDDED != 1
-
 /****************************
 * Update problem params  *
 ****************************/
 int qp_update_max_iter(qpWorkspace *work, int max_iter_new) {
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
     // Check that max_iter is positive
     if (max_iter_new <= 0) {
@@ -1333,7 +1513,7 @@ int qp_update_max_iter(qpWorkspace *work, int max_iter_new) {
 int qp_update_eps_abs(qpWorkspace *work, float eps_abs_new) {
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
     // Check that eps_abs is positive
     if (eps_abs_new < 0.) {
@@ -1352,7 +1532,7 @@ int qp_update_eps_abs(qpWorkspace *work, float eps_abs_new) {
 int qp_update_eps_rel(qpWorkspace *work, float eps_rel_new) {
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
     // Check that eps_rel is positive
     if (eps_rel_new < 0.) {
@@ -1371,7 +1551,7 @@ int qp_update_eps_rel(qpWorkspace *work, float eps_rel_new) {
 int qp_update_eps_prim_inf(qpWorkspace *work, float eps_prim_inf_new) {
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
     // Check that eps_prim_inf is positive
     if (eps_prim_inf_new < 0.) {
@@ -1390,7 +1570,7 @@ int qp_update_eps_prim_inf(qpWorkspace *work, float eps_prim_inf_new) {
 int qp_update_eps_dual_inf(qpWorkspace *work, float eps_dual_inf_new) {
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
     // Check that eps_dual_inf is positive
     if (eps_dual_inf_new < 0.) {
@@ -1410,7 +1590,7 @@ int qp_update_eps_dual_inf(qpWorkspace *work, float eps_dual_inf_new) {
 int qp_update_alpha(qpWorkspace *work, float alpha_new) {
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
     // Check that alpha is between 0 and 2
     if ((alpha_new <= 0.) || (alpha_new >= 2.)) {
@@ -1429,7 +1609,7 @@ int qp_update_alpha(qpWorkspace *work, float alpha_new) {
 int qp_update_warm_start(qpWorkspace *work, int warm_start_new) {
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
     // Check that warm_start is either 0 or 1
     if ((warm_start_new != 0) && (warm_start_new != 1)) {
@@ -1448,7 +1628,7 @@ int qp_update_warm_start(qpWorkspace *work, int warm_start_new) {
 int qp_update_scaled_termination(qpWorkspace *work, int scaled_termination_new) {
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
     // Check that scaled_termination is either 0 or 1
     if ((scaled_termination_new != 0) && (scaled_termination_new != 1)) {
@@ -1467,7 +1647,7 @@ int qp_update_scaled_termination(qpWorkspace *work, int scaled_termination_new) 
 int qp_update_check_termination(qpWorkspace *work, int check_termination_new) {
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
     // Check that check_termination is nonnegative
     if (check_termination_new < 0) {
@@ -1488,7 +1668,7 @@ int qp_update_check_termination(qpWorkspace *work, int check_termination_new) {
 int qp_update_delta(qpWorkspace *work, float delta_new) {
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
     // Check that delta is positive
     if (delta_new <= 0.) {
@@ -1507,7 +1687,7 @@ int qp_update_delta(qpWorkspace *work, float delta_new) {
 int qp_update_polish(qpWorkspace *work, int polish_new) {
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
     // Check that polish is either 0 or 1
     if ((polish_new != 0) && (polish_new != 1)) {
@@ -1532,7 +1712,7 @@ int qp_update_polish(qpWorkspace *work, int polish_new) {
 int qp_update_polish_refine_iter(qpWorkspace *work, int polish_refine_iter_new) {
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
     // Check that polish_refine_iter is nonnegative
     if (polish_refine_iter_new < 0) {
@@ -1551,7 +1731,7 @@ int qp_update_polish_refine_iter(qpWorkspace *work, int polish_refine_iter_new) 
 int qp_update_verbose(qpWorkspace *work, int verbose_new) {
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
     // Check that verbose is either 0 or 1
     if ((verbose_new != 0) && (verbose_new != 1)) {
@@ -1573,7 +1753,7 @@ int qp_update_verbose(qpWorkspace *work, int verbose_new) {
 int qp_update_time_limit(qpWorkspace *work, float time_limit_new) {
 
     // Check if workspace has been initialized
-    if (!work) return qp_error(qp_WORKSPACE_NOT_INIT_ERROR);
+    if (!work) return qp_error(QP_WORKSPACE_NOT_INIT_ERROR);
 
     // Check that time_limit is nonnegative
     if (time_limit_new < 0.) {
