@@ -1,8 +1,16 @@
-# include "qptypes.h"
-#include "linalg.h"
-#include "constants.h"
+#ifndef AUXIL_H
+# define AUXIL_H
+
+// # include "qptypes.h"
+// #include "linalg.h"
+// #include "constants.h"
 #include "scaling.h"
-#include "time.h"
+#include "proj.h"
+// #include "qp.h"
+// #include "timer.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 /**
@@ -159,4 +167,4 @@ int validate_data(const qpData *data);
  */
 int validate_params(const qpParams *params);
 
-
+#endif AUXIL_H

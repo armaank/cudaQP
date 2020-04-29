@@ -1,3 +1,5 @@
+#ifndef POLISH_H
+#define POLISH_H
 /* Solution polish based on assuming the active set */
 
 
@@ -17,3 +19,4 @@
  */
 int polish(qpWorkspace *work);
 
+#endif POLISH_H

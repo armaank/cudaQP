@@ -1,3 +1,6 @@
+#ifndef CSC_H
+#define CSC_H
+
 #include <stdlib.h>
 #include <stdio.h>
 #include "linalg.h"
@@ -42,3 +45,5 @@ csc* csc_done(csc  *C,
               void *w,
               void *x,
               int ok);
+
+#endif CSC_H

@@ -1,4 +1,5 @@
-
+#ifndef LINSYS_H
+#define LINSYS_H
 
 /* KKT linear system definition and solution */
 
@@ -40,4 +41,4 @@ int init_linsys_solver(LinSysSolver          **s,
                        const float          *rho_vec,
                        enum linsys_solver_type linsys_solver,
                        int                   polish);
-
+#endif LINSYS_H

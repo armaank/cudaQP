@@ -1,3 +1,5 @@
+#ifndef CTRL_H
+#define CTRL_H
 /*
  * Interface for OSQP signal handling.
  */
@@ -28,3 +30,5 @@ void qp_end_interrupt_listener(void);
  * @return  Boolean indicating if the solver has been interrupted
  */
 int qp_is_interrupted(void);
+
+#endif CTRL_H

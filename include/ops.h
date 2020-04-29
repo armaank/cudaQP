@@ -1,3 +1,6 @@
+#ifndef OPS_H
+#define OPS_H
+
 #  include <math.h>
 
 # ifndef c_absval
@@ -18,3 +21,5 @@
 # endif /* ifndef c_roundmultiple */
 
 #   define c_sqrt sqrt
+
+#endif OPS_H

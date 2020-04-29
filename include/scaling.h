@@ -1,6 +1,9 @@
+#ifndef SCALING_H
+#define SCALING_H
+
 // Functions to scale problem data
-# include "qptypes.h"
-# include "lin_alg.h"
+// # include "qptypes.h"
+# include "linalg.h"
 // # include "constants.h"
 
 // Enable data scaling if EMBEDDED is disabled or if EMBEDDED == 2
@@ -27,3 +30,5 @@ int unscale_data(qpWorkspace *work);
  * @return      exitflag
  */
 int unscale_solution(qpWorkspace *work);
+
+#endif SCALING_H

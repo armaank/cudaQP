@@ -1,4 +1,10 @@
+#ifndef QPTYPES_H
+#define QPTYPES_H
+
 #include "constants.h"
+#include <time.h>
+#include <sys/time.h>
+// #include "timer.h" // included timer
 
 typedef struct {
     int    nzmax; ///< maximum number of entries
@@ -13,6 +19,28 @@ typedef struct {
 
 typedef struct linsys_solver LinSysSolver;
 typedef struct QP_TIMER qpTimer;
+
+struct QP_TIMER {
+    struct timespec tic;
+    struct timespec toc;
+};
+
+/* start timer */
+void qp_tic(qpTimer *t);
+
+/* report time */
+float qp_toc(qpTimer *t);
+
+// struct OSQP_TIMER {
+//   struct timespec tic;
+//   struct timespec toc;
+// };
+
+// /* start timer */
+// void qp_tic(qpTimer *t);
+
+// /* report time */
+// float qp_toc(qpTimer *t);
 
 typedef struct {
     float  c;    ///< cost function scaling
@@ -230,3 +258,5 @@ struct linsys_solver {
 
     int nthreads; ///< number of threads active
 };
+
+#endif QPTYPES_H

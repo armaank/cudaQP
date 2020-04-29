@@ -1,3 +1,6 @@
+#ifndef LINALG_H
+#define LINALG_H
+
 #include <stdlib.h>
 #include <math.h>
 #include "ops.h"
@@ -113,4 +116,4 @@ void mat_inf_norm_cols_sym_triu(const csc *M, float *E);
  */
 float quad_form(const csc *P, const float *x);
 
-
+#endif LINALG_H

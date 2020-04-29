@@ -1,7 +1,11 @@
-# include "qptypes.h"
+#ifndef ERROR_H
+#define ERROR_H
+
+#include "qptypes.h"
+#include <stdio.h>
 
 
-#  define qp_error(error_code) _osqp_error(error_code, __func__);
+#  define qp_error(error_code) _qp_error(error_code, __func__);
 
 
 /**
@@ -12,3 +16,5 @@
  */
 int _qp_error(enum qp_error_type error_code,
               const char * function_name);
+
+#endif ERROR_H
