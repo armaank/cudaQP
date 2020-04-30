@@ -5,15 +5,26 @@ generate random svm problems
 import os
 
 import numpy as np
+import scipy as sp
 
 from scipy import sparse
 
+import translate 
+
+def make_svm():
+    """
+    generate random svm problem
+    """
+
+    pass
+
 def svm_example():
-   
-    # Generate problem data
+    """
+    toy svm problem
+    """
     sp.random.seed(1)
-    n = 10
-    m = 1000
+    n = 10 # 10
+    m = 10 # 1000
     N = int(m / 2)
     gamma = 1.0
     b = np.hstack([np.ones(N), -np.ones(N)])
@@ -35,16 +46,14 @@ def svm_example():
     u = np.hstack([-np.ones(m), np.inf*np.ones(m)])
 
     # this is passed to codegen to generate a data.h file for svm.c program 
-
+    translate.construct_svm_qp(P, q, A, l, u, "svm_example")   
 
 def main():
-
 
     pass
 
 
 if __name__=="__main__":
 
-    main()
-
+    svm_example()
     pass

@@ -177,5 +177,85 @@ def clean_mat(f, name, *args):
             f.write("%s->" % arg)
     f.write("%s);\n" % name)
 
+def construct_svm_qp(P, q, A, l, u, problem_name):
+    """
+    generates data.h file for svm.c 
+    todo: does the problem have a solution? 
+    """
+    
+    # get dimension of svm problem
+    n = P.shape[0]
+    m = A.shape[0]
+
+    # generate header file
+
+    f = open(problem_name + "/data.h", "w")
+    
+    f.write("#ifndef " + problem_name.upper() + "_DATA_H\n")
+    f.write("#define " + problem_name.upper() + "_DATA_H\n")
+    f.write("#include \"qp.h\"\n")
+    f.write("\n\n")
+    
+    # prototypes
+    f.write("/* function prototypes */\n")
+    f.write("qpData * generate_problem_%s();\n" % problem_name)
+    f.write("void clean_problem_%s(qpData * data);\n" % problem_name)
+    f.write("%s_sols_data *  generate_problem_%s_sols_data();\n" % (problem_name, problem_name))
+    f.write("void clean_problem_%s_sols_data(%s_sols_data * data);\n" % (problem_name, problem_name))
+    f.write("\n\n")
+
+    #
+    # Generate QP problem data
+    #
+    f.write("/* function to generate QP problem data */\n")
+    f.write("qpData * generate_problem_%s(){\n\n" % problem_name)
+
+    # Initialize structure data
+    f.write("qpData * data = (qpData *)malloc(sizeof(qpData));\n\n")
+
+    # Write problem dimensions
+    f.write("// Problem dimensions\n")
+    write_int(f, n, "n", "data")
+    write_int(f, m, "m", "data")
+    f.write("\n")
+
+    # Write problem vectors
+    f.write("// Problem vectors\n")
+    write_vec_float(f, l, "l", "data")
+    write_vec_float(f, u, "u", "data")
+    write_vec_float(f, q, "q", "data")
+    f.write("\n")
+
+    # Write matrix A
+    write_mat_sparse(f, A, "A", "data")
+    write_mat_sparse(f, P, "P", "data")
+
+    # Return data and end function
+    f.write("return data;\n\n")
+
+    f.write("}\n\n")
+
+
+    # Generate QP problem data
+    f.write("/* function to clean problem data structure */\n")
+    f.write("void clean_problem_%s(qpData * data){\n\n" % problem_name)
+
+    # Free vectors
+    f.write("// Clean vectors\n")
+    clean_vec(f, "l", "data")
+    clean_vec(f, "u", "data")
+    clean_vec(f, "q", "data")
+    f.write("\n")
+
+    # Free matrices
+    f.write("//Clean Matrices\n")
+    clean_mat(f, "A", "data")
+    clean_mat(f, "P", "data")
+    f.write("\n")
+
+    f.write("free(data);\n\n")
+
+    f.write("}\n\n")
+
 
 
