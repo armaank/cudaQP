@@ -48,7 +48,7 @@ def write_vec_float(f, x, name, *args):
             f.write("%s->" % arg)
     else:
         f.write("float * ")
-    f.write("%s = (float*) c_malloc(%i * sizeof(float));\n" % (name, n))
+    f.write("%s = (float*) malloc(%i * sizeof(float));\n" % (name, n))
 
     for i in range(n):
         for arg in args:
@@ -71,7 +71,7 @@ def clean_vec(f, name, *args):
 
 
 def clean_vec(f, name, *args):
-    f.write("c_free(")
+    f.write("free(")
     if any(args):
         for arg in args:
             f.write("%s->" % arg)
@@ -193,15 +193,15 @@ def construct_svm_qp(P, q, A, l, u, problem_name):
     
     f.write("#ifndef " + problem_name.upper() + "_DATA_H\n")
     f.write("#define " + problem_name.upper() + "_DATA_H\n")
-    f.write("#include \"qp.h\"\n")
+    f.write("#include \"../../include/qp.h\"\n")
     f.write("\n\n")
     
     # prototypes
     f.write("/* function prototypes */\n")
     f.write("qpData * generate_problem_%s();\n" % problem_name)
     f.write("void clean_problem_%s(qpData * data);\n" % problem_name)
-    f.write("%s_sols_data *  generate_problem_%s_sols_data();\n" % (problem_name, problem_name))
-    f.write("void clean_problem_%s_sols_data(%s_sols_data * data);\n" % (problem_name, problem_name))
+    # f.write("%s_sols_data *  generate_problem_%s_sols_data();\n" % (problem_name, problem_name))
+    # f.write("void clean_problem_%s_sols_data(%s_sols_data * data);\n" % (problem_name, problem_name))
     f.write("\n\n")
 
     #
@@ -256,6 +256,10 @@ def construct_svm_qp(P, q, A, l, u, problem_name):
     f.write("free(data);\n\n")
 
     f.write("}\n\n")
+
+    f.write("#endif\n")
+
+    f.close()
 
 
 
