@@ -188,8 +188,9 @@ def construct_svm_qp(P, q, A, l, u, problem_name):
     m = A.shape[0]
 
     # generate header file
-
-    f = open(problem_name + "/data.h", "w")
+    if not os.path.exists(problem_name):
+        os.makedirs(problem_name)
+    f = open(problem_name + "/data.h", "w+")
     
     f.write("#ifndef " + problem_name.upper() + "_DATA_H\n")
     f.write("#define " + problem_name.upper() + "_DATA_H\n")
@@ -198,8 +199,8 @@ def construct_svm_qp(P, q, A, l, u, problem_name):
     
     # prototypes
     f.write("/* function prototypes */\n")
-    f.write("qpData * generate_problem_%s();\n" % problem_name)
-    f.write("void clean_problem_%s(qpData * data);\n" % problem_name)
+    f.write("qpData * generate_problem();\n")
+    f.write("void clean_problem(qpData * data);\n")
     # f.write("%s_sols_data *  generate_problem_%s_sols_data();\n" % (problem_name, problem_name))
     # f.write("void clean_problem_%s_sols_data(%s_sols_data * data);\n" % (problem_name, problem_name))
     f.write("\n\n")
@@ -208,7 +209,7 @@ def construct_svm_qp(P, q, A, l, u, problem_name):
     # Generate QP problem data
     #
     f.write("/* function to generate QP problem data */\n")
-    f.write("qpData * generate_problem_%s(){\n\n" % problem_name)
+    f.write("qpData * generate_problem(){\n\n")
 
     # Initialize structure data
     f.write("qpData * data = (qpData *)malloc(sizeof(qpData));\n\n")
@@ -238,7 +239,7 @@ def construct_svm_qp(P, q, A, l, u, problem_name):
 
     # Generate QP problem data
     f.write("/* function to clean problem data structure */\n")
-    f.write("void clean_problem_%s(qpData * data){\n\n" % problem_name)
+    f.write("void clean_problem(qpData * data){\n\n")
 
     # Free vectors
     f.write("// Clean vectors\n")

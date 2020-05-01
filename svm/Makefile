@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS  = -Wall
 
 svm.out: svm.c 
-	$(CC) $(CFLAGS) svm.c ldl_interface.o kkt.o csc.o linalg.o ldl.o linsys.o scaling.o timer.o ctrl.o proj.o error.o auxil.o polish.o qp.o -o tests.out -lm -lamd
+	$(CC) $(CFLAGS) svm.c ldl_interface.o kkt.o csc.o linalg.o ldl.o linsys.o scaling.o timer.o ctrl.o proj.o error.o auxil.o polish.o qp.o -o svm.out -lm -lamd
 
 qp.o: ../src/qp.c ../include/qp.h
 	$(CC) $(CFLAGS) -c ../src/qp.c ../src/polish.c ../src/proj.c ../src/linsys.c ../src/auxil.c ../src/scaling.c

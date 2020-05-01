@@ -4,13 +4,14 @@
 #include <stdlib.h>
 #include "../include/qp.h" 
 
-// problem data
-#include "./svm_example/data.h"
+// problem data, needs to be changed manually arg
+#include "./m7500/data.h"
 
 #define ERR 1e-4
 
 int main(int argc, char **argv) {
 
+    
     // Exitflag
     int exitflag = 0;
 
@@ -19,7 +20,7 @@ int main(int argc, char **argv) {
     qpParams *params = (qpParams *)malloc(sizeof(qpParams));
     qpData *data = (qpData *)malloc(sizeof(qpData));
     
-    data = generate_problem_svm_example();
+    data = generate_problem();
 
     // Define Solver params as default
     qp_set_default_params(params);
