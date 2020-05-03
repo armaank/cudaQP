@@ -5,7 +5,7 @@
 #include "../include/qp.h" 
 
 // problem data, needs to be changed manually arg
-#include "./m7500/data.h"
+#include "./n100m1000_1/data.h"
 
 #define ERR 1e-4
 
