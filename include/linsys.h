@@ -4,6 +4,8 @@
 /* KKT linear system definition and solution */
 
 #include "../ldl/ldl_interface.h"
+#include "../pcg/pcg_interface.h"
+
 /**
  * Load linear system solver shared library
  * @param	linsys_solver  Linear system solver
