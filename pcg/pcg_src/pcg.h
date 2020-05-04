@@ -1,7 +1,14 @@
 #ifndef PCG_H
 # define PCG_H
  
-#include "../pcg_interface.h"
+#include "../pcg_interface.h" // is this needed, could be ancillary
+#include "../include/csr_type.h"
+#include "../include/cuda_handler.h"
+#include "../include/cuda_malloc.h"
+#include "../include/cuda_lin_alg.h"
+#include "../include/cuda_wrapper.h"
+#include "../include/helper_cuda.h"    /* --> checkCudaErrors */
+
 
 /**
  *  Preconditioned Conjugate Gradient (PCG) algorithm.

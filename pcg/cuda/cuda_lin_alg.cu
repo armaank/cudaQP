@@ -14,18 +14,19 @@
  *  limitations under the License.
  */
 
- #include "cuda_lin_alg.h"
- #include "cuda_configure.h"
- #include "cuda_handler.h"
- #include "cuda_malloc.h"
- #include "cuda_wrapper.h"
- #include "helper_cuda.h"    /* --> checkCudaErrors */
+ #include "./include/cuda_lin_alg.h"
+//  #include "cuda_configure.h"
+//  #include "cuda_handler.h"
+//  #include "cuda_malloc.h"
+//  #include "cuda_wrapper.h"
+//  #include "helper_cuda.h"    /* --> checkCudaErrors */
  
- #include "csr_type.h"
- #include "glob_opts.h"
+//  #include "csr_type.h"
+// //  #include "glob_opts.h"
+
  
- #include <thrust/reduce.h>
- #include <thrust/execution_policy.h>
+//  #include <thrust/reduce.h>
+//  #include <thrust/execution_policy.h>
 
  
  

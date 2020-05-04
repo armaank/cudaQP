@@ -18,12 +18,12 @@
  */
 
 #include "pcg.h"
-#include "csr_type.h"
-#include "cuda_handler.h"
-#include "cuda_malloc.h"
-#include "cuda_lin_alg.h"
-#include "cuda_wrapper.h"
-#include "helper_cuda.h"    /* --> checkCudaErrors */
+// #include "csr_type.h"
+// #include "cuda_handler.h"
+// #include "cuda_malloc.h"
+// #include "cuda_lin_alg.h"
+// #include "cuda_wrapper.h"
+// #include "helper_cuda.h"    /* --> checkCudaErrors */
 
 
 /*******************************************************************************

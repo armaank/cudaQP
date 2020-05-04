@@ -2,6 +2,20 @@
 #ifndef CUDA_CSR_H
 # define CUDA_CSR_H
 
+#include "cuda_configure.h"
+ #include "cuda_handler.h"
+ #include "cuda_malloc.h"
+ #include "cuda_wrapper.h"
+ #include "helper_cuda.h"    /* --> checkCudaErrors */
+ 
+ #include "csr_type.h"
+//  #include "glob_opts.h" 
+
+ #include <thrust/scan.h>
+ #include <thrust/execution_policy.h>
+
+#include "../../../include/qptypes.h" // for csc 
+
 // #include "algebra_types.h"
 // #include "csc_type.h"
 // todo: figure out what to include here

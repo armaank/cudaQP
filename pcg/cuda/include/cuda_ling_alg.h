@@ -3,7 +3,18 @@
 
 // #include "algebra_types.h" /
 // todo figure out inlcudes, need csr
+ #include "cuda_configure.h"
+ #include "cuda_handler.h"
+ #include "cuda_malloc.h"
+ #include "cuda_wrapper.h"
+ #include "helper_cuda.h"    /* --> checkCudaErrors */
+ 
+ #include "csr_type.h"
+//  #include "glob_opts.h"
 
+ 
+ #include <thrust/reduce.h>
+ #include <thrust/execution_policy.h>
 
 /*******************************************************************************
  *                           Vector Functions                                  *

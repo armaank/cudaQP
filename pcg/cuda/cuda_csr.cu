@@ -14,18 +14,18 @@
  *  limitations under the License.
  */
 
- #include "cuda_csr.h"
- #include "cuda_configure.h"
- #include "cuda_handler.h"
- #include "cuda_malloc.h"
- #include "cuda_wrapper.h"
- #include "helper_cuda.h"    /* --> checkCudaErrors */
+ #include "./include/cuda_csr.h"
+//  #include "include/cuda_configure.h"
+//  #include "cuda_handler.h"
+//  #include "cuda_malloc.h"
+//  #include "cuda_wrapper.h"
+//  #include "helper_cuda.h"    /* --> checkCudaErrors */
  
- #include "csr_type.h"
- #include "glob_opts.h"
+//  #include "csr_type.h"
+//  #include "glob_opts.h"
  
- #include <thrust/scan.h>
- #include <thrust/execution_policy.h>
+//  #include <thrust/scan.h>
+//  #include <thrust/execution_policy.h>
   
  /* This function is implemented in cuda_lin_alg.cu */
  extern void scatter(float *out, const float *in, const int *ind, int n);

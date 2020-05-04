@@ -2,12 +2,18 @@
 #define PCG_INTERFACE_H
 
 // edit includes
-#include "osqp.h" // remove
-#include "types.h"  // remove       /* OSQPMatrix and OSQPVector[fi] types */
-#include "algebra_types.h"        /* csr type */
+// #include "osqp.h" // remove
+// #include "types.h"  // remove       /* OSQPMatrix and OSQPVector[fi] types */
+// #include "algebra_types.h"        /* csr type */
 
-#include "cuda_pcg_constants.h"   /* enum linsys_solver_type */
+// #include "cuda_pcg_constants.h"   /* enum linsys_solver_type */
+#include "./pcg_src/pcg_params.h"
+#include "../include/qp.h"
+#include "../include/qptypes.h"
+#include "./pcg_src/pcg.h"
 
+#include "./cuda/cuda_lin_alg.h"
+#include "./cuda/cuda_malloc.h"
 
 /**
  * CUDA PCG solver structure
