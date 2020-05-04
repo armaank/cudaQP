@@ -103,9 +103,12 @@ static void compute_rhs(cudapcg_solver *s,
  *******************************************************************************/
 
 int init_linsys_solver_cudapcg(cudapcg_solver    **sp,
-                                 const OSQPMatrix   *P, // will need to change
-                                 const OSQPMatrix   *A, // will need to change
-                                 const OSQPVectorf  *rho_vec, //  will need to change
+                                    const csc *P,
+                                    const csc *A,
+                                    const float *rho_vec,
+                                //  const OSQPMatrix   *P, // will need to change
+                                //  const OSQPMatrix   *A, // will need to change
+                                //  const OSQPVectorf  *rho_vec, //  will need to change
                                  qpParams       *params,
                                  float            *scaled_pri_res,
                                  float            *scaled_dua_res,
@@ -123,8 +126,10 @@ int init_linsys_solver_cudapcg(cudapcg_solver    **sp,
   s->nthreads = 1;
 
   /* Problem dimensions */
-  n = OSQPMatrix_get_n(P);
-  m = OSQPMatrix_get_m(A);
+//   n = OSQPMatrix_get_n(P);
+  n = P->n;
+  m = A->m;
+//   m = OSQPMatrix_get_m(A);
   s->n = n;
   s->m = m;
 
@@ -224,14 +229,16 @@ int init_linsys_solver_cudapcg(cudapcg_solver    **sp,
 
 
 int solve_linsys_cudapcg(cudapcg_solver *s,
-                           OSQPVectorf    *b,
+                        //    OSQPVectorf    *b,
+                           float *b,
                            int           admm_iter) {
 
   int   pcg_iters;
   float eps;
 
   /* Compute the RHS of the reduced KKT system and store it in s->d_rhs */
-  compute_rhs(s, b->d_val);
+//   compute_rhs(s, b->d_val);
+     compute_rhs(s, b);
 
   /* Compute the required solution precision */
   eps = compute_tolerance(s, admm_iter);
@@ -240,16 +247,21 @@ int solve_linsys_cudapcg(cudapcg_solver *s,
   pcg_iters = cuda_pcg_alg(s, eps, s->max_iter);
 
   /* Copy the first part of the solution to b->d_val */
-  cuda_vec_copy_d2d(b->d_val, s->d_x, s->n);
+//   cuda_vec_copy_d2d(b->d_val, s->d_x, s->n);
+     cuda_vec_copy_d2d(b, s->d_x, s->n);
 
   if (!s->polish) {
     /* Compute d_z = A * d_x */
-    if (s->m) cuda_mat_Axpy(s->A, s->d_x, b->d_val + s->n, 1.0, 0.0);
+    // if (s->m) cuda_mat_Axpy(s->A, s->d_x, b->d_val + s->n, 1.0, 0.0);
+    if (s->m) cuda_mat_Axpy(s->A, s->d_x, b + s->n, 1.0, 0.0);
+
   }
   else {
     /* Compute yred = (A * d_x - b) / delta */
-    cuda_mat_Axpy(s->A, s->d_x, b->d_val + s->n, 1.0, -1.0);
-    cuda_vec_mult_sc(b->d_val + s->n, *s->h_rho, s->m);
+    // cuda_mat_Axpy(s->A, s->d_x, b->d_val + s->n, 1.0, -1.0);
+    // cuda_vec_mult_sc(b->d_val + s->n, *s->h_rho, s->m);
+    cuda_mat_Axpy(s->A, s->d_x, b + s->n, 1.0, -1.0);
+    cuda_vec_mult_sc(b + s->n, *s->h_rho, s->m);
   }
 
   // GB: Should we set zero_pcg_iters to zero otherwise?
@@ -260,9 +272,12 @@ int solve_linsys_cudapcg(cudapcg_solver *s,
 
 
 void warm_start_linsys_solver_cudapcg(cudapcg_solver    *s,
-                                      const OSQPVectorf *x) {
+                                    //   const OSQPVectorf *x) {
+                                        const float *x){
 
-  cuda_vec_copy_d2d(s->d_x, x->d_val, x->length);
+//   cuda_vec_copy_d2d(s->d_x, x->d_val, x->length);
+  cuda_vec_copy_d2d(s->d_x, x, x->length);
+
 }
 
 
@@ -299,8 +314,10 @@ void free_linsys_solver_cudapcg(cudapcg_solver *s) {
 
 
 int update_linsys_solver_matrices_cudapcg(cudapcg_solver   *s,
-                                     const OSQPMatrix *P,
-                                     const OSQPMatrix *A) {
+                                    //  const OSQPMatrix *P,
+                                    //  const OSQPMatrix *A) {
+                                        const csc *P,
+                                        const csc *A){
 
   if (s->precondition) cuda_pcg_update_precond(s, 1, 1, 0);
   return 0;
@@ -308,7 +325,8 @@ int update_linsys_solver_matrices_cudapcg(cudapcg_solver   *s,
 
 
 int update_linsys_solver_rho_vec_cudapcg(cudapcg_solver    *s,
-                                           const OSQPVectorf *rho_vec,
+                                        //    const OSQPVectorf *rho_vec,
+                                           const csc* rho_vec,
                                            float            rho_sc) {
 
   if (s->precondition) cuda_pcg_update_precond(s, 0, 0, 1);
