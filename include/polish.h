@@ -1,22 +1,26 @@
+/* Solution polish based on assuming the active set */
 #ifndef POLISH_H
 #define POLISH_H
-/* Solution polish based on assuming the active set */
 
+# ifdef __cplusplus
+extern "C" {
+# endif // ifdef __cplusplus
 
-# include "qptypes.h"
-#include "auxil.h"
-#include "linsys.h"
-#include "kkt.h"
-#include "proj.h"
-#include "linalg.h"
-//#include "timer.h"
+# include "osqp.h"
+# include "types.h"
 
 /**
  * Solution polish: Solve equality constrained QP with assumed active
  *constraints
- * @param  work Workspace
- * @return      Exitflag
+ * @param  solver OSQP solver
+ * @return        Exitflag:  0: Factorization successful
+ *                           1: Factorization unsuccessful
  */
-int polish(qpWorkspace *work);
+c_int polish(OSQPSolver *solver);
 
-#endif //POLISH_H
+
+# ifdef __cplusplus
+}
+# endif // ifdef __cplusplus
+
+#endif // ifndef POLISH_H

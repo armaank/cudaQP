@@ -1,143 +1,140 @@
 #ifndef AUXIL_H
-# define AUXIL_H
+#define AUXIL_H
 
-// # include "qptypes.h"
-// #include "linalg.h"
-// #include "constants.h"
-#include "scaling.h"
-#include "proj.h"
-// #include "qp.h"
-// #include "timer.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+# ifdef __cplusplus
+extern "C" {
+# endif // ifdef __cplusplus
 
+# include "types.h"
+
+
+/***********************************************************
+* Auxiliary functions needed to compute ADMM iterations * *
+***********************************************************/
+# if EMBEDDED != 1
 
 /**
  * Compute rho estimate from residuals
- * @param work Workspace
+ * @param solver Solver
  * @return     rho estimate
  */
-float compute_rho_estimate(qpWorkspace *work);
+c_float compute_rho_estimate(OSQPSolver *solver);
 
 /**
  * Adapt rho value based on current unscaled primal/dual residuals
- * @param work Workspace
+ * @param solver Solver
  * @return     Exitflag
  */
-int   adapt_rho(qpWorkspace *work);
+c_int   adapt_rho(OSQPSolver *solver);
 
 /**
- * Set values of rho vector based on constraint types
- * @param work Workspace
+ * Set values of rho vector based on constraint types.
+ * returns 1 if any constraint types have been updated,
+ * and 0 otherwise.
+ * @param solver Solver
  */
-void    set_rho_vec(qpWorkspace *work);
+c_int    set_rho_vec(OSQPSolver *solver);
 
 /**
  * Update values of rho vector based on updated constraints.
  * If the constraints change, update the linear systems solver.
  *
- * @param work Workspace
+ * @param solver Solver
  * @return     Exitflag
  */
-int   update_rho_vec(qpWorkspace *work);
+c_int   update_rho_vec(OSQPSolver *solver);
 
+# endif // EMBEDDED
 
 /**
- * Swap float vector pointers
+ * Swap c_float vector pointers
  * @param a first vector
  * @param b second vector
  */
-void swap_vectors(float **a,
-                  float **b);
-
-
-/**
- * Cold start workspace variables xz and y
- * @param work Workspace
- */
-void cold_start(qpWorkspace *work);
+void swap_vectors(OSQPVectorf **a,
+                  OSQPVectorf **b);
 
 
 /**
  * Update x_tilde and z_tilde variable (first ADMM step)
- * @param work [description]
+ * @param solver    Solver
+ * @param admm_iter Current ADMM iteration
  */
-void update_xz_tilde(qpWorkspace *work);
+void update_xz_tilde(OSQPSolver *solver, c_int admm_iter);
 
 
 /**
  * Update x (second ADMM step)
  * Update also delta_x (For for dual infeasibility)
- * @param work Workspace
+ * @param solver Solver
  */
-void update_x(qpWorkspace *work);
+void update_x(OSQPSolver *solver);
 
 
 /**
  * Update z (third ADMM step)
- * @param work Workspace
+ * @param solver Solver
  */
-void update_z(qpWorkspace *work);
+void update_z(OSQPSolver *solver);
 
 
 /**
  * Update y variable (fourth ADMM step)
  * Update also delta_y to check for primal infeasibility
- * @param work Workspace
+ * @param solver Solver
  */
-void update_y(qpWorkspace *work);
+void update_y(OSQPSolver *solver);
 
 
 /**
  * Compute objective function from data at value x
- * @param  work qpWorkspace structure
+ * @param  solver Solver
  * @param  x    Value x
  * @return      Objective function value
  */
-float compute_obj_val(qpWorkspace *work,
-                      float       *x);
+c_float compute_obj_val(OSQPSolver *solver,
+                        OSQPVectorf   *x);
 
 /**
  * Check whether QP has solution
- * @param info qpInfo
+ * @param info OSQPInfo
  */
-int has_solution(qpInfo *info);
+c_int has_solution(OSQPInfo *info);
 
 /**
  * Store the QP solution
- * @param work Workspace
+ * @param solver Solver
  */
-void store_solution(qpWorkspace *work);
+void store_solution(OSQPSolver *solver);
 
 
 /**
  * Update solver information
- * @param work               Workspace
+ * @param solver             Solver
  * @param iter               Iteration number
  * @param compute_objective  Boolean (if compute the objective or not)
  * @param polish             Boolean (if called from polish)
  */
-void update_info(qpWorkspace *work,
-                 int          iter,
-                 int          compute_objective,
-                 int          polish);
+void update_info(OSQPSolver *solver,
+                 c_int       iter,
+                 c_int       compute_objective,
+                 c_int       polish);
 
 
 /**
  * Reset solver information (after problem updates)
  * @param info               Information structure
  */
-void reset_info(qpInfo *info);
+void reset_info(OSQPInfo *info);
 
 
 /**
  * Update solver status (value and string)
- * @param info qpInfo
+ * @param info OSQPInfo
  * @param status_val new status value
  */
-void update_status(qpInfo *info,
-                   int     status_val);
+void update_status(OSQPInfo *info,
+                   c_int     status_val);
 
 
 /**
@@ -145,26 +142,48 @@ void update_status(qpInfo *info,
  * If the boolean flag is ON, it checks for approximate conditions (10 x larger
  * tolerances than the ones set)
  *
- * @param  work        Workspace
+ * @param  solver        Solver
  * @param  approximate Boolean
  * @return      Residuals check
  */
-int check_termination(qpWorkspace *work,
-                      int          approximate);
+c_int check_termination(OSQPSolver *solver,
+                        c_int          approximate);
+
+
+# ifndef EMBEDDED
 
 /**
  * Validate problem data
- * @param  data qpData to be validated
+ * @param  P            Problem data (quadratic cost term, csc format)
+ * @param  q            Problem data (linear cost term)
+ * @param  A            Problem data (constraint matrix, csc format)
+ * @param  l            Problem data (constraint lower bound)
+ * @param  u            Problem data (constraint upper bound)
+ * @param  m            Problem data (number of constraints)
+ * @param  n            Problem data (number of variables)
  * @return      Exitflag to check
  */
-int validate_data(const qpData *data);
+c_int validate_data(const csc* P,
+                    const c_float* q,
+                    const csc* A,
+                    const c_float* l,
+                    const c_float* u,
+                    c_int m,
+                    c_int n);
 
 
 /**
  * Validate problem settings
- * @param  settings qpSettings to be validated
+ * @param  settings OSQPSettings to be validated
  * @return          Exitflag to check
  */
-int validate_params(const qpParams *params);
+c_int validate_settings(const OSQPSettings *settings);
 
-#endif //AUXIL_H
+
+# endif // #ifndef EMBEDDED
+
+# ifdef __cplusplus
+}
+# endif // ifdef __cplusplus
+
+#endif // ifndef AUXIL_H

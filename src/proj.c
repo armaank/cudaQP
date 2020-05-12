@@ -1,29 +1,42 @@
-#include "../include/proj.h"
+#include "proj.h"
 
 
-void project(qpWorkspace *work, float *z) {
-    int i, m;
+void project(OSQPWorkspace *work, OSQPVectorf *z) {
 
-    m = work->data->m;
+  OSQPVectorf_ew_bound_vec(z,z,work->data->l,work->data->u);
 
-    for (i = 0; i < m; i++) {
-        z[i] = c_min(c_max(z[i],
-                           work->data->l[i]), // Between lower
-                     work->data->u[i]);       // and upper bounds
-    }
 }
 
-void project_normalcone(qpWorkspace *work, float *z, float *y) {
-    int i, m;
+void project_polar_reccone(OSQPVectorf      *y,
+                           OSQPVectorf      *l,
+                           OSQPVectorf      *u,
+                           c_float       infval){
 
-    // NB: Use z_prev as temporary vector
+  OSQPVectorf_project_polar_reccone(y,l,u,infval);
 
-    m = work->data->m;
+}
 
-    for (i = 0; i < m; i++) {
-        work->z_prev[i] = z[i] + y[i];
-        z[i]            = c_min(c_max(work->z_prev[i], work->data->l[i]),
-                                work->data->u[i]);
-        y[i] = work->z_prev[i] - z[i];
-    }
+
+c_int test_in_reccone(const OSQPVectorf *y,
+                      const OSQPVectorf *l,
+                      const OSQPVectorf *u,
+                      c_float        infval,
+                      c_float          tol){
+
+  return OSQPVectorf_in_reccone(y,l,u,infval,tol);
+  
+}
+
+void project_normalcone(OSQPWorkspace *work, OSQPVectorf *z, OSQPVectorf *y) {
+
+  // NB: Use z_prev as temporary vector
+
+  //z_prev = z + y;
+  OSQPVectorf_plus(work->z_prev,z,y);
+
+  // z = min(max(z_prev,l),u)
+  OSQPVectorf_ew_bound_vec(z, work->z_prev, work->data->l, work->data->u);
+
+  //y = z_prev - z;
+  OSQPVectorf_minus(y,work->z_prev,z);
 }

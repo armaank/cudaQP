@@ -1,11 +1,23 @@
 #ifndef ERROR_H
 #define ERROR_H
 
-#include "qptypes.h"
-#include <stdio.h>
+/* OSQP error handling */
+
+# ifdef __cplusplus
+extern "C" {
+# endif // ifdef __cplusplus
+
+# include "osqp.h"
 
 
-#  define qp_error(error_code) _qp_error(error_code, __func__);
+/* OSQP error macro */
+# if __STDC_VERSION__ >= 199901L
+/* The C99 standard gives the __func__ macro, which is preferred over __FUNCTION__ */
+#  define osqp_error(error_code) _osqp_error(error_code, __func__);
+#else
+#  define osqp_error(error_code) _osqp_error(error_code, __FUNCTION__);
+#endif
+
 
 
 /**
@@ -14,7 +26,13 @@
  * @param  Function name
  * @return Error code
  */
-int _qp_error(enum qp_error_type error_code,
-              const char * function_name);
+  c_int _osqp_error(enum osqp_error_type error_code,
+		    const char * function_name);
 
-#endif //ERROR_H
+
+
+# ifdef __cplusplus
+}
+# endif // ifdef __cplusplus
+
+#endif // ifndef ERROR_H
