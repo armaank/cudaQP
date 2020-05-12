@@ -132,22 +132,6 @@ if(OSQP_CUSTOM_MEMORY)
 	message(STATUS "User custom memory management header: ${OSQP_CUSTOM_MEMORY}")
 endif()
 
-# Linear solvers dependencies
-# ---------------------------------------------
-# option (ENABLE_MKL_PARDISO "Enable MKL Pardiso solver" OFF)
-# if (DFLOAT)
-#     message(STATUS "Disabling MKL Pardiso Solver with floats")
-#     set(ENABLE_MKL_PARDISO OFF)
-# elseif (DEFINED EMBEDDED)
-#     message(STATUS "Disabling MKL Pardiso Solver for embedded")
-#     set(ENABLE_MKL_PARDISO OFF)
-# elseif (CUDA_SUPPORT)
-#     message(STATUS "Disabling MKL Pardiso Solver for CUDA")
-#     set(ENABLE_MKL_PARDISO OFF)
-# endif()
-# message(STATUS "MKL Pardiso: ${ENABLE_MKL_PARDISO}")
-
-
 # Generate header file with the global options
 # ---------------------------------------------
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/configure/osqp_configure.h.in

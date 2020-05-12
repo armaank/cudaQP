@@ -1,6 +1,6 @@
 #include "kkt.h"
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
 
 csc* form_KKT(c_float*    P_x,
               c_int*      P_i,
@@ -196,10 +196,10 @@ csc* form_KKT(c_float*    P_x,
   return KKT;
 }
 
-#endif /* ifndef EMBEDDED */
+// #endif /* ifndef EMBEDDED */
 
 
-#if EMBEDDED != 1
+// #if EMBEDDED != 1
 
 void update_KKT_P(csc         *KKT,
                   c_float*    P_x,
@@ -259,4 +259,4 @@ void update_KKT_param2(csc     *KKT,
   }
 }
 
-#endif // EMBEDDED != 1
+// #endif // EMBEDDED != 1

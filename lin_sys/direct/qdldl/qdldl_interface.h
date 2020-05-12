@@ -28,12 +28,12 @@ struct qdldl {
     void (*warm_start)(struct qdldl      *self,
                        const OSQPVectorf *x);
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
     void (*free)(struct qdldl *self); ///< Free workspace (only if desktop)
-#endif
+// #endif
 
     // This used only in non embedded or embedded 2 version
-#if EMBEDDED != 1
+// #if EMBEDDED != 1
     c_int (*update_matrices)(struct qdldl     *self,
                              const OSQPMatrix *P,
                              const OSQPMatrix *A);         ///< Update solver matrices
@@ -41,11 +41,11 @@ struct qdldl {
     c_int (*update_rho_vec)(struct qdldl      *self,
                             const OSQPVectorf *rho_vec,
                             c_float            rho_sc);    ///< Update rho_vec parameter
-#endif
+// #endif
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
     c_int nthreads;
-#endif
+// #endif
     /** @} */
 
     /**
@@ -60,14 +60,14 @@ struct qdldl {
     c_float *rho_inv_vec;   ///< parameter vector
     c_float sigma;          ///< scalar parameter
     c_float rho_inv;        ///< scalar parameter (used if rho_inv_vec == NULL)
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
     c_int polish;           ///< polishing flag
-#endif
+// #endif
     c_int n;                ///< number of QP variables
     c_int m;                ///< number of QP constraints
 
 
-#if EMBEDDED != 1
+// #if EMBEDDED != 1
     // These are required for matrix updates
     c_int * Pdiag_idx, Pdiag_n;  ///< index and number of diagonal elements in P
     csc   * KKT;                 ///< Permuted KKT matrix in sparse form (used to update P and A matrices)
@@ -80,7 +80,7 @@ struct qdldl {
     QDLDL_int   *iwork;
     QDLDL_bool  *bwork;
     QDLDL_float *fwork;
-#endif
+// #endif
 
     /** @} */
 };
@@ -120,7 +120,7 @@ void warm_start_linsys_solver_qdldl(qdldl_solver      *s,
                                     const OSQPVectorf *x);
 
 
-#if EMBEDDED != 1
+// #if EMBEDDED != 1
 /**
  * Update linear system solver matrices
  * @param  s        Linear system solver structure
@@ -146,15 +146,14 @@ c_int update_linsys_solver_rho_vec_qdldl(qdldl_solver      *s,
                                          const OSQPVectorf *rho_vec,
                                          c_float            rho_sc);
 
-#endif
 
-#ifndef EMBEDDED
+
+// #ifndef EMBEDDED
 /**
  * Free linear system solver
  * @param s linear system solver object
  */
 void free_linsys_solver_qdldl(qdldl_solver * s);
-#endif
 
 #ifdef __cplusplus
 }

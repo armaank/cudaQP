@@ -22,7 +22,7 @@ typedef struct OSQPVectorf_ OSQPVectorf;
 
 /* VECTOR FUNCTIONS ----------------------------------------------------------*/
 
-# ifndef EMBEDDED
+// # ifndef EMBEDDED
 
 /* malloc/calloc for floats and ints (USES MALLOC/CALLOC) */
 OSQPVectorf* OSQPVectorf_malloc(c_int length);
@@ -50,7 +50,7 @@ OSQPVectorf* OSQPVectorf_view(const OSQPVectorf *a, c_int head, c_int length);
 /* Free a view of a float vector */
 void OSQPVectorf_view_free(OSQPVectorf *a);
 
-# endif /* ifndef EMBEDDED */
+// # endif /* ifndef EMBEDDED */
 
 
 /* Length of the vector (floats) */
@@ -191,7 +191,7 @@ c_int OSQPVectorf_in_reccone(const OSQPVectorf *y,
                              c_float           tol);
 
 
-# if EMBEDDED != 1
+// # if EMBEDDED != 1
 
 /* Vector mean value*/
 c_float OSQPVectorf_mean(const OSQPVectorf *a);
@@ -242,7 +242,7 @@ void OSQPVectorf_set_scalar_if_gt(OSQPVectorf *x,
                                   c_float testval,
                                   c_float newval);
 
-# endif /* if EMBEDDED != 1 */
+// # endif /* if EMBEDDED != 1 */
 
 
 # ifdef __cplusplus

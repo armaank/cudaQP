@@ -3,13 +3,13 @@
 #include "qdldl.h"
 #include "qdldl_interface.h"
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
 #include "amd.h"
-#endif
+// #endif
 
-#if EMBEDDED != 1
+// #if EMBEDDED != 1
 #include "kkt.h"
-#endif
+// #endif
 
 // Warm starting not used by direct solvers
 void warm_start_linsys_solver_qdldl(qdldl_solver      *s,
@@ -17,7 +17,7 @@ void warm_start_linsys_solver_qdldl(qdldl_solver      *s,
   return;
 }
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
 
 // Free LDL Factorization structure
 void free_linsys_solver_qdldl(qdldl_solver *s) {
@@ -214,14 +214,14 @@ c_int init_linsys_solver_qdldl(qdldl_solver      **sp,
     s->solve      = &solve_linsys_qdldl;
     s->warm_start = &warm_start_linsys_solver_qdldl;
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
     s->free = &free_linsys_solver_qdldl;
-#endif
+// #endif
 
-#if EMBEDDED != 1
+// #if EMBEDDED != 1
     s->update_matrices = &update_linsys_solver_matrices_qdldl;
     s->update_rho_vec  = &update_linsys_solver_rho_vec_qdldl;
-#endif
+// #endif
 
     // Assign type
     s->type = QDLDL_SOLVER;
@@ -350,7 +350,7 @@ c_int init_linsys_solver_qdldl(qdldl_solver      **sp,
     return 0;
 }
 
-#endif  // EMBEDDED
+// #endif  // EMBEDDED
 
 
 // Permute x = P*b using P
@@ -382,12 +382,12 @@ c_int solve_linsys_qdldl(qdldl_solver *s,
     c_int j;
     c_float* bv = OSQPVectorf_data(b);
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
     if (s->polish) {
         /* stores solution to the KKT system in b */
         LDLSolve(bv, bv, s->L, s->Dinv, s->P, s->bp);
     } else {
-#endif
+// #endif
         /* stores solution to the KKT system in s->sol */
         LDLSolve(s->sol, bv, s->L, s->Dinv, s->P, s->bp);
 
@@ -407,15 +407,15 @@ c_int solve_linsys_qdldl(qdldl_solver *s,
               bv[j + s->n] += s->rho_inv * s->sol[j + s->n];
           }
         }
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
     }
-#endif
+// #endif
 
     return 0;
 }
 
 
-#if EMBEDDED != 1
+// #if EMBEDDED != 1
 // Update private structure with new P and A
 c_int update_linsys_solver_matrices_qdldl(
                     qdldl_solver * s,
@@ -470,4 +470,3 @@ c_int update_linsys_solver_rho_vec_qdldl(qdldl_solver      *s,
 }
 
 
-#endif

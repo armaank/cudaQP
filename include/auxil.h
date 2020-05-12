@@ -11,7 +11,7 @@ extern "C" {
 /***********************************************************
 * Auxiliary functions needed to compute ADMM iterations * *
 ***********************************************************/
-# if EMBEDDED != 1
+// # if EMBEDDED != 1
 
 /**
  * Compute rho estimate from residuals
@@ -44,7 +44,7 @@ c_int    set_rho_vec(OSQPSolver *solver);
  */
 c_int   update_rho_vec(OSQPSolver *solver);
 
-# endif // EMBEDDED
+// # endif // EMBEDDED
 
 /**
  * Swap c_float vector pointers
@@ -150,7 +150,7 @@ c_int check_termination(OSQPSolver *solver,
                         c_int          approximate);
 
 
-# ifndef EMBEDDED
+// # ifndef EMBEDDED
 
 /**
  * Validate problem data
@@ -180,7 +180,7 @@ c_int validate_data(const csc* P,
 c_int validate_settings(const OSQPSettings *settings);
 
 
-# endif // #ifndef EMBEDDED
+// # endif // #ifndef EMBEDDED
 
 # ifdef __cplusplus
 }

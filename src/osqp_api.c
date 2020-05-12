@@ -5,17 +5,17 @@
 #include "scaling.h"
 #include "error.h"
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
 # include "polish.h"
-#endif /* ifndef EMBEDDED */
+// #endif /* ifndef EMBEDDED */
 
 #ifdef CTRLC
 # include "ctrlc.h"
 #endif /* ifdef CTRLC */
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
 # include "lin_sys.h"
-#endif /* ifndef EMBEDDED */
+// #endif /* ifndef EMBEDDED */
 
 
 
@@ -50,7 +50,7 @@ void osqp_set_default_settings(OSQPSettings *settings) {
   settings->rho_is_vec    = RHO_IS_VEC;              /* defines whether rho is scalar or vector*/
   settings->sigma         = (c_float)SIGMA;          /* ADMM step */
   settings->scaling       = SCALING;                 /* heuristic problem scaling */
-#if EMBEDDED != 1
+// #if EMBEDDED != 1
   settings->adaptive_rho           = ADAPTIVE_RHO;
   settings->adaptive_rho_interval  = ADAPTIVE_RHO_INTERVAL;
   settings->adaptive_rho_tolerance = (c_float)ADAPTIVE_RHO_TOLERANCE;
@@ -58,7 +58,7 @@ void osqp_set_default_settings(OSQPSettings *settings) {
 # ifdef PROFILING
   settings->adaptive_rho_fraction = (c_float)ADAPTIVE_RHO_FRACTION;
 # endif /* ifdef PROFILING */
-#endif  /* if EMBEDDED != 1 */
+// #endif  /* if EMBEDDED != 1 */
 
   settings->max_iter      = MAX_ITER;                /* maximum iterations */
   settings->eps_abs       = (c_float)EPS_ABS;        /* absolute convergence tolerance */
@@ -68,12 +68,12 @@ void osqp_set_default_settings(OSQPSettings *settings) {
   settings->alpha         = (c_float)ALPHA;          /* relaxation parameter */
   settings->linsys_solver = LINSYS_SOLVER;           /* relaxation parameter */
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
   settings->delta              = DELTA;              /* regularization parameter for polish */
   settings->polish             = POLISH;             /* ADMM solution polish: 1 */
   settings->polish_refine_iter = POLISH_REFINE_ITER; /* iterative refinement steps in polish */
   settings->verbose            = VERBOSE;            /* print output */
-#endif /* ifndef EMBEDDED */
+// #endif /* ifndef EMBEDDED */
 
   settings->scaled_termination = SCALED_TERMINATION; /* Evaluate scaled termination criteria*/
   settings->check_termination  = CHECK_TERMINATION;  /* Interval for evaluating termination criteria */
@@ -84,7 +84,7 @@ void osqp_set_default_settings(OSQPSettings *settings) {
 #endif /* ifdef PROFILING */
 }
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
 
 
 c_int osqp_setup(OSQPSolver** solverp,
@@ -326,7 +326,7 @@ c_int osqp_setup(OSQPSolver** solverp,
   return 0;
 }
 
-#endif // #ifndef EMBEDDED
+// #endif // #ifndef EMBEDDED
 
 
 c_int osqp_solve(OSQPSolver *solver) {
@@ -502,7 +502,7 @@ c_int osqp_solve(OSQPSolver *solver) {
 #endif /* ifdef PRINTING */
 
 
-#if EMBEDDED != 1
+// #if EMBEDDED != 1
 # ifdef PROFILING
 
     // If adaptive rho with automatic interval, check if the solve time is a
@@ -567,7 +567,7 @@ c_int osqp_solve(OSQPSolver *solver) {
         goto exit;
       }
     }
-#endif // EMBEDDED != 1
+// #endif // EMBEDDED != 1
 
   }        // End of ADMM for loop
 
@@ -631,10 +631,10 @@ c_int osqp_solve(OSQPSolver *solver) {
 #endif /* ifdef PROFILING */
 
 
-#if EMBEDDED != 1
+// #if EMBEDDED != 1
   /* Update rho estimate */
   solver->info->rho_estimate = compute_rho_estimate(solver);
-#endif /* if EMBEDDED != 1 */
+// #endif /* if EMBEDDED != 1 */
 
   /* Update solve time */
 #ifdef PROFILING
@@ -642,11 +642,11 @@ c_int osqp_solve(OSQPSolver *solver) {
 #endif /* ifdef PROFILING */
 
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
   // Polish the obtained solution
   if (solver->settings->polish && (solver->info->status_val == OSQP_SOLVED))
     polish(solver);
-#endif /* ifndef EMBEDDED */
+// #endif /* ifndef EMBEDDED */
 
 #ifdef PROFILING
   /* Update total time */
@@ -695,7 +695,7 @@ exit:
 }
 
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
 
 c_int osqp_cleanup(OSQPSolver *solver) {
 
@@ -746,7 +746,7 @@ c_int osqp_cleanup(OSQPSolver *solver) {
       exitflag = unload_linsys_solver(solver->settings->linsys_solver);
     }
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
     // Free active constraints structure
     if (work->pol) {
       OSQPVectori_free(work->pol->active_flags);
@@ -755,14 +755,14 @@ c_int osqp_cleanup(OSQPSolver *solver) {
       OSQPVectorf_free(work->pol->y);
       c_free(work->pol);
     }
-#endif /* ifndef EMBEDDED */
+// #endif /* ifndef EMBEDDED */
 
     // Free other Variables
     OSQPVectorf_free(work->rho_vec);
     OSQPVectorf_free(work->rho_inv_vec);
-#if EMBEDDED != 1
+// #if EMBEDDED != 1
     OSQPVectori_free(work->constr_type);
-#endif
+// #endif
     OSQPVectorf_free(work->x);
     OSQPVectorf_free(work->z);
     OSQPVectorf_free(work->xz_tilde);
@@ -810,7 +810,7 @@ c_int osqp_cleanup(OSQPSolver *solver) {
   return exitflag;
 }
 
-#endif // #ifndef EMBEDDED
+// #endif // #ifndef EMBEDDED
 
 
 /************************
@@ -916,12 +916,12 @@ c_int osqp_update_bounds(OSQPSolver    *solver,
   /* Reset solver information */
   reset_info(solver->info);
 
-#if EMBEDDED != 1
+// #if EMBEDDED != 1
   if (solver->settings->rho_is_vec) {
     /* Update rho_vec and refactor if constraints type changes */
     exitflag = update_rho_vec(solver);
   }
-#endif /* EMBEDDED != 1 */
+// #endif /* EMBEDDED != 1 */
 
 #ifdef PROFILING
   solver->info->update_time += osqp_toc(work->timer);
@@ -976,7 +976,7 @@ c_int osqp_warm_start(OSQPSolver    *solver,
 }
 
 
-#if EMBEDDED != 1
+// #if EMBEDDED != 1
 
 c_int osqp_update_P(OSQPSolver    *solver,
                     const c_float *Px_new,
@@ -1269,7 +1269,7 @@ c_int osqp_update_rho(OSQPSolver *solver, c_float rho_new) {
   return exitflag;
 }
 
-#endif // EMBEDDED != 1
+// #endif // EMBEDDED != 1
 
 /****************************
 * Update problem settings  *
@@ -1447,7 +1447,7 @@ c_int osqp_update_check_termination(OSQPSolver *solver, c_int check_termination_
   return 0;
 }
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
 
 c_int osqp_update_delta(OSQPSolver *solver, c_float delta_new) {
 
@@ -1531,7 +1531,7 @@ c_int osqp_update_verbose(OSQPSolver *solver, c_int verbose_new) {
   return 0;
 }
 
-#endif // EMBEDDED
+// #endif // EMBEDDED
 
 #ifdef PROFILING
 c_int osqp_update_time_limit(OSQPSolver *solver, c_float time_limit_new) {

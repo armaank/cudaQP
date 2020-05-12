@@ -46,7 +46,7 @@ typedef struct {
   c_int warm_start;         ///< boolean, warm start
   enum linsys_solver_type linsys_solver; ///< linear system solver to use
 
-# if EMBEDDED != 1
+// # if EMBEDDED != 1
   c_int   adaptive_rho;           ///< boolean, is rho step size adaptive?
   c_int   adaptive_rho_interval;  ///< number of iterations between rho adaptations; if 0, then it is automatic
   c_float adaptive_rho_tolerance; ///< tolerance X for adapting rho. The new rho has to be X times larger or 1/X
@@ -54,14 +54,14 @@ typedef struct {
 #  ifdef PROFILING
   c_float adaptive_rho_fraction;  ///< interval for adapting rho (fraction of the setup time)
 #  endif // Profiling
-# endif // EMBEDDED != 1
+// # endif // EMBEDDED != 1
 
-# ifndef EMBEDDED
+// # ifndef EMBEDDED
   c_float delta;                         ///< regularization parameter for polishing
   c_int   polish;                        ///< boolean, polish ADMM solution
   c_int   polish_refine_iter;            ///< number of iterative refinement steps in polishing
   c_int verbose;                         ///< boolean, write out progress
-# endif // ifndef EMBEDDED
+// # endif // ifndef EMBEDDED
 
 # ifdef PROFILING
   c_float time_limit;                    ///< maximum seconds allowed to solve the problem; if 0, then disabled
@@ -76,14 +76,14 @@ typedef struct {
   char  status[32];    ///< status string, e.g. 'solved'
   c_int status_val;    ///< status as c_int, defined in osqp_api_constants.h
 
-# if EMBEDDED != 1
+// # if EMBEDDED != 1
   c_int   rho_updates;  ///< number of rho updates
   c_float rho_estimate; ///< best rho estimate so far from residuals
-# endif // if EMBEDDED != 1
+// # endif // if EMBEDDED != 1
 
-# ifndef EMBEDDED
+// # ifndef EMBEDDED
   c_int status_polish; ///< polish status: successful (1), unperformed (0), (-1) unsuccessful
-# endif // ifndef EMBEDDED
+// # endif // ifndef EMBEDDED
 
   c_float obj_val;     ///< primal objective
   c_float pri_res;     ///< norm of primal residual

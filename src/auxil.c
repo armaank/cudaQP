@@ -8,7 +8,7 @@
 /***********************************************************
 * Auxiliary functions needed to compute ADMM iterations * *
 ***********************************************************/
-#if EMBEDDED != 1
+// #if EMBEDDED != 1
 
 c_float compute_rho_estimate(OSQPSolver *solver) {
 
@@ -133,7 +133,7 @@ c_int update_rho_vec(OSQPSolver *solver) {
   return exitflag;
 }
 
-#endif // EMBEDDED != 1
+// #endif // EMBEDDED != 1
 
 
 void swap_vectors(OSQPVectorf **a, OSQPVectorf **b) {
@@ -550,9 +550,9 @@ c_int has_solution(OSQPInfo * info){
 
 void store_solution(OSQPSolver *solver) {
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
   c_float norm_vec;
-#endif /* ifndef EMBEDDED */
+// #endif /* ifndef EMBEDDED */
 
   OSQPInfo*      info     = solver->info;
   OSQPSolution*  solution = solver->solution;
@@ -593,7 +593,7 @@ void store_solution(OSQPSolver *solver) {
     osqp_cold_start(solver);
 
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
 
     // Normalize infeasibility certificates if embedded is off
     // NB: It requires a division
@@ -619,7 +619,7 @@ void store_solution(OSQPSolver *solver) {
       OSQPVectorf_to_raw(solution->prim_inf_cert, work->delta_y);
     }
 
-#endif /* ifndef EMBEDDED */
+// #endif /* ifndef EMBEDDED */
   }
 }
 
@@ -638,7 +638,7 @@ void update_info(OSQPSolver  *solver,
   c_float *run_time;                    // Execution time
 #endif /* ifdef PROFILING */
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
 
   if (polish) {
     x       = work->pol->x;
@@ -651,7 +651,7 @@ void update_info(OSQPSolver  *solver,
     run_time = &info->polish_time;
 # endif /* ifdef PROFILING */
   } else {
-#endif // EMBEDDED
+// #endif // EMBEDDED
   x                = work->x;
   y                = work->y;
   z                = work->z;
@@ -662,10 +662,10 @@ void update_info(OSQPSolver  *solver,
 #ifdef PROFILING
   run_time = &info->solve_time;
 #endif /* ifdef PROFILING */
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
 }
 
-#endif /* ifndef EMBEDDED */
+// #endif /* ifndef EMBEDDED */
 
 
   // Compute the objective if needed
@@ -709,9 +709,9 @@ void reset_info(OSQPInfo *info) {
 
   update_status(info, OSQP_UNSOLVED); // Problem is unsolved
 
-#if EMBEDDED != 1
+// #if EMBEDDED != 1
   info->rho_updates = 0;              // Rho updates are now 0
-#endif /* if EMBEDDED != 1 */
+// #endif /* if EMBEDDED != 1 */
 }
 
 void update_status(OSQPInfo *info, c_int status_val) {
@@ -862,7 +862,7 @@ c_int check_termination(OSQPSolver *solver, c_int approximate) {
 }
 
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
 
 c_int validate_data(const csc* P,
                     const c_float* q,
@@ -1169,4 +1169,4 @@ c_int validate_settings(const OSQPSettings *settings) {
   return 0;
 }
 
-#endif // #ifndef EMBEDDED
+// #endif // #ifndef EMBEDDED

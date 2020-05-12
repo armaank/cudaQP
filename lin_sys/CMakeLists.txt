@@ -26,11 +26,11 @@ else()
   # TODO: Add!
 
   # Add linsys handler if not embedded
-  if (NOT DEFINED EMBEDDED)
+  # if (NOT DEFINED EMBEDDED)
   set(linsys_lib_handler
       ${CMAKE_CURRENT_SOURCE_DIR}/lib_handler.c
       ${CMAKE_CURRENT_SOURCE_DIR}/lib_handler.h)
-  endif()
+  # endif()
 
 
   # Combine solvers

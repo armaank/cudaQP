@@ -47,7 +47,7 @@ void osqp_get_dimensions(OSQPSolver *solver,
 void osqp_set_default_settings(OSQPSettings *settings);
 
 
-# ifndef EMBEDDED
+// # ifndef EMBEDDED
 
 /**
  * Initialize OSQP solver allocating memory.
@@ -86,7 +86,7 @@ void osqp_set_default_settings(OSQPSettings *settings);
                   c_int n,
                   const OSQPSettings *settings) ;
 
-# endif // #ifndef EMBEDDED
+// # endif // #ifndef EMBEDDED
 
 /**
  * Solve quadratic program
@@ -107,7 +107,7 @@ void osqp_set_default_settings(OSQPSettings *settings);
 c_int osqp_solve(OSQPSolver *solver);
 
 
-# ifndef EMBEDDED
+// # ifndef EMBEDDED
 
 /**
  * Cleanup workspace by deallocating memory
@@ -118,7 +118,7 @@ c_int osqp_solve(OSQPSolver *solver);
  */
 c_int osqp_cleanup(OSQPSolver *solver);
 
-# endif // ifndef EMBEDDED
+// # endif // ifndef EMBEDDED
 
 /** @} */
 
@@ -174,7 +174,7 @@ c_int osqp_warm_start(OSQPSolver    *solver,
                       const c_float *y);
 
 
-# if EMBEDDED != 1
+// # if EMBEDDED != 1
 
 /**
  * Update elements of matrix P (upper triangular)
@@ -259,7 +259,7 @@ c_int osqp_update_P_A(OSQPSolver    *solver,
 c_int osqp_update_rho(OSQPSolver *solver,
                       c_float     rho_new);
 
-# endif // if EMBEDDED != 1
+// # endif // if EMBEDDED != 1
 
 /** @} */
 
@@ -359,7 +359,7 @@ c_int osqp_update_check_termination(OSQPSolver *solver,
                                     c_int       check_termination_new);
 
 
-# ifndef EMBEDDED
+// # ifndef EMBEDDED
 
 /**
  * Update regularization parameter in polish
@@ -401,7 +401,7 @@ c_int osqp_update_verbose(OSQPSolver *solver,
                           c_int       verbose_new);
 
 
-# endif // #ifndef EMBEDDED
+// # endif // #ifndef EMBEDDED
 
 # ifdef PROFILING
 

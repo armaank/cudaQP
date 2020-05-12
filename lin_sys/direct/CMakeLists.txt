@@ -2,12 +2,12 @@
 
 # KKT COMMON TOOLS
 #--------------------------
-if (NOT (EMBEDDED EQUAL 1))
+# if (NOT (EMBEDDED EQUAL 1))
     add_subdirectory(kkt_common)
 
     set(direct_linsys_solvers $<TARGET_OBJECTS:kkt_common>)
     set(direct_linsys_solvers_includes ${kkt_common_includes})
-endif()
+# endif()
 
 
 # QDLDL (Default)
@@ -28,8 +28,6 @@ set(direct_linsys_solvers_includes
     ${CMAKE_CURRENT_SOURCE_DIR}/qdldl
     ${CMAKE_CURRENT_SOURCE_DIR}/qdldl/qdldl_sources/include
 )
-
-
 
 # Pass upwards
 set(direct_linsys_solvers ${direct_linsys_solvers} PARENT_SCOPE)

@@ -24,12 +24,12 @@ c_int OSQPMatrix_is_eq(OSQPMatrix *A, OSQPMatrix* B, c_float tol);
 
 /*  Non-embeddable functions (using malloc) ----------------------------------*/
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
 
 //Make a copy from a csc matrix.  Returns OSQP_NULL on failure
 OSQPMatrix* OSQPMatrix_new_from_csc(const csc* A, c_int is_triu);
 
-#endif //EMBEDDED
+// #endif //EMBEDDED
 
 
 /*  direct data access functions ---------------------------------------------*/
@@ -91,21 +91,21 @@ void OSQPMatrix_Atxpy(const OSQPMatrix *A,
 
 c_float OSQPMatrix_quad_form(const OSQPMatrix *P, const OSQPVectorf *x);
 
-#if EMBEDDED != 1
+// #if EMBEDDED != 1
 
 void OSQPMatrix_col_norm_inf(const OSQPMatrix *M, OSQPVectorf *E);
 
 void OSQPMatrix_row_norm_inf(const OSQPMatrix *M, OSQPVectorf *E);
 
-#endif /* if EMBEDDED != 1 */
+// #endif /* if EMBEDDED != 1 */
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
 
 void OSQPMatrix_free(OSQPMatrix *M);
 
 OSQPMatrix* OSQPMatrix_submatrix_byrows(const OSQPMatrix* A, const OSQPVectori* rows);
 
-#endif // ndef EMBEDDED
+// #endif // ndef EMBEDDED
 
 
 

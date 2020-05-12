@@ -1,6 +1,6 @@
 #include "scaling.h"
 
-#if EMBEDDED != 1
+// #if EMBEDDED != 1
 
 
 // Set values lower than threshold SCALING_REG to 1
@@ -162,7 +162,7 @@ c_int scale_data(OSQPSolver* solver) {
   return 0;
 }
 
-#endif // EMBEDDED
+// #endif // EMBEDDED
 
 c_int unscale_data(OSQPSolver *solver) {
 

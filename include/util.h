@@ -13,7 +13,7 @@ extern "C" {
 * Utility Functions  *
 **********************/
 
-# ifndef EMBEDDED
+// # ifndef EMBEDDED
 
 /**
  * Copy settings creating a new settings structure (uses MALLOC)
@@ -22,7 +22,7 @@ extern "C" {
  */
 OSQPSettings* copy_settings(const OSQPSettings *settings);
 
-# endif // #ifndef EMBEDDED
+// # endif // #ifndef EMBEDDED
 
 /**
  * Custom string copy to avoid string.h library

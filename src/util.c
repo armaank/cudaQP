@@ -212,16 +212,16 @@ void print_footer(OSQPInfo *info, c_int polish) {
   c_print("run time:             %.2es\n", info->run_time);
 # endif /* ifdef PROFILING */
 
-# if EMBEDDED != 1
+// # if EMBEDDED != 1
   c_print("optimal rho estimate: %.2e\n", info->rho_estimate);
-# endif /* if EMBEDDED != 1 */
+// # endif /* if EMBEDDED != 1 */
   c_print("\n");
 }
 
 #endif /* End #ifdef PRINTING */
 
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
 
 OSQPSettings* copy_settings(const OSQPSettings *settings) {
 
@@ -236,14 +236,14 @@ OSQPSettings* copy_settings(const OSQPSettings *settings) {
   new->sigma = settings->sigma;
   new->scaling = settings->scaling;
 
-# if EMBEDDED != 1
+// # if EMBEDDED != 1
   new->adaptive_rho = settings->adaptive_rho;
   new->adaptive_rho_interval = settings->adaptive_rho_interval;
   new->adaptive_rho_tolerance = settings->adaptive_rho_tolerance;
 # ifdef PROFILING
   new->adaptive_rho_fraction = settings->adaptive_rho_fraction;
 # endif
-# endif // EMBEDDED != 1
+// # endif // EMBEDDED != 1
   new->max_iter = settings->max_iter;
   new->eps_abs = settings->eps_abs;
   new->eps_rel = settings->eps_rel;
@@ -265,7 +265,7 @@ OSQPSettings* copy_settings(const OSQPSettings *settings) {
   return new;
 }
 
-#endif // #ifndef EMBEDDED
+// #endif // #ifndef EMBEDDED
 
 
 /*******************

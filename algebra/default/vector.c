@@ -4,7 +4,7 @@
 
 /* VECTOR FUNCTIONS ----------------------------------------------------------*/
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
 
 OSQPVectorf* OSQPVectorf_new(const c_float *a, c_int length){
 
@@ -149,7 +149,7 @@ void OSQPVectorf_view_free(OSQPVectorf *a){
 }
 
 
-#endif /* ifndef EMBEDDED */
+// #endif /* ifndef EMBEDDED */
 
 c_int OSQPVectorf_length(const OSQPVectorf *a){return a->length;}
 c_int OSQPVectori_length(const OSQPVectori *a){return a->length;}
@@ -644,7 +644,7 @@ void OSQPVectori_ipermute(OSQPVectori *x, const OSQPVectori *b, const OSQPVector
 
 
 
-#if EMBEDDED != 1
+// #if EMBEDDED != 1
 
 c_float OSQPVectorf_mean(const OSQPVectorf *a){
 
@@ -800,4 +800,4 @@ void OSQPVectorf_set_scalar_if_gt(OSQPVectorf *x,
 
 
 
-#endif /* EMBEDDED != 1 */
+// #endif /* EMBEDDED != 1 */

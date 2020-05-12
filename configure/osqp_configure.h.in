@@ -14,7 +14,7 @@ extern "C" {
 #cmakedefine IS_WINDOWS
 
 /* EMBEDDED */
-#cmakedefine EMBEDDED (@EMBEDDED@)
+// #cmakedefine EMBEDDED (@EMBEDDED@)
 
 /* CUDA_SUPPORT */
 #cmakedefine CUDA_SUPPORT
@@ -33,9 +33,6 @@ extern "C" {
 
 /* DLONG */
 #cmakedefine DLONG
-
-// /* ENABLE_MKL_PARDISO */
-// #cmakedefine ENABLE_MKL_PARDISO
 
 /* MEMORY MANAGEMENT */
 #cmakedefine OSQP_CUSTOM_MEMORY

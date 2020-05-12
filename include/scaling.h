@@ -12,7 +12,7 @@ extern "C" {
 
 
 // Enable data scaling if EMBEDDED is disabled or if EMBEDDED == 2
-# if EMBEDDED != 1
+// # if EMBEDDED != 1
 
 /**
  * Scale problem matrices
@@ -20,7 +20,7 @@ extern "C" {
  * @return      exitflag
  */
 c_int scale_data(OSQPSolver *solver);
-# endif // if EMBEDDED != 1
+// # endif // if EMBEDDED != 1
 
 
 /**

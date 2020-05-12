@@ -9,7 +9,7 @@ extern "C" {
 # include "osqp_configure.h"
 # include "glob_opts.h"
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
 
 // ========== Logical, testing and debug ===========
 
@@ -165,7 +165,7 @@ csc* csc_symperm(const csc   *A,
                  c_int       *AtoC,
                  c_int        values);
 
-#endif //EMBEDDED
+// #endif //EMBEDDED
 
 
 # ifdef __cplusplus

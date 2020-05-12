@@ -1,5 +1,5 @@
 
-#ifndef EMBEDDED
+// #ifndef EMBEDDED
 
 #include "csc_utils.h"
 
@@ -456,4 +456,4 @@ csc* csc_to_triu(csc *M) {
   return M_triu;
 }
 
-#endif  //EMBEDDED
+// #endif  //EMBEDDED

@@ -10,14 +10,14 @@ set(
 )
 
 # Add more files that should only be in non-embedded code
-if (NOT DEFINED EMBEDDED)
-    list(
-      APPEND
-      osqp_src
-      "${CMAKE_CURRENT_SOURCE_DIR}/polish.c"
-      "${CMAKE_CURRENT_SOURCE_DIR}/lin_sys.c"
-    )
-endif()
+# if (NOT DEFINED EMBEDDED)
+list(
+  APPEND
+  osqp_src
+  "${CMAKE_CURRENT_SOURCE_DIR}/polish.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/lin_sys.c"
+)
+# endif()
 
 # Add the ctrl-c handler if enabled
 if (CTRLC)

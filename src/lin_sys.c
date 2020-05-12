@@ -14,10 +14,7 @@ const char *LINSYS_SOLVER_NAME[] = {
 
 # include "qdldl_interface.h"
 
-// #ifdef ENABLE_MKL_PARDISO
-// # include "pardiso_interface.h"
-// # include "pardiso_loader.h"
-// #endif
+
 
 #endif /* ifdef CUDA_SUPPORT */
 
@@ -41,12 +38,6 @@ c_int load_linsys_solver(enum linsys_solver_type linsys_solver) {
   case QDLDL_SOLVER:
     // We do not load QDLDL solver. We have the source.
     return 0;
-
-// # ifdef ENABLE_MKL_PARDISO
-//   case MKL_PARDISO_SOLVER:
-//     // Load Pardiso library
-//     return lh_load_pardiso(OSQP_NULL);
-// # endif
 
   default: // QDLDL
     return 0;
@@ -74,12 +65,6 @@ c_int unload_linsys_solver(enum linsys_solver_type linsys_solver) {
 
     // We do not load QDLDL solver. We have the source.
     return 0;
-
-// # ifdef ENABLE_MKL_PARDISO
-//   case MKL_PARDISO_SOLVER:
-//     // Unload Pardiso library
-//     return lh_unload_pardiso();
-// # endif
 
   default: //  QDLDL
     return 0;
@@ -113,7 +98,6 @@ c_int init_linsys_solver(LinSysSolver      **s,
 
   case QDLDL_SOLVER:
     return init_linsys_solver_qdldl((qdldl_solver **)s, P, A, rho_vec, settings, polish);
-
 
   default: // QDLDL
     return init_linsys_solver_qdldl((qdldl_solver **)s, P, A, rho_vec, settings, polish);

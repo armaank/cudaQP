@@ -15,7 +15,7 @@ extern "C" {
 /* DATA CUSTOMIZATIONS (depending on memory manager)-----------------------   */
 
 // We do not need memory allocation functions if EMBEDDED is enabled
-# ifndef EMBEDDED
+// # ifndef EMBEDDED
 
 /* define custom printfs and memory allocation (e.g. matlab/python) */
 #  ifdef MATLAB
@@ -67,7 +67,7 @@ static void* c_calloc(size_t num, size_t size) {
     #  define c_realloc realloc
 #  endif /* ifdef MATLAB */
 
-# endif // end ifndef EMBEDDED
+// # endif // end ifndef EMBEDDED
 
 
 /* Use customized operations */
@@ -92,7 +92,7 @@ static void* c_calloc(size_t num, size_t size) {
 
 /* Use customized functions -----------------------------------------------   */
 
-# if EMBEDDED != 1
+// # if EMBEDDED != 1
 
 #  include <math.h>
 #  ifndef DFLOAT // Doubles
@@ -103,7 +103,7 @@ static void* c_calloc(size_t num, size_t size) {
 #   define c_fmod fmodf
 #  endif /* ifndef DFLOAT */
 
-# endif // end EMBEDDED
+// # endif // end EMBEDDED
 
 
 # ifdef PRINTING

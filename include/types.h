@@ -39,7 +39,7 @@ typedef struct {
 
 
 
-# ifndef EMBEDDED
+// # ifndef EMBEDDED
 
 /**
  * Polish structure
@@ -57,7 +57,7 @@ typedef struct {
   c_float     pri_res;     ///< primal residual at polished solution
   c_float     dua_res;     ///< dual residual at polished solution
 } OSQPPolish;
-# endif // ifndef EMBEDDED
+// # endif // ifndef EMBEDDED
 
 
 /**********************************
@@ -89,10 +89,10 @@ struct OSQPWorkspace_ {
   /// Linear System solver structure
   LinSysSolver *linsys_solver;
 
-# ifndef EMBEDDED
+// # ifndef EMBEDDED
   /// Polish structure
   OSQPPolish *pol;
-# endif // ifndef EMBEDDED
+// # endif // ifndef EMBEDDED
 
   /**
    * @name Vector used to store a vectorized rho parameter
@@ -103,9 +103,9 @@ struct OSQPWorkspace_ {
 
   /** @} */
 
-# if EMBEDDED != 1
+// # if EMBEDDED != 1
   OSQPVectori *constr_type; ///< Type of constraints: loose (-1), equality (1), inequality (0)
-# endif // if EMBEDDED != 1
+// # endif // if EMBEDDED != 1
 
   /**
    * @name Iterates
@@ -214,11 +214,11 @@ struct linsys_solver {
   void (*warm_start)(LinSysSolver      *self,
                      const OSQPVectorf *x);
 
-# ifndef EMBEDDED
+// # ifndef EMBEDDED
   void (*free)(LinSysSolver *self);         ///< free linear system solver (only in desktop version)
-# endif // ifndef EMBEDDED
+// # endif // ifndef EMBEDDED
 
-# if EMBEDDED != 1
+// # if EMBEDDED != 1
   c_int (*update_matrices)(LinSysSolver     *self,
                            const OSQPMatrix *P,            ///< update matrices P
                            const OSQPMatrix *A);           //   and A in the solver
@@ -226,11 +226,11 @@ struct linsys_solver {
   c_int (*update_rho_vec)(LinSysSolver      *self,
                           const OSQPVectorf *rho_vec,
                           c_float            rho_sc);  ///< Update rho_vec
-# endif // if EMBEDDED != 1
+// # endif // if EMBEDDED != 1
 
-# ifndef EMBEDDED
+// # ifndef EMBEDDED
   c_int nthreads; ///< number of threads active
-# endif // ifndef EMBEDDED
+// # endif // ifndef EMBEDDED
 };
 
 
