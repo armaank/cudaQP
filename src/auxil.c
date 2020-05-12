@@ -975,8 +975,7 @@ c_int validate_linsys_solver(c_int linsys_solver) {
 
 #else /* ifdef CUDA_SUPPORT */
 
-  if ((linsys_solver != QDLDL_SOLVER) &&
-      (linsys_solver != MKL_PARDISO_SOLVER)) {
+  if ((linsys_solver != QDLDL_SOLVER) ){
     return 1;
   }
 
