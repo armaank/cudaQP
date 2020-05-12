@@ -11,6 +11,7 @@
 # define ALPHA (1.6)
 
 # define LINSYS_SOLVER (LDL_SOLVER)
+// note add LINSYS_SOLVER (CUDA_PCG) to set linsys solver to pcg
 
 # define RHO_MIN (1e-06)
 # define RHO_MAX (1e06)
@@ -57,6 +58,7 @@
 /*************************
 * Linear System Solvers *
 *************************/
+// add CUDA_PCG here
 enum linsys_solver_type { LDL_SOLVER };
 extern const char * LINSYS_SOLVER_NAME[];
 
