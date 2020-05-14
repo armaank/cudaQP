@@ -13,7 +13,7 @@ static c_float compute_tolerance(cudapcg_solver *s, c_int admm_iter)
     c_float eps;
     c_float rhs_norm;
 
-    /* compute the norm of RHS of the linear system */
+    /* Compute the norm of RHS of the linear system */
     s->vector_norm(s->d_rhs, s->n, &rhs_norm);
 
     if (s->polish) return c_max(rhs_norm * CUDA_PCG_POLISH_ACCURACY, CUDA_PCG_EPS_MIN);
@@ -27,14 +27,14 @@ static c_float compute_tolerance(cudapcg_solver *s, c_int admm_iter)
         eps = c_max(eps, CUDA_PCG_EPS_MIN);
         break;
 
-    /* residual strategy */
+    /* Residual strategy */
     case RESIDUAL_STRATEGY:
         if (admm_iter == 1)
         {
             /* In case rhs = 0.0 we don't want to set eps_prev to 0.0 */
             if (rhs_norm < CUDA_PCG_EPS_MIN)
                 s->eps_prev = 1.0;
-            else
+            else 
                 s->eps_prev = rhs_norm * s->reduction_factor;
             /* Return early since scaled_pri_res and scaled_dua_res are meaningless before the first ADMM iteration */
             return s->eps_prev;
@@ -54,7 +54,7 @@ static c_float compute_tolerance(cudapcg_solver *s, c_int admm_iter)
 }
 
 /* d_rhs = d_b1 + A' * rho * d_b2 */
-static void compute_rhs(cudapcg_solver *s, c_float *d_b)
+static void compute_rhs(cudapcg_solver *s, c_float *d_b) 
 {
 
     c_int n = s->n;
@@ -86,7 +86,7 @@ static void compute_rhs(cudapcg_solver *s, c_float *d_b)
 
 
 /* api fcns as perscribed by the osqp documentation */
-c_int init_linsys_solver_cudapcg(cudapcg_solver **sp,
+c_int init_linsys_solver_cudapcg(cudapcg_solver **sp, 
                                  const OSQPMatrix *P,
                                  const OSQPMatrix *A,
                                  const OSQPVectorf *rho_vec,
@@ -105,7 +105,7 @@ c_int init_linsys_solver_cudapcg(cudapcg_solver **sp,
     /* assign type and the number of threads */
     s->type = CUDA_PCG_SOLVER;
     s->nthreads = 1; // dummy, this changes for target device
-
+ 
     /* dimensions */
     n = OSQPMatrix_get_n(P);
     m = OSQPMatrix_get_m(A);
@@ -143,7 +143,7 @@ c_int init_linsys_solver_cudapcg(cudapcg_solver **sp,
         s->h_sigma = &settings->sigma;
         s->h_rho = &settings->rho;
     }
-    else
+    else 
     {
         s->h_sigma = &settings->delta;
         s->h_rho = (c_float*) c_malloc(sizeof(c_float));
@@ -151,7 +151,7 @@ c_int init_linsys_solver_cudapcg(cudapcg_solver **sp,
     }
 
     /* allocate pcg iterates */
-    cuda_calloc((void **) &s->d_x, n * sizeof(c_float));
+    cuda_calloc((void **) &s->d_x, n * sizeof(c_float));    
     cuda_malloc((void **) &s->d_p, n * sizeof(c_float));
     cuda_malloc((void **) &s->d_Kp, n * sizeof(c_float));
     cuda_malloc((void **) &s->d_y, n * sizeof(c_float));
@@ -240,7 +240,7 @@ c_int solve_linsys_cudapcg(cudapcg_solver *s, OSQPVectorf *b,c_int admm_iter)
         cuda_vec_mult_sc(b->d_val + s->n, *s->h_rho, s->m);
     }
 
-    if (pcg_iter == 0)
+    if (pcg_iter == 0) 
         s->zero_pcg_iter++;
 
     return 0;
@@ -288,7 +288,7 @@ void free_linsys_solver_cudapcg(cudapcg_solver *s)
 }
 
 
-c_int update_linsys_solver_matrices_cudapcg(cudapcg_solver *s, const OSQPMatrix *P, const OSQPMatrix *A)
+c_int update_linsys_solver_matrices_cudapcg(cudapcg_solver *s, const OSQPMatrix *P, const OSQPMatrix *A) 
 {
 
     if (s->precondition) cuda_pcg_update_precond(s, 1, 1, 0);

@@ -1,18 +1,4 @@
-/**
- *  Copyright (c) 2019 ETH Zurich, Automatic Control Lab, Michel Schubiger, Goran Banjac.
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- */
+/* constants for cuda_pgh */
 
 #ifndef CUDA_PCG_CONSTANTS_H
 # define CUDA_PCG_CONSTANTS_H
@@ -28,23 +14,17 @@ extern "C" {
 #define CUDA_PCG_NORM                (0)     /* 0: inf;  2: Euclidean */
 #define CUDA_PCG_EPS_MIN             (1e-7)
 
-/* Tolerance parameters */
+/* tolerance parameters */
 #define CUDA_PCG_START_TOL           (50)
 #define CUDA_PCG_DECAY_RATE          (2.75)
 #define CUDA_PCG_REDUCTION_FACTOR    (0.15)
 #define CUDA_PCG_REDUCTION_THRESHOLD (10)
 
-/* Polishing parameters */
+/* polish parameters */
 #define CUDA_PCG_POLISH_ACCURACY     (1e-5)
 #define CUDA_PCG_POLISH_MAX_ITER     (1e3)
 
-
-// GB: These values should be passed from the main OSQP interface.
-
-
-/****************************
- * PCG Tolerance Strategies *
- ****************************/
+/* pcg tolerance stragegies*/
 enum pcg_eps_strategy { SCS_STRATEGY, RESIDUAL_STRATEGY };
 
 
