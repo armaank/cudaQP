@@ -1,2 +1,14 @@
 *.ipynb_checkpoints/*
 *.gch*
+*.cmake
+CMakeFiles/*
+Makefile
+CMakeCache.txt
+./out
+*.aux
+*.bbl
+*.gz
+*.log
+*.dvi
+*.blg
+

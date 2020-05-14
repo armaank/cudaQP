@@ -1,8 +1,0 @@
--introduction
--svm
---introduce problem
---turn svm into qp
--qp solver - cpu algorithm
--qp solver - gpu algorithm
--results
--conclusion
