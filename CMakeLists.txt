@@ -32,7 +32,7 @@ option (COVERAGE "Perform code coverage" OFF)
 # endif()
 
 # Is the CUDA support enabled?
-option (CUDA_SUPPORT "Enable CUDA support" OFF)
+option (CUDA_SUPPORT "Enable CUDA support" ON)
 message(STATUS "CUDA support is ${CUDA_SUPPORT}")
 
 # Is printing enabled?
