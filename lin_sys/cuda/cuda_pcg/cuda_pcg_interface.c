@@ -84,7 +84,6 @@ static void compute_rhs(cudapcg_solver *s, c_float *d_b)
     cuda_mat_Axpy(s->At, s->d_z, s->d_rhs, 1.0, 1.0);
 }
 
-
 /* api fcns as perscribed by the osqp documentation */
 c_int init_linsys_solver_cudapcg(cudapcg_solver **sp,
                                  const OSQPMatrix *P,
@@ -246,12 +245,10 @@ c_int solve_linsys_cudapcg(cudapcg_solver *s, OSQPVectorf *b,c_int admm_iter)
     return 0;
 }
 
-/* remove me */
 void warm_start_linsys_solver_cudapcg(cudapcg_solver *s, const OSQPVectorf *x)
 {
     cuda_vec_copy_d2d(s->d_x, x->d_val, x->length);
 }
-
 
 void free_linsys_solver_cudapcg(cudapcg_solver *s)
 {
@@ -287,14 +284,12 @@ void free_linsys_solver_cudapcg(cudapcg_solver *s)
     }
 }
 
-
 c_int update_linsys_solver_matrices_cudapcg(cudapcg_solver *s, const OSQPMatrix *P, const OSQPMatrix *A)
 {
 
     if (s->precondition) cuda_pcg_update_precond(s, 1, 1, 0);
     return 0;
 }
-
 
 c_int update_linsys_solver_rho_vec_cudapcg(cudapcg_solver *s, const OSQPVectorf *rho_vec, c_float rho_sc)
 {
