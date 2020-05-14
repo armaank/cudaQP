@@ -1,0 +1,1 @@
+/usr/bin/cc   -rdynamic CMakeFiles/osqp_tester.dir/svm/osqp_tester.c.o  -o out/osqp_tester out/libosqp.a  -lm -lrt -ldl 

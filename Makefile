@@ -92,6 +92,16 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -102,16 +112,6 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -194,6 +194,19 @@ osqp_demo: cmake_check_build_system
 osqp_demo/fast:
 	$(MAKE) -f CMakeFiles/osqp_demo.dir/build.make CMakeFiles/osqp_demo.dir/build
 .PHONY : osqp_demo/fast
+
+#=============================================================================
+# Target rules for targets named osqp_tester
+
+# Build rule for target.
+osqp_tester: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 osqp_tester
+.PHONY : osqp_tester
+
+# fast build rule for target.
+osqp_tester/fast:
+	$(MAKE) -f CMakeFiles/osqp_tester.dir/build.make CMakeFiles/osqp_tester.dir/build
+.PHONY : osqp_tester/fast
 
 #=============================================================================
 # Target rules for targets named osqp_algebra
@@ -626,6 +639,33 @@ src/util.c.s:
 	$(MAKE) -f CMakeFiles/osqpstatic.dir/build.make CMakeFiles/osqpstatic.dir/src/util.c.s
 .PHONY : src/util.c.s
 
+svm/osqp_tester.o: svm/osqp_tester.c.o
+
+.PHONY : svm/osqp_tester.o
+
+# target to build an object file
+svm/osqp_tester.c.o:
+	$(MAKE) -f CMakeFiles/osqp_tester.dir/build.make CMakeFiles/osqp_tester.dir/svm/osqp_tester.c.o
+.PHONY : svm/osqp_tester.c.o
+
+svm/osqp_tester.i: svm/osqp_tester.c.i
+
+.PHONY : svm/osqp_tester.i
+
+# target to preprocess a source file
+svm/osqp_tester.c.i:
+	$(MAKE) -f CMakeFiles/osqp_tester.dir/build.make CMakeFiles/osqp_tester.dir/svm/osqp_tester.c.i
+.PHONY : svm/osqp_tester.c.i
+
+svm/osqp_tester.s: svm/osqp_tester.c.s
+
+.PHONY : svm/osqp_tester.s
+
+# target to generate assembly for a file
+svm/osqp_tester.c.s:
+	$(MAKE) -f CMakeFiles/osqp_tester.dir/build.make CMakeFiles/osqp_tester.dir/svm/osqp_tester.c.s
+.PHONY : svm/osqp_tester.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -635,11 +675,12 @@ help:
 	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... install"
+	@echo "... list_install_components"
 	@echo "... osqp"
 	@echo "... edit_cache"
 	@echo "... osqpstatic"
-	@echo "... list_install_components"
 	@echo "... osqp_demo"
+	@echo "... osqp_tester"
 	@echo "... rebuild_cache"
 	@echo "... osqp_algebra"
 	@echo "... kkt_common"
@@ -682,6 +723,9 @@ help:
 	@echo "... src/util.o"
 	@echo "... src/util.i"
 	@echo "... src/util.s"
+	@echo "... svm/osqp_tester.o"
+	@echo "... svm/osqp_tester.i"
+	@echo "... svm/osqp_tester.s"
 .PHONY : help
 
 

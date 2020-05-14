@@ -277,6 +277,65 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/osqp-config.cmake
 
 
 
+# SVM TEST
+find_package(PythonInterp)
+if(NOT PYTHONINTERP_FOUND)
+    message( FATAL_ERROR "You need python installed to generate unittests. If you do not want to compile the unittests pass -DUNITTESTS=OFF to cmake." )
+endif()
+
+INCLUDE(FindPythonModule)
+find_python_module(numpy)
+IF(NOT NUMPY_FOUND)
+    message( FATAL_ERROR "You need numpy python module installed to generate unittests. If you do not want to compile the unittests pass -DUNITTESTS=OFF to cmake." )
+ENDIF()
+
+find_python_module(scipy)
+# Check scipy version for sparse.random functionalities
+IF((NOT SCIPY_FOUND) OR (SCIPY_VERSION VERSION_LESS 0.17.0))
+    message( FATAL_ERROR "You need scipy python module installed to generate unittests. If you do not want to compile the unittests pass -DUNITTESTS=OFF to cmake." )
+ENDIF()
+
+find_python_module(__future__)
+IF(NOT __FUTURE___FOUND)
+    message( FATAL_ERROR "You need future python module installed to generate unittests. If you do not want to compile the unittests pass -DUNITTESTS=OFF to cmake." )
+ENDIF()
+
+# Add test_headers and codegen_test_headers
+add_subdirectory(svm)
+
+# Generating tests.stamp so that the test data are not always generated
+# set(data_timestamp ${PROJECT_SOURCE_DIR}/tests/tests_data.stamp)
+add_custom_command(
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/svm
+    COMMAND ${PYTHON_EXECUTABLE} generate_tests_data.py
+    DEPENDS ${PROJECT_SOURCE_DIR}/svm/generate_tests_data.py
+    OUTPUT ${codegen_test_headers}
+    COMMENT "Generating unittests data files using Python"
+)
+# Direct linear solver testing
+include_directories(svm)
+
+add_executable(osqp_tester
+                ${PROJECT_SOURCE_DIR}/svm/osqp_tester.c
+                ${PROJECT_SOURCE_DIR}/svm/osqp_tester.h
+                ${PROJECT_SOURCE_DIR}/svm/minunit.h
+                ${linsys_solvers_includes}
+                ${test_headers}
+                ${codegen_test_headers}
+)
+
+target_include_directories(osqp_tester PRIVATE
+                            ${linsys_solvers_includes}
+                            ${algebra_impl_includes}
+                            ${csc_tools_includes}
+)
+
+target_link_libraries (osqp_tester osqpstatic)
+
+
+
+
+
 # Add uninstall command
 # ----------------------------------------------
 if(NOT TARGET uninstall)

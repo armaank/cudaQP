@@ -110,6 +110,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/include/cmake_install.cmake")
   include("/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/cmake_install.cmake")
   include("/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/cmake_install.cmake")
+  include("/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/svm/cmake_install.cmake")
 
 endif()
 
