@@ -1,19 +1,4 @@
-/**
- *  Copyright (c) 2019 ETH Zurich, Automatic Control Lab, Michel Schubiger, Goran Banjac.
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- */
-
+/* utils for csr representation of matricies on target device */
 #ifndef CUDA_CSR_H
 # define CUDA_CSR_H
 
@@ -30,7 +15,7 @@ void cuda_mat_init_P(const csc  *mat,
                      c_float   **d_P_triu_val,
                      c_int     **d_P_triu_to_full_ind,
                      c_int     **d_P_diag_ind);
-                     
+
 void cuda_mat_init_A(const csc  *mat,
                      csr       **A,
                      csr       **At,

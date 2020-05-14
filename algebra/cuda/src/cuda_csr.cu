@@ -14,6 +14,8 @@
  *  limitations under the License.
  */
 
+
+/* csr matrix operations */
 #include "cuda_csr.h"
 #include "cuda_configure.h"
 #include "cuda_handler.h"
