@@ -109,7 +109,7 @@ CMakeFiles/osqpstatic.dir/all: lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/
 CMakeFiles/osqpstatic.dir/all: lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldlobject.dir/all
 	$(MAKE) -f CMakeFiles/osqpstatic.dir/build.make CMakeFiles/osqpstatic.dir/depend
 	$(MAKE) -f CMakeFiles/osqpstatic.dir/build.make CMakeFiles/osqpstatic.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles --progress-num=36,37,38,39,40,41,42,43,44,45,46 "Built target osqpstatic"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles --progress-num=33,34,35,36,37,38,39,40,41,42,43 "Built target osqpstatic"
 .PHONY : CMakeFiles/osqpstatic.dir/all
 
 # Include target in all.
@@ -177,39 +177,39 @@ clean: CMakeFiles/osqp_demo.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/osqp_tester.dir
+# Target rules for target CMakeFiles/svm_benchmark.dir
 
 # All Build rule for target.
-CMakeFiles/osqp_tester.dir/all: CMakeFiles/osqpstatic.dir/all
-	$(MAKE) -f CMakeFiles/osqp_tester.dir/build.make CMakeFiles/osqp_tester.dir/depend
-	$(MAKE) -f CMakeFiles/osqp_tester.dir/build.make CMakeFiles/osqp_tester.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles --progress-num=33,34,35 "Built target osqp_tester"
-.PHONY : CMakeFiles/osqp_tester.dir/all
+CMakeFiles/svm_benchmark.dir/all: CMakeFiles/osqpstatic.dir/all
+	$(MAKE) -f CMakeFiles/svm_benchmark.dir/build.make CMakeFiles/svm_benchmark.dir/depend
+	$(MAKE) -f CMakeFiles/svm_benchmark.dir/build.make CMakeFiles/svm_benchmark.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles --progress-num=51,52,53 "Built target svm_benchmark"
+.PHONY : CMakeFiles/svm_benchmark.dir/all
 
 # Include target in all.
-all: CMakeFiles/osqp_tester.dir/all
+all: CMakeFiles/svm_benchmark.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/osqp_tester.dir/rule: cmake_check_build_system
+CMakeFiles/svm_benchmark.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles 34
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/osqp_tester.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/svm_benchmark.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles 0
-.PHONY : CMakeFiles/osqp_tester.dir/rule
+.PHONY : CMakeFiles/svm_benchmark.dir/rule
 
 # Convenience name for target.
-osqp_tester: CMakeFiles/osqp_tester.dir/rule
+svm_benchmark: CMakeFiles/svm_benchmark.dir/rule
 
-.PHONY : osqp_tester
-
-# clean rule for target.
-CMakeFiles/osqp_tester.dir/clean:
-	$(MAKE) -f CMakeFiles/osqp_tester.dir/build.make CMakeFiles/osqp_tester.dir/clean
-.PHONY : CMakeFiles/osqp_tester.dir/clean
+.PHONY : svm_benchmark
 
 # clean rule for target.
-clean: CMakeFiles/osqp_tester.dir/clean
+CMakeFiles/svm_benchmark.dir/clean:
+	$(MAKE) -f CMakeFiles/svm_benchmark.dir/build.make CMakeFiles/svm_benchmark.dir/clean
+.PHONY : CMakeFiles/svm_benchmark.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/svm_benchmark.dir/clean
 
 .PHONY : clean
 
@@ -528,7 +528,7 @@ lin_sys/direct/qdldl/qdldl_sources/preinstall:
 lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldlstatic.dir/all:
 	$(MAKE) -f lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldlstatic.dir/build.make lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldlstatic.dir/depend
 	$(MAKE) -f lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldlstatic.dir/build.make lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldlstatic.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles --progress-num=52,53 "Built target qdldlstatic"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles --progress-num=49,50 "Built target qdldlstatic"
 .PHONY : lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldlstatic.dir/all
 
 # Include target in all.
@@ -565,7 +565,7 @@ clean: lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldlstatic.dir/clean
 lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/all:
 	$(MAKE) -f lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/build.make lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/depend
 	$(MAKE) -f lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/build.make lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles --progress-num=47,48 "Built target qdldl"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles --progress-num=44,45 "Built target qdldl"
 .PHONY : lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/all
 
 # Include target in all.
@@ -602,7 +602,7 @@ clean: lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/clean
 lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl_example.dir/all: lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldlstatic.dir/all
 	$(MAKE) -f lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl_example.dir/build.make lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl_example.dir/depend
 	$(MAKE) -f lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl_example.dir/build.make lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl_example.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles --progress-num=49,50 "Built target qdldl_example"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles --progress-num=46,47 "Built target qdldl_example"
 .PHONY : lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl_example.dir/all
 
 # Include target in all.
@@ -639,7 +639,7 @@ clean: lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl_example.dir/clean
 lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldlobject.dir/all:
 	$(MAKE) -f lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldlobject.dir/build.make lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldlobject.dir/depend
 	$(MAKE) -f lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldlobject.dir/build.make lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldlobject.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles --progress-num=51 "Built target qdldlobject"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles --progress-num=48 "Built target qdldlobject"
 .PHONY : lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldlobject.dir/all
 
 # Include target in all.
@@ -702,208 +702,40 @@ clean: lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/uninstall.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Directory level rules for directory svm
+# Directory level rules for directory benchmarks
 
 # Convenience name for "all" pass in the directory.
-svm/all: svm/basic_qp/all
-svm/all: svm/basic_svm/all
-svm/all: svm/lin_alg/all
-svm/all: svm/non_cvx/all
-svm/all: svm/primal_dual_infeasibility/all
-svm/all: svm/primal_infeasibility/all
-svm/all: svm/solve_linsys/all
-svm/all: svm/unconstrained/all
-svm/all: svm/update_matrices/all
+benchmarks/all: benchmarks/svm/all
 
-.PHONY : svm/all
+.PHONY : benchmarks/all
 
 # Convenience name for "clean" pass in the directory.
-svm/clean: svm/basic_qp/clean
-svm/clean: svm/basic_svm/clean
-svm/clean: svm/lin_alg/clean
-svm/clean: svm/non_cvx/clean
-svm/clean: svm/primal_dual_infeasibility/clean
-svm/clean: svm/primal_infeasibility/clean
-svm/clean: svm/solve_linsys/clean
-svm/clean: svm/unconstrained/clean
-svm/clean: svm/update_matrices/clean
+benchmarks/clean: benchmarks/svm/clean
 
-.PHONY : svm/clean
+.PHONY : benchmarks/clean
 
 # Convenience name for "preinstall" pass in the directory.
-svm/preinstall: svm/basic_qp/preinstall
-svm/preinstall: svm/basic_svm/preinstall
-svm/preinstall: svm/lin_alg/preinstall
-svm/preinstall: svm/non_cvx/preinstall
-svm/preinstall: svm/primal_dual_infeasibility/preinstall
-svm/preinstall: svm/primal_infeasibility/preinstall
-svm/preinstall: svm/solve_linsys/preinstall
-svm/preinstall: svm/unconstrained/preinstall
-svm/preinstall: svm/update_matrices/preinstall
+benchmarks/preinstall: benchmarks/svm/preinstall
 
-.PHONY : svm/preinstall
+.PHONY : benchmarks/preinstall
 
 #=============================================================================
-# Directory level rules for directory svm/basic_qp
+# Directory level rules for directory benchmarks/svm
 
 # Convenience name for "all" pass in the directory.
-svm/basic_qp/all:
+benchmarks/svm/all:
 
-.PHONY : svm/basic_qp/all
-
-# Convenience name for "clean" pass in the directory.
-svm/basic_qp/clean:
-
-.PHONY : svm/basic_qp/clean
-
-# Convenience name for "preinstall" pass in the directory.
-svm/basic_qp/preinstall:
-
-.PHONY : svm/basic_qp/preinstall
-
-#=============================================================================
-# Directory level rules for directory svm/basic_svm
-
-# Convenience name for "all" pass in the directory.
-svm/basic_svm/all:
-
-.PHONY : svm/basic_svm/all
+.PHONY : benchmarks/svm/all
 
 # Convenience name for "clean" pass in the directory.
-svm/basic_svm/clean:
+benchmarks/svm/clean:
 
-.PHONY : svm/basic_svm/clean
-
-# Convenience name for "preinstall" pass in the directory.
-svm/basic_svm/preinstall:
-
-.PHONY : svm/basic_svm/preinstall
-
-#=============================================================================
-# Directory level rules for directory svm/lin_alg
-
-# Convenience name for "all" pass in the directory.
-svm/lin_alg/all:
-
-.PHONY : svm/lin_alg/all
-
-# Convenience name for "clean" pass in the directory.
-svm/lin_alg/clean:
-
-.PHONY : svm/lin_alg/clean
+.PHONY : benchmarks/svm/clean
 
 # Convenience name for "preinstall" pass in the directory.
-svm/lin_alg/preinstall:
+benchmarks/svm/preinstall:
 
-.PHONY : svm/lin_alg/preinstall
-
-#=============================================================================
-# Directory level rules for directory svm/non_cvx
-
-# Convenience name for "all" pass in the directory.
-svm/non_cvx/all:
-
-.PHONY : svm/non_cvx/all
-
-# Convenience name for "clean" pass in the directory.
-svm/non_cvx/clean:
-
-.PHONY : svm/non_cvx/clean
-
-# Convenience name for "preinstall" pass in the directory.
-svm/non_cvx/preinstall:
-
-.PHONY : svm/non_cvx/preinstall
-
-#=============================================================================
-# Directory level rules for directory svm/primal_dual_infeasibility
-
-# Convenience name for "all" pass in the directory.
-svm/primal_dual_infeasibility/all:
-
-.PHONY : svm/primal_dual_infeasibility/all
-
-# Convenience name for "clean" pass in the directory.
-svm/primal_dual_infeasibility/clean:
-
-.PHONY : svm/primal_dual_infeasibility/clean
-
-# Convenience name for "preinstall" pass in the directory.
-svm/primal_dual_infeasibility/preinstall:
-
-.PHONY : svm/primal_dual_infeasibility/preinstall
-
-#=============================================================================
-# Directory level rules for directory svm/primal_infeasibility
-
-# Convenience name for "all" pass in the directory.
-svm/primal_infeasibility/all:
-
-.PHONY : svm/primal_infeasibility/all
-
-# Convenience name for "clean" pass in the directory.
-svm/primal_infeasibility/clean:
-
-.PHONY : svm/primal_infeasibility/clean
-
-# Convenience name for "preinstall" pass in the directory.
-svm/primal_infeasibility/preinstall:
-
-.PHONY : svm/primal_infeasibility/preinstall
-
-#=============================================================================
-# Directory level rules for directory svm/solve_linsys
-
-# Convenience name for "all" pass in the directory.
-svm/solve_linsys/all:
-
-.PHONY : svm/solve_linsys/all
-
-# Convenience name for "clean" pass in the directory.
-svm/solve_linsys/clean:
-
-.PHONY : svm/solve_linsys/clean
-
-# Convenience name for "preinstall" pass in the directory.
-svm/solve_linsys/preinstall:
-
-.PHONY : svm/solve_linsys/preinstall
-
-#=============================================================================
-# Directory level rules for directory svm/unconstrained
-
-# Convenience name for "all" pass in the directory.
-svm/unconstrained/all:
-
-.PHONY : svm/unconstrained/all
-
-# Convenience name for "clean" pass in the directory.
-svm/unconstrained/clean:
-
-.PHONY : svm/unconstrained/clean
-
-# Convenience name for "preinstall" pass in the directory.
-svm/unconstrained/preinstall:
-
-.PHONY : svm/unconstrained/preinstall
-
-#=============================================================================
-# Directory level rules for directory svm/update_matrices
-
-# Convenience name for "all" pass in the directory.
-svm/update_matrices/all:
-
-.PHONY : svm/update_matrices/all
-
-# Convenience name for "clean" pass in the directory.
-svm/update_matrices/clean:
-
-.PHONY : svm/update_matrices/clean
-
-# Convenience name for "preinstall" pass in the directory.
-svm/update_matrices/preinstall:
-
-.PHONY : svm/update_matrices/preinstall
+.PHONY : benchmarks/svm/preinstall
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -6,5 +6,5 @@ C_FLAGS = -fPIC
 
 C_DEFINES = -Dosqp_EXPORTS
 
-C_INCLUDES = -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/svm 
+C_INCLUDES = -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/benchmarks 
 

@@ -196,17 +196,17 @@ osqp_demo/fast:
 .PHONY : osqp_demo/fast
 
 #=============================================================================
-# Target rules for targets named osqp_tester
+# Target rules for targets named svm_benchmark
 
 # Build rule for target.
-osqp_tester: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 osqp_tester
-.PHONY : osqp_tester
+svm_benchmark: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 svm_benchmark
+.PHONY : svm_benchmark
 
 # fast build rule for target.
-osqp_tester/fast:
-	$(MAKE) -f CMakeFiles/osqp_tester.dir/build.make CMakeFiles/osqp_tester.dir/build
-.PHONY : osqp_tester/fast
+svm_benchmark/fast:
+	$(MAKE) -f CMakeFiles/svm_benchmark.dir/build.make CMakeFiles/svm_benchmark.dir/build
+.PHONY : svm_benchmark/fast
 
 #=============================================================================
 # Target rules for targets named osqp_algebra
@@ -311,6 +311,33 @@ uninstall: cmake_check_build_system
 uninstall/fast:
 	$(MAKE) -f lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/uninstall.dir/build.make lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/uninstall.dir/build
 .PHONY : uninstall/fast
+
+benchmarks/osqp_tester.o: benchmarks/osqp_tester.c.o
+
+.PHONY : benchmarks/osqp_tester.o
+
+# target to build an object file
+benchmarks/osqp_tester.c.o:
+	$(MAKE) -f CMakeFiles/svm_benchmark.dir/build.make CMakeFiles/svm_benchmark.dir/benchmarks/osqp_tester.c.o
+.PHONY : benchmarks/osqp_tester.c.o
+
+benchmarks/osqp_tester.i: benchmarks/osqp_tester.c.i
+
+.PHONY : benchmarks/osqp_tester.i
+
+# target to preprocess a source file
+benchmarks/osqp_tester.c.i:
+	$(MAKE) -f CMakeFiles/svm_benchmark.dir/build.make CMakeFiles/svm_benchmark.dir/benchmarks/osqp_tester.c.i
+.PHONY : benchmarks/osqp_tester.c.i
+
+benchmarks/osqp_tester.s: benchmarks/osqp_tester.c.s
+
+.PHONY : benchmarks/osqp_tester.s
+
+# target to generate assembly for a file
+benchmarks/osqp_tester.c.s:
+	$(MAKE) -f CMakeFiles/svm_benchmark.dir/build.make CMakeFiles/svm_benchmark.dir/benchmarks/osqp_tester.c.s
+.PHONY : benchmarks/osqp_tester.c.s
 
 examples/osqp_demo.o: examples/osqp_demo.c.o
 
@@ -639,33 +666,6 @@ src/util.c.s:
 	$(MAKE) -f CMakeFiles/osqpstatic.dir/build.make CMakeFiles/osqpstatic.dir/src/util.c.s
 .PHONY : src/util.c.s
 
-svm/osqp_tester.o: svm/osqp_tester.c.o
-
-.PHONY : svm/osqp_tester.o
-
-# target to build an object file
-svm/osqp_tester.c.o:
-	$(MAKE) -f CMakeFiles/osqp_tester.dir/build.make CMakeFiles/osqp_tester.dir/svm/osqp_tester.c.o
-.PHONY : svm/osqp_tester.c.o
-
-svm/osqp_tester.i: svm/osqp_tester.c.i
-
-.PHONY : svm/osqp_tester.i
-
-# target to preprocess a source file
-svm/osqp_tester.c.i:
-	$(MAKE) -f CMakeFiles/osqp_tester.dir/build.make CMakeFiles/osqp_tester.dir/svm/osqp_tester.c.i
-.PHONY : svm/osqp_tester.c.i
-
-svm/osqp_tester.s: svm/osqp_tester.c.s
-
-.PHONY : svm/osqp_tester.s
-
-# target to generate assembly for a file
-svm/osqp_tester.c.s:
-	$(MAKE) -f CMakeFiles/osqp_tester.dir/build.make CMakeFiles/osqp_tester.dir/svm/osqp_tester.c.s
-.PHONY : svm/osqp_tester.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -680,7 +680,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... osqpstatic"
 	@echo "... osqp_demo"
-	@echo "... osqp_tester"
+	@echo "... svm_benchmark"
 	@echo "... rebuild_cache"
 	@echo "... osqp_algebra"
 	@echo "... kkt_common"
@@ -690,6 +690,9 @@ help:
 	@echo "... qdldl_example"
 	@echo "... qdldlobject"
 	@echo "... uninstall"
+	@echo "... benchmarks/osqp_tester.o"
+	@echo "... benchmarks/osqp_tester.i"
+	@echo "... benchmarks/osqp_tester.s"
 	@echo "... examples/osqp_demo.o"
 	@echo "... examples/osqp_demo.i"
 	@echo "... examples/osqp_demo.s"
@@ -723,9 +726,6 @@ help:
 	@echo "... src/util.o"
 	@echo "... src/util.i"
 	@echo "... src/util.s"
-	@echo "... svm/osqp_tester.o"
-	@echo "... svm/osqp_tester.i"
-	@echo "... svm/osqp_tester.s"
 .PHONY : help
 
 

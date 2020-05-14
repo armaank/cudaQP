@@ -277,7 +277,7 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/osqp-config.cmake
 
 
 
-# SVM TEST
+# Generate SVM benchmarks 
 find_package(PythonInterp)
 if(NOT PYTHONINTERP_FOUND)
     message( FATAL_ERROR "You need python installed to generate unittests. If you do not want to compile the unittests pass -DUNITTESTS=OFF to cmake." )
@@ -301,40 +301,36 @@ IF(NOT __FUTURE___FOUND)
 ENDIF()
 
 # Add test_headers and codegen_test_headers
-add_subdirectory(svm)
+add_subdirectory(benchmarks)
 
 # Generating tests.stamp so that the test data are not always generated
 # set(data_timestamp ${PROJECT_SOURCE_DIR}/tests/tests_data.stamp)
 add_custom_command(
-    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/svm
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/benchmarks
     COMMAND ${PYTHON_EXECUTABLE} generate_tests_data.py
-    DEPENDS ${PROJECT_SOURCE_DIR}/svm/generate_tests_data.py
+    DEPENDS ${PROJECT_SOURCE_DIR}/benchmarks/generate_tests_data.py
     OUTPUT ${codegen_test_headers}
     COMMENT "Generating unittests data files using Python"
 )
 # Direct linear solver testing
-include_directories(svm)
+include_directories(benchmarks)
 
-add_executable(osqp_tester
-                ${PROJECT_SOURCE_DIR}/svm/osqp_tester.c
-                ${PROJECT_SOURCE_DIR}/svm/osqp_tester.h
-                ${PROJECT_SOURCE_DIR}/svm/minunit.h
+add_executable(svm_benchmark
+                ${PROJECT_SOURCE_DIR}/benchmarks/osqp_tester.c
+                ${PROJECT_SOURCE_DIR}/benchmarks/osqp_tester.h
+                ${PROJECT_SOURCE_DIR}/benchmarks/minunit.h
                 ${linsys_solvers_includes}
                 ${test_headers}
                 ${codegen_test_headers}
 )
 
-target_include_directories(osqp_tester PRIVATE
+target_include_directories(svm_benchmark PRIVATE
                             ${linsys_solvers_includes}
                             ${algebra_impl_includes}
                             ${csc_tools_includes}
 )
 
-target_link_libraries (osqp_tester osqpstatic)
-
-
-
-
+target_link_libraries (svm_benchmark osqpstatic)
 
 # Add uninstall command
 # ----------------------------------------------

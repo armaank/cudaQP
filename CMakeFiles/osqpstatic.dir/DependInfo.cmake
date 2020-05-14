@@ -24,7 +24,7 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   "lin_sys/direct/qdldl/qdldl_sources/include"
   "algebra/csc_tools"
   "include"
-  "svm"
+  "benchmarks"
   )
 
 # Targets to which this target links.

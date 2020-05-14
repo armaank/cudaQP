@@ -4,13 +4,17 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/examples/osqp_demo.c" "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles/osqp_demo.dir/examples/osqp_demo.c.o"
+  "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/benchmarks/osqp_tester.c" "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles/svm_benchmark.dir/benchmarks/osqp_tester.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
   "benchmarks"
+  "lin_sys/direct/kkt_common"
+  "lin_sys/direct/qdldl"
+  "lin_sys/direct/qdldl/qdldl_sources/include"
+  "algebra/csc_tools"
   "include"
   )
 

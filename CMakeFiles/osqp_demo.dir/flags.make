@@ -6,5 +6,5 @@ C_FLAGS = -fPIE
 
 C_DEFINES = 
 
-C_INCLUDES = -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/svm -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/include 
+C_INCLUDES = -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/benchmarks -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/include 
 
