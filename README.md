@@ -18,7 +18,7 @@ cuSparse
 CMake
 
 ```
-`cuBLAS` and `cuSPARSE` should be there, but you may need to install `numpy` and `scipy`, and possibly `gFortran` for `scipy`
+`cuBLAS` and `cuSPARSE` should be there, but you may need to install `cmake`, `numpy` and `scipy`, and possibly `gFortran` for `scipy`
 
 ## Basic Usage
 To run an SVM classifier
@@ -32,11 +32,11 @@ make
 ```
 To edit the size of the svm problem, you can edit it by modifying:
 ```
-./benchmarks/svm/generate_problem/py
+./benchmarks/svm/generate_problem.py
 ```
 and then re-run `make` at the project root directory
 
-In order to switch between using the LDL(cpu) and PCG(gpu) solver, you can directly edit `CMakeLists.txt` at the root directory to toggle the `Enable CUDA support` option. Then, re-generate the make files and run your problem. 
+In order to switch between using the LDL(cpu) and PCG(gpu) solver, you can directly edit `CMakeLists.txt` at the root directory to toggle the `Enable CUDA support` option. Then, re-generate the make files with `cmake` and run your problem. 
 
 ## References
 [1] B. Stellato, G. Banjac, P. Goulart, A. Bemporad, and S. Boyd, “OSQP: An operator splitting
