@@ -11,4 +11,4 @@ CMakeCache.txt
 *.log
 *.dvi
 *.blg
-
+*.json
