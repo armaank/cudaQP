@@ -1,4 +1,4 @@
-# Install script for directory: /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl
+# Install script for directory: /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources/cmake_install.cmake")
+  include("/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/cmake_install.cmake")
 
 endif()
 

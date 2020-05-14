@@ -6,51 +6,51 @@
 
 #IncludeRegexTransform: 
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/csc_tools/csc_math.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools/csc_math.c
 glob_opts.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/csc_tools/glob_opts.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools/glob_opts.h
 osqp.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/csc_tools/osqp.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools/osqp.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/csc_tools/csc_utils.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools/csc_utils.c
 csc_utils.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/csc_tools/csc_utils.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools/csc_utils.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/csc_tools/csc_utils.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools/csc_utils.h
 csc_type.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/csc_tools/csc_type.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools/csc_type.h
 osqp_configure.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/csc_tools/osqp_configure.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools/osqp_configure.h
 glob_opts.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/csc_tools/glob_opts.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools/glob_opts.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/default/algebra_impl.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/algebra_impl.h
 csc_math.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/default/csc_math.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/csc_math.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/default/algebra_libs.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/algebra_libs.c
 osqp_api_types.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/default/osqp_api_types.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/osqp_api_types.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/default/matrix.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/matrix.c
 osqp.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/default/osqp.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/osqp.h
 lin_alg.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/default/lin_alg.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/lin_alg.h
 algebra_impl.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/default/algebra_impl.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/algebra_impl.h
 csc_math.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/default/csc_math.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/csc_math.h
 csc_utils.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/default/csc_utils.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/csc_utils.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/default/vector.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/vector.c
 osqp.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/default/osqp.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/osqp.h
 algebra_vector.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/default/algebra_vector.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/algebra_vector.h
 algebra_impl.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/default/algebra_impl.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/algebra_impl.h
 
 algebra/csc_tools/csc_math.h
 csc_type.h

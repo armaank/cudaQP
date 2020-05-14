@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP
+CMAKE_SOURCE_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP
+CMAKE_BINARY_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -126,14 +126,14 @@ install/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(CMAKE_COMMAND) -E cmake_progress_start /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common/CMakeFiles/progress.marks
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/kkt_common/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles 0
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(CMAKE_COMMAND) -E cmake_progress_start /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/CMakeFiles /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common/CMakeFiles/progress.marks
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/kkt_common/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/kkt_common/clean
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/kkt_common/clean
 .PHONY : clean
 
 # The main clean target
@@ -143,22 +143,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/kkt_common/preinstall
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/kkt_common/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/kkt_common/preinstall
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/kkt_common/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/rule:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/rule
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/rule
 .PHONY : lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/rule
 
 # Convenience name for target.
@@ -168,7 +168,7 @@ kkt_common: lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/rule
 
 # fast build rule for target.
 kkt_common/fast:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/build.make lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/build
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/build.make lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/build
 .PHONY : kkt_common/fast
 
 kkt.o: kkt.c.o
@@ -177,7 +177,7 @@ kkt.o: kkt.c.o
 
 # target to build an object file
 kkt.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/build.make lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/kkt.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/build.make lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/kkt.c.o
 .PHONY : kkt.c.o
 
 kkt.i: kkt.c.i
@@ -186,7 +186,7 @@ kkt.i: kkt.c.i
 
 # target to preprocess a source file
 kkt.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/build.make lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/kkt.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/build.make lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/kkt.c.i
 .PHONY : kkt.c.i
 
 kkt.s: kkt.c.s
@@ -195,7 +195,7 @@ kkt.s: kkt.c.s
 
 # target to generate assembly for a file
 kkt.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/build.make lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/kkt.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/build.make lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/kkt.c.s
 .PHONY : kkt.c.s
 
 # Help Target
@@ -225,6 +225,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP
+CMAKE_SOURCE_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP
+CMAKE_BINARY_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -126,14 +126,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(CMAKE_COMMAND) -E cmake_progress_start /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/CMakeFiles/progress.marks
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles 0
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(CMAKE_COMMAND) -E cmake_progress_start /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/CMakeFiles /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/CMakeFiles/progress.marks
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/clean
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/clean
 .PHONY : clean
 
 # The main clean target
@@ -143,17 +143,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/preinstall
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/preinstall
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -179,6 +179,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/csc_tools/csc_math.c" "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/CMakeFiles/osqp_algebra.dir/csc_tools/csc_math.c.o"
-  "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/csc_tools/csc_utils.c" "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/CMakeFiles/osqp_algebra.dir/csc_tools/csc_utils.c.o"
-  "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/default/algebra_libs.c" "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/CMakeFiles/osqp_algebra.dir/default/algebra_libs.c.o"
-  "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/default/matrix.c" "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/CMakeFiles/osqp_algebra.dir/default/matrix.c.o"
-  "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/default/vector.c" "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/CMakeFiles/osqp_algebra.dir/default/vector.c.o"
+  "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools/csc_math.c" "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/CMakeFiles/osqp_algebra.dir/csc_tools/csc_math.c.o"
+  "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools/csc_utils.c" "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/CMakeFiles/osqp_algebra.dir/csc_tools/csc_utils.c.o"
+  "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/algebra_libs.c" "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/CMakeFiles/osqp_algebra.dir/default/algebra_libs.c.o"
+  "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/matrix.c" "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/CMakeFiles/osqp_algebra.dir/default/matrix.c.o"
+  "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/vector.c" "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/CMakeFiles/osqp_algebra.dir/default/vector.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

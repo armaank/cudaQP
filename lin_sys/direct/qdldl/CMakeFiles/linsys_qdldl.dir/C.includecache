@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/SuiteSparse_config.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/SuiteSparse_config.c
 glob_opts.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/glob_opts.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/glob_opts.h
 math.h
 -
 stdlib.h
@@ -16,77 +16,77 @@ stdlib.h
 stdio.h
 -
 mex.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/mex.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/mex.h
 matrix.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/matrix.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/matrix.h
 SuiteSparse_config.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/SuiteSparse_config.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/SuiteSparse_config.h
 time.h
 -
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_1.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_1.c
 amd_internal.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_internal.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_internal.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_2.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_2.c
 amd_internal.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_internal.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_internal.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_aat.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_aat.c
 amd_internal.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_internal.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_internal.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_control.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_control.c
 amd_internal.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_internal.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_internal.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_defaults.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_defaults.c
 amd_internal.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_internal.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_internal.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_info.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_info.c
 amd_internal.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_internal.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_internal.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_order.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_order.c
 amd_internal.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_internal.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_internal.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_post_tree.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_post_tree.c
 amd_internal.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_internal.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_internal.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_postorder.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_postorder.c
 amd_internal.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_internal.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_internal.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_preprocess.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_preprocess.c
 amd_internal.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_internal.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_internal.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_valid.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_valid.c
 amd_internal.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd/src/amd_internal.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_internal.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_interface.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_interface.c
 glob_opts.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/glob_opts.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/glob_opts.h
 qdldl.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl.h
 qdldl_interface.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_interface.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_interface.h
 amd.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/amd.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd.h
 kkt.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/kkt.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/kkt.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_interface.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_interface.h
 osqp.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/osqp.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/osqp.h
 types.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/types.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/types.h
 qdldl_types.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_types.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_types.h
 
 algebra/csc_tools/csc_utils.h
 csc_type.h

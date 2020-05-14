@@ -1,0 +1,222 @@
+[
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc -Dosqp_EXPORTS -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqp.dir/src/auxil.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/auxil.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/auxil.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc -Dosqp_EXPORTS -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqp.dir/src/error.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/error.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/error.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc -Dosqp_EXPORTS -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqp.dir/src/osqp_api.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/osqp_api.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/osqp_api.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc -Dosqp_EXPORTS -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqp.dir/src/proj.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/proj.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/proj.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc -Dosqp_EXPORTS -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqp.dir/src/scaling.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/scaling.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/scaling.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc -Dosqp_EXPORTS -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqp.dir/src/util.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/util.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/util.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc -Dosqp_EXPORTS -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqp.dir/src/polish.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/polish.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/polish.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc -Dosqp_EXPORTS -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqp.dir/src/lin_sys.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/lin_sys.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/lin_sys.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc -Dosqp_EXPORTS -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqp.dir/src/ctrlc.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/ctrlc.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/ctrlc.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc -Dosqp_EXPORTS -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqp.dir/lin_sys/lib_handler.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/lib_handler.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/lib_handler.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqpstatic.dir/src/auxil.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/auxil.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/auxil.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqpstatic.dir/src/error.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/error.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/error.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqpstatic.dir/src/osqp_api.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/osqp_api.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/osqp_api.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqpstatic.dir/src/proj.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/proj.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/proj.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqpstatic.dir/src/scaling.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/scaling.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/scaling.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqpstatic.dir/src/util.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/util.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/util.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqpstatic.dir/src/polish.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/polish.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/polish.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqpstatic.dir/src/lin_sys.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/lin_sys.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/lin_sys.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqpstatic.dir/src/ctrlc.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/ctrlc.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src/ctrlc.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks  -fPIC   -o CMakeFiles/osqpstatic.dir/lin_sys/lib_handler.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/lib_handler.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/lib_handler.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include  -fPIE   -o CMakeFiles/svm_benchmark.dir/benchmarks/osqp_tester.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks/osqp_tester.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/benchmarks/osqp_tester.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include  -fPIC   -o CMakeFiles/osqp_algebra.dir/default/algebra_libs.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/algebra_libs.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/algebra_libs.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include  -fPIC   -o CMakeFiles/osqp_algebra.dir/default/matrix.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/matrix.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/matrix.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include  -fPIC   -o CMakeFiles/osqp_algebra.dir/default/vector.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/vector.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/default/vector.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include  -fPIC   -o CMakeFiles/osqp_algebra.dir/csc_tools/csc_math.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools/csc_math.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools/csc_math.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include  -fPIC   -o CMakeFiles/osqp_algebra.dir/csc_tools/csc_utils.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools/csc_utils.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools/csc_utils.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include  -fPIC   -o CMakeFiles/kkt_common.dir/kkt.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common/kkt.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common/kkt.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common  -fPIC   -o CMakeFiles/linsys_qdldl.dir/amd/src/amd_1.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_1.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_1.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common  -fPIC   -o CMakeFiles/linsys_qdldl.dir/amd/src/amd_2.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_2.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_2.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common  -fPIC   -o CMakeFiles/linsys_qdldl.dir/amd/src/amd_aat.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_aat.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_aat.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common  -fPIC   -o CMakeFiles/linsys_qdldl.dir/amd/src/amd_control.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_control.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_control.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common  -fPIC   -o CMakeFiles/linsys_qdldl.dir/amd/src/amd_defaults.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_defaults.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_defaults.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common  -fPIC   -o CMakeFiles/linsys_qdldl.dir/amd/src/amd_info.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_info.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_info.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common  -fPIC   -o CMakeFiles/linsys_qdldl.dir/amd/src/amd_order.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_order.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_order.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common  -fPIC   -o CMakeFiles/linsys_qdldl.dir/amd/src/amd_post_tree.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_post_tree.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_post_tree.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common  -fPIC   -o CMakeFiles/linsys_qdldl.dir/amd/src/amd_postorder.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_postorder.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_postorder.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common  -fPIC   -o CMakeFiles/linsys_qdldl.dir/amd/src/amd_preprocess.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_preprocess.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_preprocess.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common  -fPIC   -o CMakeFiles/linsys_qdldl.dir/amd/src/amd_valid.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_valid.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/amd_valid.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common  -fPIC   -o CMakeFiles/linsys_qdldl.dir/amd/src/SuiteSparse_config.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/SuiteSparse_config.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/src/SuiteSparse_config.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/amd/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common  -fPIC   -o CMakeFiles/linsys_qdldl.dir/qdldl_interface.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_interface.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_interface.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include   -O3 -fPIC   -o CMakeFiles/qdldlstatic.dir/src/qdldl.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/src/qdldl.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/src/qdldl.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources",
+  "command": "/usr/bin/cc -Dqdldl_EXPORTS -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include   -O3 -fPIC   -o CMakeFiles/qdldl.dir/src/qdldl.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/src/qdldl.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/src/qdldl.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include   -O3 -fPIE   -o CMakeFiles/qdldl_example.dir/examples/example.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/examples/example.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/examples/example.c"
+},
+{
+  "directory": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources",
+  "command": "/usr/bin/cc  -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include   -O3 -fPIC   -o CMakeFiles/qdldlobject.dir/src/qdldl.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/src/qdldl.c",
+  "file": "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/src/qdldl.c"
+}
+]

@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP
+CMAKE_SOURCE_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP
+CMAKE_BINARY_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -126,14 +126,14 @@ install/local/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(CMAKE_COMMAND) -E cmake_progress_start /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/CMakeFiles/progress.marks
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 algebra/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles 0
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(CMAKE_COMMAND) -E cmake_progress_start /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/CMakeFiles /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/CMakeFiles/progress.marks
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 algebra/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 algebra/clean
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 algebra/clean
 .PHONY : clean
 
 # The main clean target
@@ -143,22 +143,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 algebra/preinstall
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 algebra/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 algebra/preinstall
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 algebra/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 algebra/CMakeFiles/osqp_algebra.dir/rule:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 algebra/CMakeFiles/osqp_algebra.dir/rule
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 algebra/CMakeFiles/osqp_algebra.dir/rule
 .PHONY : algebra/CMakeFiles/osqp_algebra.dir/rule
 
 # Convenience name for target.
@@ -168,7 +168,7 @@ osqp_algebra: algebra/CMakeFiles/osqp_algebra.dir/rule
 
 # fast build rule for target.
 osqp_algebra/fast:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/build
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/build
 .PHONY : osqp_algebra/fast
 
 csc_tools/csc_math.o: csc_tools/csc_math.c.o
@@ -177,7 +177,7 @@ csc_tools/csc_math.o: csc_tools/csc_math.c.o
 
 # target to build an object file
 csc_tools/csc_math.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/csc_tools/csc_math.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/csc_tools/csc_math.c.o
 .PHONY : csc_tools/csc_math.c.o
 
 csc_tools/csc_math.i: csc_tools/csc_math.c.i
@@ -186,7 +186,7 @@ csc_tools/csc_math.i: csc_tools/csc_math.c.i
 
 # target to preprocess a source file
 csc_tools/csc_math.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/csc_tools/csc_math.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/csc_tools/csc_math.c.i
 .PHONY : csc_tools/csc_math.c.i
 
 csc_tools/csc_math.s: csc_tools/csc_math.c.s
@@ -195,7 +195,7 @@ csc_tools/csc_math.s: csc_tools/csc_math.c.s
 
 # target to generate assembly for a file
 csc_tools/csc_math.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/csc_tools/csc_math.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/csc_tools/csc_math.c.s
 .PHONY : csc_tools/csc_math.c.s
 
 csc_tools/csc_utils.o: csc_tools/csc_utils.c.o
@@ -204,7 +204,7 @@ csc_tools/csc_utils.o: csc_tools/csc_utils.c.o
 
 # target to build an object file
 csc_tools/csc_utils.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/csc_tools/csc_utils.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/csc_tools/csc_utils.c.o
 .PHONY : csc_tools/csc_utils.c.o
 
 csc_tools/csc_utils.i: csc_tools/csc_utils.c.i
@@ -213,7 +213,7 @@ csc_tools/csc_utils.i: csc_tools/csc_utils.c.i
 
 # target to preprocess a source file
 csc_tools/csc_utils.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/csc_tools/csc_utils.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/csc_tools/csc_utils.c.i
 .PHONY : csc_tools/csc_utils.c.i
 
 csc_tools/csc_utils.s: csc_tools/csc_utils.c.s
@@ -222,7 +222,7 @@ csc_tools/csc_utils.s: csc_tools/csc_utils.c.s
 
 # target to generate assembly for a file
 csc_tools/csc_utils.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/csc_tools/csc_utils.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/csc_tools/csc_utils.c.s
 .PHONY : csc_tools/csc_utils.c.s
 
 default/algebra_libs.o: default/algebra_libs.c.o
@@ -231,7 +231,7 @@ default/algebra_libs.o: default/algebra_libs.c.o
 
 # target to build an object file
 default/algebra_libs.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/default/algebra_libs.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/default/algebra_libs.c.o
 .PHONY : default/algebra_libs.c.o
 
 default/algebra_libs.i: default/algebra_libs.c.i
@@ -240,7 +240,7 @@ default/algebra_libs.i: default/algebra_libs.c.i
 
 # target to preprocess a source file
 default/algebra_libs.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/default/algebra_libs.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/default/algebra_libs.c.i
 .PHONY : default/algebra_libs.c.i
 
 default/algebra_libs.s: default/algebra_libs.c.s
@@ -249,7 +249,7 @@ default/algebra_libs.s: default/algebra_libs.c.s
 
 # target to generate assembly for a file
 default/algebra_libs.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/default/algebra_libs.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/default/algebra_libs.c.s
 .PHONY : default/algebra_libs.c.s
 
 default/matrix.o: default/matrix.c.o
@@ -258,7 +258,7 @@ default/matrix.o: default/matrix.c.o
 
 # target to build an object file
 default/matrix.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/default/matrix.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/default/matrix.c.o
 .PHONY : default/matrix.c.o
 
 default/matrix.i: default/matrix.c.i
@@ -267,7 +267,7 @@ default/matrix.i: default/matrix.c.i
 
 # target to preprocess a source file
 default/matrix.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/default/matrix.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/default/matrix.c.i
 .PHONY : default/matrix.c.i
 
 default/matrix.s: default/matrix.c.s
@@ -276,7 +276,7 @@ default/matrix.s: default/matrix.c.s
 
 # target to generate assembly for a file
 default/matrix.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/default/matrix.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/default/matrix.c.s
 .PHONY : default/matrix.c.s
 
 default/vector.o: default/vector.c.o
@@ -285,7 +285,7 @@ default/vector.o: default/vector.c.o
 
 # target to build an object file
 default/vector.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/default/vector.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/default/vector.c.o
 .PHONY : default/vector.c.o
 
 default/vector.i: default/vector.c.i
@@ -294,7 +294,7 @@ default/vector.i: default/vector.c.i
 
 # target to preprocess a source file
 default/vector.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/default/vector.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/default/vector.c.i
 .PHONY : default/vector.c.i
 
 default/vector.s: default/vector.c.s
@@ -303,7 +303,7 @@ default/vector.s: default/vector.c.s
 
 # target to generate assembly for a file
 default/vector.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/default/vector.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f algebra/CMakeFiles/osqp_algebra.dir/build.make algebra/CMakeFiles/osqp_algebra.dir/default/vector.c.s
 .PHONY : default/vector.c.s
 
 # Help Target
@@ -345,6 +345,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common/kkt.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common/kkt.c
 kkt.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common/kkt.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common/kkt.h
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common/kkt.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common/kkt.h
 osqp.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common/osqp.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common/osqp.h
 csc_utils.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common/csc_utils.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common/csc_utils.h
 
 algebra/csc_tools/csc_utils.h
 csc_type.h

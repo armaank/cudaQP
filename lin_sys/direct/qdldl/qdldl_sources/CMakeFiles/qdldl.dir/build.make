@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP
+CMAKE_SOURCE_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP
+CMAKE_BINARY_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm
 
 # Include any dependencies generated for this target.
 include lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/depend.make
@@ -59,16 +59,16 @@ include lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/flags.make
 
 lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/src/qdldl.c.o: lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/flags.make
 lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/src/qdldl.c.o: lin_sys/direct/qdldl/qdldl_sources/src/qdldl.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/src/qdldl.c.o"
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/qdldl.dir/src/qdldl.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources/src/qdldl.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/src/qdldl.c.o"
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/qdldl.dir/src/qdldl.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/src/qdldl.c
 
 lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/src/qdldl.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/qdldl.dir/src/qdldl.c.i"
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources/src/qdldl.c > CMakeFiles/qdldl.dir/src/qdldl.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/src/qdldl.c > CMakeFiles/qdldl.dir/src/qdldl.c.i
 
 lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/src/qdldl.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/qdldl.dir/src/qdldl.c.s"
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources/src/qdldl.c -o CMakeFiles/qdldl.dir/src/qdldl.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/src/qdldl.c -o CMakeFiles/qdldl.dir/src/qdldl.c.s
 
 lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/src/qdldl.c.o.requires:
 
@@ -91,8 +91,8 @@ qdldl_EXTERNAL_OBJECTS =
 lin_sys/direct/qdldl/qdldl_sources/out/libqdldl.so: lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/src/qdldl.c.o
 lin_sys/direct/qdldl/qdldl_sources/out/libqdldl.so: lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/build.make
 lin_sys/direct/qdldl/qdldl_sources/out/libqdldl.so: lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C shared library out/libqdldl.so"
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/qdldl.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C shared library out/libqdldl.so"
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/qdldl.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/build: lin_sys/direct/qdldl/qdldl_sources/out/libqdldl.so
@@ -104,10 +104,10 @@ lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/requires: lin_sys/direct
 .PHONY : lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/requires
 
 lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/clean:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources && $(CMAKE_COMMAND) -P CMakeFiles/qdldl.dir/cmake_clean.cmake
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources && $(CMAKE_COMMAND) -P CMakeFiles/qdldl.dir/cmake_clean.cmake
 .PHONY : lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/clean
 
 lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/depend:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : lin_sys/direct/qdldl/qdldl_sources/CMakeFiles/qdldl.dir/depend
 

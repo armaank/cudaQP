@@ -6,5 +6,5 @@ C_FLAGS =  -O3 -fPIC
 
 C_DEFINES = 
 
-C_INCLUDES = -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources/include 
+C_INCLUDES = -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include 
 

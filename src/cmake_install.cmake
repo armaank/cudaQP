@@ -1,4 +1,4 @@
-# Install script for directory: /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/src
+# Install script for directory: /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

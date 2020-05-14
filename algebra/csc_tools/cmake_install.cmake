@@ -1,4 +1,4 @@
-# Install script for directory: /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/csc_tools
+# Install script for directory: /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -1,4 +1,4 @@
-# Install script for directory: /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common
+# Install script for directory: /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

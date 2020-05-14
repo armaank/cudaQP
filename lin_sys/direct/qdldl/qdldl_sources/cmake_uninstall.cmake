@@ -1,8 +1,8 @@
-if(NOT EXISTS "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/install_manifest.txt")
-  message(FATAL_ERROR "Cannot find install manifest: /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/install_manifest.txt")
-endif(NOT EXISTS "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/install_manifest.txt")
+if(NOT EXISTS "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/install_manifest.txt")
+  message(FATAL_ERROR "Cannot find install manifest: /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/install_manifest.txt")
+endif(NOT EXISTS "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/install_manifest.txt")
 
-file(READ "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/install_manifest.txt" files)
+file(READ "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/install_manifest.txt" files)
 string(REGEX REPLACE "\n" ";" files "${files}")
 foreach(file ${files})
   message(STATUS "Uninstalling $ENV{DESTDIR}${file}")

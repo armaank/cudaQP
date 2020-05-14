@@ -245,10 +245,6 @@ install(TARGETS osqp
         ARCHIVE       DESTINATION "${CMAKE_INSTALL_LIBDIR}"
         RUNTIME       DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
-# Create demo executable (linked to static library)
-add_executable (osqp_demo ${PROJECT_SOURCE_DIR}/examples/osqp_demo.c)
-target_link_libraries (osqp_demo osqpstatic)
-
 # Create CMake packages for the build directory
 # ----------------------------------------------
 include(CMakePackageConfigHelpers)

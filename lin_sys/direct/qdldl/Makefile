@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP
+CMAKE_SOURCE_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP
+CMAKE_BINARY_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -126,14 +126,14 @@ install/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(CMAKE_COMMAND) -E cmake_progress_start /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/CMakeFiles/progress.marks
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/qdldl/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles 0
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(CMAKE_COMMAND) -E cmake_progress_start /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/CMakeFiles /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/CMakeFiles/progress.marks
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/qdldl/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/qdldl/clean
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/qdldl/clean
 .PHONY : clean
 
 # The main clean target
@@ -143,22 +143,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/qdldl/preinstall
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/qdldl/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/qdldl/preinstall
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/qdldl/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/rule:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/rule
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f CMakeFiles/Makefile2 lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/rule
 .PHONY : lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/rule
 
 # Convenience name for target.
@@ -168,7 +168,7 @@ linsys_qdldl: lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/rule
 
 # fast build rule for target.
 linsys_qdldl/fast:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build
 .PHONY : linsys_qdldl/fast
 
 amd/src/SuiteSparse_config.o: amd/src/SuiteSparse_config.c.o
@@ -177,7 +177,7 @@ amd/src/SuiteSparse_config.o: amd/src/SuiteSparse_config.c.o
 
 # target to build an object file
 amd/src/SuiteSparse_config.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/SuiteSparse_config.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/SuiteSparse_config.c.o
 .PHONY : amd/src/SuiteSparse_config.c.o
 
 amd/src/SuiteSparse_config.i: amd/src/SuiteSparse_config.c.i
@@ -186,7 +186,7 @@ amd/src/SuiteSparse_config.i: amd/src/SuiteSparse_config.c.i
 
 # target to preprocess a source file
 amd/src/SuiteSparse_config.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/SuiteSparse_config.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/SuiteSparse_config.c.i
 .PHONY : amd/src/SuiteSparse_config.c.i
 
 amd/src/SuiteSparse_config.s: amd/src/SuiteSparse_config.c.s
@@ -195,7 +195,7 @@ amd/src/SuiteSparse_config.s: amd/src/SuiteSparse_config.c.s
 
 # target to generate assembly for a file
 amd/src/SuiteSparse_config.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/SuiteSparse_config.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/SuiteSparse_config.c.s
 .PHONY : amd/src/SuiteSparse_config.c.s
 
 amd/src/amd_1.o: amd/src/amd_1.c.o
@@ -204,7 +204,7 @@ amd/src/amd_1.o: amd/src/amd_1.c.o
 
 # target to build an object file
 amd/src/amd_1.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_1.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_1.c.o
 .PHONY : amd/src/amd_1.c.o
 
 amd/src/amd_1.i: amd/src/amd_1.c.i
@@ -213,7 +213,7 @@ amd/src/amd_1.i: amd/src/amd_1.c.i
 
 # target to preprocess a source file
 amd/src/amd_1.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_1.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_1.c.i
 .PHONY : amd/src/amd_1.c.i
 
 amd/src/amd_1.s: amd/src/amd_1.c.s
@@ -222,7 +222,7 @@ amd/src/amd_1.s: amd/src/amd_1.c.s
 
 # target to generate assembly for a file
 amd/src/amd_1.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_1.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_1.c.s
 .PHONY : amd/src/amd_1.c.s
 
 amd/src/amd_2.o: amd/src/amd_2.c.o
@@ -231,7 +231,7 @@ amd/src/amd_2.o: amd/src/amd_2.c.o
 
 # target to build an object file
 amd/src/amd_2.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_2.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_2.c.o
 .PHONY : amd/src/amd_2.c.o
 
 amd/src/amd_2.i: amd/src/amd_2.c.i
@@ -240,7 +240,7 @@ amd/src/amd_2.i: amd/src/amd_2.c.i
 
 # target to preprocess a source file
 amd/src/amd_2.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_2.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_2.c.i
 .PHONY : amd/src/amd_2.c.i
 
 amd/src/amd_2.s: amd/src/amd_2.c.s
@@ -249,7 +249,7 @@ amd/src/amd_2.s: amd/src/amd_2.c.s
 
 # target to generate assembly for a file
 amd/src/amd_2.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_2.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_2.c.s
 .PHONY : amd/src/amd_2.c.s
 
 amd/src/amd_aat.o: amd/src/amd_aat.c.o
@@ -258,7 +258,7 @@ amd/src/amd_aat.o: amd/src/amd_aat.c.o
 
 # target to build an object file
 amd/src/amd_aat.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_aat.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_aat.c.o
 .PHONY : amd/src/amd_aat.c.o
 
 amd/src/amd_aat.i: amd/src/amd_aat.c.i
@@ -267,7 +267,7 @@ amd/src/amd_aat.i: amd/src/amd_aat.c.i
 
 # target to preprocess a source file
 amd/src/amd_aat.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_aat.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_aat.c.i
 .PHONY : amd/src/amd_aat.c.i
 
 amd/src/amd_aat.s: amd/src/amd_aat.c.s
@@ -276,7 +276,7 @@ amd/src/amd_aat.s: amd/src/amd_aat.c.s
 
 # target to generate assembly for a file
 amd/src/amd_aat.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_aat.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_aat.c.s
 .PHONY : amd/src/amd_aat.c.s
 
 amd/src/amd_control.o: amd/src/amd_control.c.o
@@ -285,7 +285,7 @@ amd/src/amd_control.o: amd/src/amd_control.c.o
 
 # target to build an object file
 amd/src/amd_control.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_control.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_control.c.o
 .PHONY : amd/src/amd_control.c.o
 
 amd/src/amd_control.i: amd/src/amd_control.c.i
@@ -294,7 +294,7 @@ amd/src/amd_control.i: amd/src/amd_control.c.i
 
 # target to preprocess a source file
 amd/src/amd_control.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_control.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_control.c.i
 .PHONY : amd/src/amd_control.c.i
 
 amd/src/amd_control.s: amd/src/amd_control.c.s
@@ -303,7 +303,7 @@ amd/src/amd_control.s: amd/src/amd_control.c.s
 
 # target to generate assembly for a file
 amd/src/amd_control.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_control.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_control.c.s
 .PHONY : amd/src/amd_control.c.s
 
 amd/src/amd_defaults.o: amd/src/amd_defaults.c.o
@@ -312,7 +312,7 @@ amd/src/amd_defaults.o: amd/src/amd_defaults.c.o
 
 # target to build an object file
 amd/src/amd_defaults.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_defaults.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_defaults.c.o
 .PHONY : amd/src/amd_defaults.c.o
 
 amd/src/amd_defaults.i: amd/src/amd_defaults.c.i
@@ -321,7 +321,7 @@ amd/src/amd_defaults.i: amd/src/amd_defaults.c.i
 
 # target to preprocess a source file
 amd/src/amd_defaults.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_defaults.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_defaults.c.i
 .PHONY : amd/src/amd_defaults.c.i
 
 amd/src/amd_defaults.s: amd/src/amd_defaults.c.s
@@ -330,7 +330,7 @@ amd/src/amd_defaults.s: amd/src/amd_defaults.c.s
 
 # target to generate assembly for a file
 amd/src/amd_defaults.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_defaults.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_defaults.c.s
 .PHONY : amd/src/amd_defaults.c.s
 
 amd/src/amd_info.o: amd/src/amd_info.c.o
@@ -339,7 +339,7 @@ amd/src/amd_info.o: amd/src/amd_info.c.o
 
 # target to build an object file
 amd/src/amd_info.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_info.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_info.c.o
 .PHONY : amd/src/amd_info.c.o
 
 amd/src/amd_info.i: amd/src/amd_info.c.i
@@ -348,7 +348,7 @@ amd/src/amd_info.i: amd/src/amd_info.c.i
 
 # target to preprocess a source file
 amd/src/amd_info.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_info.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_info.c.i
 .PHONY : amd/src/amd_info.c.i
 
 amd/src/amd_info.s: amd/src/amd_info.c.s
@@ -357,7 +357,7 @@ amd/src/amd_info.s: amd/src/amd_info.c.s
 
 # target to generate assembly for a file
 amd/src/amd_info.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_info.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_info.c.s
 .PHONY : amd/src/amd_info.c.s
 
 amd/src/amd_order.o: amd/src/amd_order.c.o
@@ -366,7 +366,7 @@ amd/src/amd_order.o: amd/src/amd_order.c.o
 
 # target to build an object file
 amd/src/amd_order.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_order.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_order.c.o
 .PHONY : amd/src/amd_order.c.o
 
 amd/src/amd_order.i: amd/src/amd_order.c.i
@@ -375,7 +375,7 @@ amd/src/amd_order.i: amd/src/amd_order.c.i
 
 # target to preprocess a source file
 amd/src/amd_order.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_order.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_order.c.i
 .PHONY : amd/src/amd_order.c.i
 
 amd/src/amd_order.s: amd/src/amd_order.c.s
@@ -384,7 +384,7 @@ amd/src/amd_order.s: amd/src/amd_order.c.s
 
 # target to generate assembly for a file
 amd/src/amd_order.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_order.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_order.c.s
 .PHONY : amd/src/amd_order.c.s
 
 amd/src/amd_post_tree.o: amd/src/amd_post_tree.c.o
@@ -393,7 +393,7 @@ amd/src/amd_post_tree.o: amd/src/amd_post_tree.c.o
 
 # target to build an object file
 amd/src/amd_post_tree.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_post_tree.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_post_tree.c.o
 .PHONY : amd/src/amd_post_tree.c.o
 
 amd/src/amd_post_tree.i: amd/src/amd_post_tree.c.i
@@ -402,7 +402,7 @@ amd/src/amd_post_tree.i: amd/src/amd_post_tree.c.i
 
 # target to preprocess a source file
 amd/src/amd_post_tree.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_post_tree.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_post_tree.c.i
 .PHONY : amd/src/amd_post_tree.c.i
 
 amd/src/amd_post_tree.s: amd/src/amd_post_tree.c.s
@@ -411,7 +411,7 @@ amd/src/amd_post_tree.s: amd/src/amd_post_tree.c.s
 
 # target to generate assembly for a file
 amd/src/amd_post_tree.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_post_tree.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_post_tree.c.s
 .PHONY : amd/src/amd_post_tree.c.s
 
 amd/src/amd_postorder.o: amd/src/amd_postorder.c.o
@@ -420,7 +420,7 @@ amd/src/amd_postorder.o: amd/src/amd_postorder.c.o
 
 # target to build an object file
 amd/src/amd_postorder.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_postorder.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_postorder.c.o
 .PHONY : amd/src/amd_postorder.c.o
 
 amd/src/amd_postorder.i: amd/src/amd_postorder.c.i
@@ -429,7 +429,7 @@ amd/src/amd_postorder.i: amd/src/amd_postorder.c.i
 
 # target to preprocess a source file
 amd/src/amd_postorder.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_postorder.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_postorder.c.i
 .PHONY : amd/src/amd_postorder.c.i
 
 amd/src/amd_postorder.s: amd/src/amd_postorder.c.s
@@ -438,7 +438,7 @@ amd/src/amd_postorder.s: amd/src/amd_postorder.c.s
 
 # target to generate assembly for a file
 amd/src/amd_postorder.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_postorder.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_postorder.c.s
 .PHONY : amd/src/amd_postorder.c.s
 
 amd/src/amd_preprocess.o: amd/src/amd_preprocess.c.o
@@ -447,7 +447,7 @@ amd/src/amd_preprocess.o: amd/src/amd_preprocess.c.o
 
 # target to build an object file
 amd/src/amd_preprocess.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_preprocess.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_preprocess.c.o
 .PHONY : amd/src/amd_preprocess.c.o
 
 amd/src/amd_preprocess.i: amd/src/amd_preprocess.c.i
@@ -456,7 +456,7 @@ amd/src/amd_preprocess.i: amd/src/amd_preprocess.c.i
 
 # target to preprocess a source file
 amd/src/amd_preprocess.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_preprocess.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_preprocess.c.i
 .PHONY : amd/src/amd_preprocess.c.i
 
 amd/src/amd_preprocess.s: amd/src/amd_preprocess.c.s
@@ -465,7 +465,7 @@ amd/src/amd_preprocess.s: amd/src/amd_preprocess.c.s
 
 # target to generate assembly for a file
 amd/src/amd_preprocess.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_preprocess.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_preprocess.c.s
 .PHONY : amd/src/amd_preprocess.c.s
 
 amd/src/amd_valid.o: amd/src/amd_valid.c.o
@@ -474,7 +474,7 @@ amd/src/amd_valid.o: amd/src/amd_valid.c.o
 
 # target to build an object file
 amd/src/amd_valid.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_valid.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_valid.c.o
 .PHONY : amd/src/amd_valid.c.o
 
 amd/src/amd_valid.i: amd/src/amd_valid.c.i
@@ -483,7 +483,7 @@ amd/src/amd_valid.i: amd/src/amd_valid.c.i
 
 # target to preprocess a source file
 amd/src/amd_valid.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_valid.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_valid.c.i
 .PHONY : amd/src/amd_valid.c.i
 
 amd/src/amd_valid.s: amd/src/amd_valid.c.s
@@ -492,7 +492,7 @@ amd/src/amd_valid.s: amd/src/amd_valid.c.s
 
 # target to generate assembly for a file
 amd/src/amd_valid.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_valid.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/amd/src/amd_valid.c.s
 .PHONY : amd/src/amd_valid.c.s
 
 qdldl_interface.o: qdldl_interface.c.o
@@ -501,7 +501,7 @@ qdldl_interface.o: qdldl_interface.c.o
 
 # target to build an object file
 qdldl_interface.c.o:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/qdldl_interface.c.o
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/qdldl_interface.c.o
 .PHONY : qdldl_interface.c.o
 
 qdldl_interface.i: qdldl_interface.c.i
@@ -510,7 +510,7 @@ qdldl_interface.i: qdldl_interface.c.i
 
 # target to preprocess a source file
 qdldl_interface.c.i:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/qdldl_interface.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/qdldl_interface.c.i
 .PHONY : qdldl_interface.c.i
 
 qdldl_interface.s: qdldl_interface.c.s
@@ -519,7 +519,7 @@ qdldl_interface.s: qdldl_interface.c.s
 
 # target to generate assembly for a file
 qdldl_interface.c.s:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/qdldl_interface.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(MAKE) -f lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/build.make lin_sys/direct/qdldl/CMakeFiles/linsys_qdldl.dir/qdldl_interface.c.s
 .PHONY : qdldl_interface.c.s
 
 # Help Target
@@ -585,6 +585,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

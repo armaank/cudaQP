@@ -6,5 +6,5 @@ C_FLAGS = -fPIC
 
 C_DEFINES = 
 
-C_INCLUDES = -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/include 
+C_INCLUDES = -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/algebra/csc_tools -I/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/include 
 

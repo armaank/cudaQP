@@ -45,27 +45,27 @@ unset(_expectedTargets)
 add_library(qdldl::qdldlstatic STATIC IMPORTED)
 
 set_target_properties(qdldl::qdldlstatic PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources/include"
+  INTERFACE_INCLUDE_DIRECTORIES "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include"
 )
 
 # Create imported target qdldl::qdldl
 add_library(qdldl::qdldl SHARED IMPORTED)
 
 set_target_properties(qdldl::qdldl PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources/include"
+  INTERFACE_INCLUDE_DIRECTORIES "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/include"
 )
 
 # Import target "qdldl::qdldlstatic" for configuration ""
 set_property(TARGET qdldl::qdldlstatic APPEND PROPERTY IMPORTED_CONFIGURATIONS NOCONFIG)
 set_target_properties(qdldl::qdldlstatic PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_NOCONFIG "C"
-  IMPORTED_LOCATION_NOCONFIG "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources/out/libqdldl.a"
+  IMPORTED_LOCATION_NOCONFIG "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/out/libqdldl.a"
   )
 
 # Import target "qdldl::qdldl" for configuration ""
 set_property(TARGET qdldl::qdldl APPEND PROPERTY IMPORTED_CONFIGURATIONS NOCONFIG)
 set_target_properties(qdldl::qdldl PROPERTIES
-  IMPORTED_LOCATION_NOCONFIG "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources/out/libqdldl.so"
+  IMPORTED_LOCATION_NOCONFIG "/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/out/libqdldl.so"
   IMPORTED_SONAME_NOCONFIG "libqdldl.so"
   )
 

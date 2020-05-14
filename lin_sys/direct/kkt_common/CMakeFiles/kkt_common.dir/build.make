@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP
+CMAKE_SOURCE_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP
+CMAKE_BINARY_DIR = /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm
 
 # Include any dependencies generated for this target.
 include lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/depend.make
@@ -59,16 +59,16 @@ include lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/flags.make
 
 lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/kkt.c.o: lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/flags.make
 lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/kkt.c.o: lin_sys/direct/kkt_common/kkt.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/kkt.c.o"
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/kkt_common.dir/kkt.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common/kkt.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/kkt.c.o"
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/kkt_common.dir/kkt.c.o   -c /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common/kkt.c
 
 lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/kkt.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/kkt_common.dir/kkt.c.i"
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common/kkt.c > CMakeFiles/kkt_common.dir/kkt.c.i
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common/kkt.c > CMakeFiles/kkt_common.dir/kkt.c.i
 
 lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/kkt.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/kkt_common.dir/kkt.c.s"
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common/kkt.c -o CMakeFiles/kkt_common.dir/kkt.c.s
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common/kkt.c -o CMakeFiles/kkt_common.dir/kkt.c.s
 
 lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/kkt.c.o.requires:
 
@@ -96,10 +96,10 @@ lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/requires: lin_sys/direct/kkt
 .PHONY : lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/requires
 
 lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/clean:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common && $(CMAKE_COMMAND) -P CMakeFiles/kkt_common.dir/cmake_clean.cmake
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common && $(CMAKE_COMMAND) -P CMakeFiles/kkt_common.dir/cmake_clean.cmake
 .PHONY : lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/clean
 
 lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/depend:
-	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common /home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : lin_sys/direct/kkt_common/CMakeFiles/kkt_common.dir/depend
 

@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources/src/qdldl.c
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/src/qdldl.c
 qdldl.h
-/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudaQP/lin_sys/direct/qdldl/qdldl_sources/src/qdldl.h
+/home/armaan/Documents/cooperunion/spring_2020/ece453/final/cudasvm/lin_sys/direct/qdldl/qdldl_sources/src/qdldl.h
 
 lin_sys/direct/qdldl/qdldl_sources/include/qdldl.h
 qdldl_types.h
