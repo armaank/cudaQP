@@ -307,7 +307,7 @@ add_subdirectory(benchmarks)
 # set(data_timestamp ${PROJECT_SOURCE_DIR}/tests/tests_data.stamp)
 add_custom_command(
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/benchmarks
-    COMMAND ${PYTHON_EXECUTABLE} generate_tests_data.py
+    COMMAND ${PYTHON_EXECUTABLE} generate_tests_data.py 
     DEPENDS ${PROJECT_SOURCE_DIR}/benchmarks/generate_tests_data.py
     OUTPUT ${codegen_test_headers}
     COMMENT "Generating unittests data files using Python"

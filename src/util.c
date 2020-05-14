@@ -67,7 +67,8 @@ void print_setup_header(const OSQPSolver *solver) {
   nnz = OSQPMatrix_get_nz(data->P) + OSQPMatrix_get_nz(data->A);
 
   print_line();
-  c_print("           OSQP v%s  -  Operator Splitting QP Solver\n"
+  c_print("           cudasvm - armaank - a soft fork of: \n"
+	  "           OSQP v%s  -  Operator Splitting QP Solver\n"
           "              (c) Bartolomeo Stellato,  Goran Banjac\n"
           "        University of Oxford  -  Stanford University 2019\n",
           OSQP_VERSION);
