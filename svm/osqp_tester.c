@@ -30,8 +30,8 @@ int tests_run = 0;
 static const char* all_tests() {
   //mu_run_test(test_lin_alg);
   //mu_run_test(test_solve_linsys);
-  mu_run_test(test_demo);
-  mu_run_test(test_basic_qp);
+  //mu_run_test(test_demo);
+  //mu_run_test(test_basic_qp);
   mu_run_test(test_basic_svm);
   //mu_run_test(test_non_cvx);
   //mu_run_test(test_primal_infeasibility);
