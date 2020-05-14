@@ -40,9 +40,9 @@ static c_float compute_tolerance(cudapcg_solver *s, c_int admm_iter)
             return s->eps_prev;
         }
 
-        if (s->zero_pcg_iter >= s->reduction_threshold) {
+        if (s->zero_pcg_iters >= s->reduction_threshold) {
             s->reduction_factor /= 2;
-            s->zero_pcg_iter = 0;
+            s->zero_pcg_iters = 0;
         }
 
         eps = s->reduction_factor * sqrt((*s->scaled_pri_res) * (*s->scaled_dua_res));
@@ -114,7 +114,7 @@ c_int init_linsys_solver_cudapcg(cudapcg_solver **sp,
 
     /* pcg states */
     s->polish = polish;
-    s->zero_pcg_iter = 0;
+    s->zero_pcg_iters = 0;
 
     /* default norm and tolerance strategy */
     s->eps_strategy = RESIDUAL_STRATEGY;
@@ -241,7 +241,7 @@ c_int solve_linsys_cudapcg(cudapcg_solver *s, OSQPVectorf *b,c_int admm_iter)
     }
 
     if (pcg_iter == 0)
-        s->zero_pcg_iter++;
+        s->zero_pcg_iters++;
 
     return 0;
 }
