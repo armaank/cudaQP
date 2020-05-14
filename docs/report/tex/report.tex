@@ -158,7 +158,7 @@ We can formulate an SVM as a quadratic program using the method described in \ci
 \section{Implementation Details}
 \paragraph{}
 The \texttt{osqp} paper presents an two new ways of solving ADMM, a direct method an indirect method. The algorithm in full-form is presented below:
-\begin{algorithm}[htp][
+\begin{algorithm}[htp]
 \SetKwInOut{Input}{input}\SetKwInOut{Output}{output} 
 \SetAlgoLined
 \textit{given:}
@@ -193,7 +193,7 @@ In cases where the number of datapoints or the dimensionality of the space is to
 (P + \sigma I + A^TRA)\tilde{x}^{k+1} = \sigma x^k - q + A^T(Rz^k-y^k)
 \end{equation}
 Which can be solved using the PCG algorithm below. 
-\begin{algorithm}[htp][
+\begin{algorithm}[htp]
 \SetKwInOut{Input}{input}\SetKwInOut{Output}{output} 
 \SetAlgoLined
 \textit{initialise:}
@@ -224,6 +224,7 @@ In order to write an efficient GPU implementation of PCG, we used the following 
 \end{figure}\\
 They found that using a GPU implementation for SVM solving didn't give massive improvements. However the CPU implementation scales much faster than the GPU implementation as the problem size increases. Furthermore, latency between the host and target devices meant that for smaller problems, the CPU algorithm was superior to the GPU algorithm. But as the problem size increased, the overhead was overcome and the GPU achieved better performance.
 \paragraph{} For our implementation, we were unable to generate problems greater than $10^4$. However, we did see similar performance improvements, our results are pictured in Fig. \ref{fig:results}. As was the case for the official implementation, we found that for small problem size, the overhead made the CPU more efficient than the GPU. But, as the problem size increased, the GPU gave superior performance. And, as the problem size increased, the GPU runtime increased at a much slower rate than the CPU runtime. 
+\paragraph{} Looking at absolute performance however, and not trends, tells us that our GPU implementation is actually superior, since it surpasses CPU performance for smaller problems faster than the official version. GPU performance beats CPU performance around for $N=3\times1 0^4$ in Fig. \ref{fig:cuosqp_results}, whereas this cross over happens much earlier for our implementation, at around $N=5\times 10^3$. This could be due to the choice of GPU specific parameters, such as the number of threads per block or elements per thread, or even the physical GPU itself. 
 \begin{figure}[h]
 \includegraphics[scale=.6]{./media/results.png}
 \label{fig:results}
@@ -232,20 +233,20 @@ They found that using a GPU implementation for SVM solving didn't give massive i
 
 \section{Conclusion}
 
-\paragraph{} In conclusion, we were able to develop our own version of a GPU implementation of ADMM for SVM classification using the \texttt{osqp} api. We also successfully verified the results from \cite{cuosqp} for small scale problems. 
+\paragraph{} In conclusion, we were able to develop our own version of a GPU implementation of ADMM for SVM classification using the \texttt{osqp} api. We also successfully verified the results from \cite{cuosqp} a regime of relatively scale problems. Furthermore, our GPU implementation achieves higher performance than reported in the paper in the regime of small scale problems. 
 \clearpage
 \bibliography{bib}{}
 \bibliographystyle{IEEEtran}
 \clearpage
 \section{Appendix A: Code}
-The code is used to generate SVM classification problems \texttt{dmm.py}, the main model code. 
-%\lstinputlisting[language=Python,frame=single]{./code/generate_problem.py}
+The code below is \texttt{generate\_problem.py}. It is used to generate SVM classification problems 
+\lstinputlisting[language=Python,frame=single]{../../../benchmarks/svm/generate_problem.py}
 \clearpage
-The code below contains all of the main \texttt{CUDA} routines for the PGC algorithm.
-%\lstinputlisting[language=C,frame=single]{./code/cuda_pcg.cu}
+The code below is \texttt{cuda\_pcg.cu}. It contains all of the main \texttt{CUDA} routines for the PGC algorithm.
+\lstinputlisting[language=C,frame=single]{../../../lin_sys/cuda/cuda_pcg/src/cuda_pcg.cu}
 \clearpage
-The code below wraps the \texttt{CUDA} functions into a \texttt{linsys} solver module specified by the \texttt{osqp} api so that we can actually solve a linear system via PCG.
-%\lstinputlisting[language=C,frame=single]{../code/wrapper.py}
+The code below is \texttt{cuda\_pcg\_interface.c}. It wraps \texttt{cuda\_pcg.cu} functions into a \texttt{lin\_sys} solver module specified by the \texttt{osqp} api so that we can actually solve a linear system via PCG.
+\lstinputlisting[language=C,frame=single]{../../../lin_sys/cuda/cuda_pcg/cuda_pcg_interface.c}
 
 \end{fullwidth}
 

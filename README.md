@@ -14,6 +14,9 @@ scipy
 # CUDA libs
 cuBLAS
 cuSparse
+# other
+CMake
+
 ```
 `cuBLAS` and `cuSPARSE` should be there, but you may need to install `numpy` and `scipy`, and possibly `gFortran` for `scipy`
 

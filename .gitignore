@@ -12,3 +12,8 @@ CMakeCache.txt
 *.dvi
 *.blg
 *.json
+*.nav
+*.toc
+*.vrb
+*.snm
+
