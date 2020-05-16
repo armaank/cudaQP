@@ -16,4 +16,4 @@ CMakeCache.txt
 *.toc
 *.vrb
 *.snm
-
+*.DS_Store
